@@ -184,11 +184,14 @@
 
   .video-embed-wrap {
     position: relative;
-    padding-bottom: 56.25%;
     border-radius: 10px;
-    overflow: hidden;
+    overflow: visible;
     border: 1.5px solid var(--border2);
     background: #000;
+  }
+  .video-embed-wrap.yt-mode {
+    padding-bottom: 56.25%;
+    overflow: hidden;
   }
   .video-embed-wrap iframe {
     position: absolute; top: 0; left: 0;
@@ -883,12 +886,10 @@
       copyTemplateBtn.style.display = 'inline-block';
       openVideoBtn.style.display    = 'none';
     } else {
-      // TikTok or FB — hide formula buttons, show open video button
-      useFormulaBtn.style.display   = 'none';
+      // TikTok or FB — show USE THIS FORMULA, hide COPY TEMPLATE and PANOORIN
+      useFormulaBtn.style.display   = 'block';
       copyTemplateBtn.style.display = 'none';
-      openVideoBtn.style.display    = 'block';
-      openVideoBtn.href = url;
-      openVideoBtn.textContent = isTikTok ? '▶ PANOORIN SA TIKTOK →' : '▶ PANOORIN SA FACEBOOK →';
+      openVideoBtn.style.display    = 'none';
     }
     const vid = isYT ? (url ? extractId(url) : VIDEO_ID) : null;
 
@@ -900,43 +901,31 @@
     document.getElementById('resultsWrap').classList.remove('show');
     document.getElementById('genPanel').classList.remove('show');
     document.getElementById('musicBlock').style.display = 'none';
+    const embedWrap = document.querySelector('.video-embed-wrap');
+
     if (isYT) {
+      embedWrap.classList.add('yt-mode');
       document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/' + vid + '?rel=0&modestbranding=1';
       document.getElementById('videoFrame').style.display = 'block';
       document.getElementById('embedNotice').style.display = 'none';
     } else if (isTikTok) {
-      const ttId = (url.match(/\/video\/(\d+)/) || [])[1] || '0';
+      embedWrap.classList.remove('yt-mode');
       document.getElementById('videoFrame').style.display = 'none';
-      let ttWrap = document.getElementById('ttEmbedHolder');
-      if (!ttWrap) { ttWrap = document.createElement('div'); ttWrap.id = 'ttEmbedHolder'; document.getElementById('videoFrame').parentElement.appendChild(ttWrap); }
-      ttWrap.innerHTML = '<blockquote class="tiktok-embed" cite="' + url + '" data-video-id="' + ttId + '" style="max-width:325px;min-width:325px;border:none;margin:0 auto"></blockquote>';
-      const s = document.createElement('script'); s.src = 'https://www.tiktok.com/embed.js'; s.async = true; document.body.appendChild(s);
-
-      // Show embed notice for TikTok
       const notice = document.getElementById('embedNotice');
       const noticeText = document.getElementById('embedNoticeText');
-      const noticeLink = document.getElementById('embedOpenLink');
       notice.style.display = 'block';
-      noticeText.innerHTML = '📱 <strong style="color:#fff">Ang TikTok videos ay hindi laging naglo-load sa ibang websites</strong> dahil sa privacy settings ng TikTok.<br><br>' +
-        '✅ <strong style="color:var(--gold)">Ang viral formula ay nakuha na</strong> — pwede kang mag-generate ng content kahit hindi lumalabas ang video.<br><br>' +
-        '👆 I-click ang button sa ibaba para panoorin ang video direkta sa TikTok.';
-      noticeLink.href = url;
+      document.getElementById('embedOpenLink').style.display = 'none';
+      noticeText.innerHTML = '📱 <strong style="color:#fff">Hindi pwedeng mag-play ng TikTok video dito</strong> dahil sa privacy settings ng TikTok.<br><br>' +
+        '✅ <strong style="color:var(--gold)">Okay lang!</strong> Na-decode na ng AI ang viral formula mula sa URL mo. I-click ang <strong style="color:var(--pink)">USE THIS FORMULA</strong> para mag-generate ng content!';
     } else if (isFB) {
+      embedWrap.classList.remove('yt-mode');
       document.getElementById('videoFrame').style.display = 'none';
-      let fbWrap = document.getElementById('fbEmbedHolder');
-      if (!fbWrap) { fbWrap = document.createElement('div'); fbWrap.id = 'fbEmbedHolder'; document.getElementById('videoFrame').parentElement.appendChild(fbWrap); }
-      fbWrap.innerHTML = '<div class="fb-video" data-href="' + url + '" data-width="400" data-show-text="false"></div>';
-      if (window.FB) window.FB.XFBML.parse(fbWrap);
-
-      // Show embed notice for Facebook
       const noticeFb = document.getElementById('embedNotice');
       const noticeTextFb = document.getElementById('embedNoticeText');
-      const noticeLinkFb = document.getElementById('embedOpenLink');
       noticeFb.style.display = 'block';
-      noticeTextFb.innerHTML = '📘 <strong style="color:#fff">Ang Facebook Reels/Videos ay hindi pwedeng i-embed</strong> sa ibang websites dahil sa Facebook\'s privacy at copyright policies.<br><br>' +
-        '✅ <strong style="color:var(--gold)">Ang viral formula ay nakuha na</strong> — pwede kang mag-generate ng content kahit hindi lumalabas ang video.<br><br>' +
-        '👆 I-click ang button sa ibaba para panoorin ang video direkta sa Facebook.';
-      noticeLinkFb.href = url;
+      document.getElementById('embedOpenLink').style.display = 'none';
+      noticeTextFb.innerHTML = '📘 <strong style="color:#fff">Hindi pwedeng mag-play ng Facebook video dito</strong> dahil sa Facebook privacy policies.<br><br>' +
+        '✅ <strong style="color:var(--gold)">Okay lang!</strong> Na-decode na ng AI ang viral formula mula sa URL mo. I-click ang <strong style="color:var(--pink)">USE THIS FORMULA</strong> para mag-generate ng content!';
     }
 
     let meta = { title: '', author: '' };
