@@ -732,11 +732,16 @@
   </div>
 
   <!-- CTAs -->
-  <div class="cta-row">
+  <div class="cta-row" id="ctaRow">
+    <!-- YouTube CTAs (default) -->
     <button class="main-cta" id="useFormulaBtn" onclick="generateContent()">
       🔁 USE THIS FORMULA - GENERATE MY CONTENT
     </button>
-    <button class="sec-cta" onclick="copyTemplate()">📋 COPY TEMPLATE</button>
+    <button class="sec-cta" id="copyTemplateBtn" onclick="copyTemplate()">📋 COPY TEMPLATE</button>
+    <!-- TikTok/FB CTA (hidden by default) -->
+    <a class="main-cta" id="openVideoBtn" href="#" target="_blank" rel="noopener" style="display:none;text-align:center;text-decoration:none">
+      ▶ PANOORIN ANG VIDEO →
+    </a>
   </div>
 
   <!-- GENERATED PANEL -->
@@ -867,6 +872,24 @@
     const isTikTok = url.includes('tiktok.com');
     const isFB = url.includes('facebook.com') || url.includes('fb.watch');
     const isYT = !isTikTok && !isFB;
+
+    // Toggle CTA buttons based on platform
+    const useFormulaBtn  = document.getElementById('useFormulaBtn');
+    const copyTemplateBtn= document.getElementById('copyTemplateBtn');
+    const openVideoBtn   = document.getElementById('openVideoBtn');
+
+    if (isYT) {
+      useFormulaBtn.style.display   = 'block';
+      copyTemplateBtn.style.display = 'inline-block';
+      openVideoBtn.style.display    = 'none';
+    } else {
+      // TikTok or FB — hide formula buttons, show open video button
+      useFormulaBtn.style.display   = 'none';
+      copyTemplateBtn.style.display = 'none';
+      openVideoBtn.style.display    = 'block';
+      openVideoBtn.href = url;
+      openVideoBtn.textContent = isTikTok ? '▶ PANOORIN SA TIKTOK →' : '▶ PANOORIN SA FACEBOOK →';
+    }
     const vid = isYT ? (url ? extractId(url) : VIDEO_ID) : null;
 
     if (isYT && !vid) { errBox.textContent = 'Invalid YouTube URL. I-paste ang tamang link.'; errBox.classList.add('show'); return; }
@@ -877,7 +900,6 @@
     document.getElementById('resultsWrap').classList.remove('show');
     document.getElementById('genPanel').classList.remove('show');
     document.getElementById('musicBlock').style.display = 'none';
-
     if (isYT) {
       document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/' + vid + '?rel=0&modestbranding=1';
       document.getElementById('videoFrame').style.display = 'block';
