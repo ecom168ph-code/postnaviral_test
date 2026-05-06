@@ -2110,12 +2110,15 @@ async function generateContent(){
 
   // Read niche from input field
   const nicheInput = document.getElementById('nicheInput');
-  if(nicheInput) selectedNiche = nicheInput.value.trim() || 'Content Creator';
+  if(nicheInput) selectedNiche = nicheInput.value.trim() || selectedNiche || 'Content Creator';
 
   // Validate niche
-  if(!selectedNiche){ showToast('❗ I-type muna ang iyong niche!'); nicheInput.focus(); return; }
+  if(!selectedNiche || selectedNiche.trim() === ''){ showToast('❗ I-type muna ang iyong niche!'); if(nicheInput) nicheInput.focus(); return; }
 
-  // Block unverified users - skip check, allow all logged in users to generate
+  // Ensure userData has required fields
+  if(!userData.plan) userData.plan = 'free';
+  if(!userData.ideasToday) userData.ideasToday = 0;
+  if(!userData.ideasLimit) userData.ideasLimit = 1;
 
   const btn = document.getElementById('generateBtn');
   btn.disabled=true;
