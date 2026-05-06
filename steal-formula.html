@@ -790,114 +790,50 @@
 
   const YT_DATA_KEY = 'AIzaSyB4nIliTPi769ZySS38aZS-WKKLaeolTuo';
 
-  // ── API CALL via Netlify server function (key never exposed to browser) ──
-  async function callClaude(systemPrompt, userPrompt) {
-    const r = await fetch('/api/generate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-haiku-4-5',
-        max_tokens: 3000,
-        system: systemPrompt,
-        messages: [{ role: 'user', content: userPrompt }]
-      })
-    });
   async function fetchTitle(vid) {
-    // Priority 0: Pre-loaded from index.html URL params
     if (window._preloadedTitle) {
       const t = window._preloadedTitle;
       const a = window._preloadedAuthor || '';
-      window._preloadedTitle  = null;
+      window._preloadedTitle = null;
       window._preloadedAuthor = null;
       return { title: t, author: a };
     }
-
     const ytUrl = 'https://www.youtube.com/watch?v=' + vid;
-
-    // Method 1: YouTube Data API v3 (most reliable, no CORS issues)
     try {
-      const r = await fetch(
-        'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + vid + '&key=' + YT_DATA_KEY,
-        { mode: 'cors' }
-      );
+      const r = await fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + vid + '&key=' + YT_DATA_KEY);
       if (r.ok) {
         const d = await r.json();
         const item = (d.items || [])[0];
-        if (item && item.snippet && item.snippet.title) {
-          return { title: item.snippet.title, author: item.snippet.channelTitle || '' };
-        }
+        if (item && item.snippet && item.snippet.title) return { title: item.snippet.title, author: item.snippet.channelTitle || '' };
       }
-    } catch(e) { /* silent */ }
-
-    // Method 2: noembed.com
+    } catch(e) {}
     try {
       const r = await fetch('https://noembed.com/embed?url=' + encodeURIComponent(ytUrl));
-      if (r.ok) {
-        const d = await r.json();
-        if (d.title && d.title !== 'YouTube Video') {
-          return { title: d.title, author: d.author_name || '' };
-        }
-      }
-    } catch(e) { /* silent */ }
-
-    // Method 3: YouTube oEmbed
+      if (r.ok) { const d = await r.json(); if (d.title && d.title !== 'YouTube Video') return { title: d.title, author: d.author_name || '' }; }
+    } catch(e) {}
     try {
       const r = await fetch('https://www.youtube.com/oembed?url=' + encodeURIComponent(ytUrl) + '&format=json');
-      if (r.ok) {
-        const d = await r.json();
-        if (d.title) return { title: d.title, author: d.author_name || '' };
-      }
-    } catch(e) { /* silent */ }
-
-    // Method 4: corsproxy.io
-    try {
-      const r = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://www.youtube.com/oembed?url=' + encodeURIComponent(ytUrl) + '&format=json'));
-      if (r.ok) {
-        const d = await r.json();
-        if (d.title) return { title: d.title, author: d.author_name || '' };
-      }
-    } catch(e) { /* silent */ }
-
-    // Method 5: allorigins proxy
-    try {
-      const r = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://www.youtube.com/oembed?url=' + encodeURIComponent(ytUrl) + '&format=json'));
-      if (r.ok) {
-        const d = await r.json();
-        if (d.contents) {
-          const parsed = JSON.parse(d.contents);
-          if (parsed.title) return { title: parsed.title, author: parsed.author_name || '' };
-        }
-      }
-    } catch(e) { /* silent */ }
-
-    // Fallback: Use video ID as hint for AI — AI will still analyze based on the URL
+      if (r.ok) { const d = await r.json(); if (d.title) return { title: d.title, author: d.author_name || '' }; }
+    } catch(e) {}
     return { title: '', author: '' };
   }
 
-  // ── API CALL via Netlify server function (key never exposed to browser) ──
   async function callClaude(systemPrompt, userPrompt) {
     const r = await fetch('/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-haiku-4-5',
-        max_tokens: 3000,
-        system: systemPrompt,
-        messages: [{ role: 'user', content: userPrompt }]
-      })
+      body: JSON.stringify({ model: 'claude-haiku-4-5', max_tokens: 3000, system: systemPrompt, messages: [{ role: 'user', content: userPrompt }] })
     });
     const d = await r.json();
     if (d.error) throw new Error('API Error: ' + (d.error.message || JSON.stringify(d.error)));
-
     const raw = (d.content || []).map(function(c) { return c.text || ''; }).join('');
-    // Extract JSON object by brace counting
     let start = raw.indexOf('{');
     if (start === -1) throw new Error('No JSON in response');
-    let depth = 0, inStr = false, esc = false, end = -1;
+    let depth = 0, inStr = false, esc2 = false, end = -1;
     for (let i = start; i < raw.length; i++) {
       const ch = raw[i];
-      if (esc) { esc = false; continue; }
-      if (ch === '\\') { esc = true; continue; }
+      if (esc2) { esc2 = false; continue; }
+      if (ch === '\\') { esc2 = true; continue; }
       if (ch === '"') { inStr = !inStr; continue; }
       if (inStr) continue;
       if (ch === '{') depth++;
@@ -905,17 +841,11 @@
     }
     if (end === -1) throw new Error('JSON was cut off. Try again.');
     const jsonStr = raw.substring(start, end + 1);
-    console.log('Extracted JSON preview:', jsonStr.substring(0, 200));
-    // Sanitize smart chars that break JSON.parse
     const clean = jsonStr
-      .replace(/\u2014/g, '-')   // em dash
-      .replace(/\u2013/g, '-')   // en dash
-      .replace(/\u2018/g, "'")   // left single quote
-      .replace(/\u2019/g, "'")   // right single quote
-      .replace(/\u201c/g, '"')   // left double quote
-      .replace(/\u201d/g, '"')   // right double quote
-      .replace(/\u2026/g, '...')  // ellipsis
-      .replace(/[\u0080-\u009f]/g, ''); // control chars
+      .replace(/\u2014/g, '-').replace(/\u2013/g, '-')
+      .replace(/\u2018/g, "\'").replace(/\u2019/g, "\'")
+      .replace(/\u201c/g, '"').replace(/\u201d/g, '"')
+      .replace(/\u2026/g, '...').replace(/[\u0080-\u009f]/g, '');
     return clean;
   }
 
@@ -924,12 +854,11 @@
     const errBox = document.getElementById('errorBox');
     errBox.classList.remove('show');
 
-    // Detect platform
-    const isTikTok  = url.includes('tiktok.com');
-    const isFB      = url.includes('facebook.com') || url.includes('fb.watch');
-    const isYT      = !isTikTok && !isFB;
-
+    const isTikTok = url.includes('tiktok.com');
+    const isFB = url.includes('facebook.com') || url.includes('fb.watch');
+    const isYT = !isTikTok && !isFB;
     const vid = isYT ? (url ? extractId(url) : VIDEO_ID) : null;
+
     if (isYT && !vid) { errBox.textContent = 'Invalid YouTube URL. I-paste ang tamang link.'; errBox.classList.add('show'); return; }
     if (!url) { errBox.textContent = 'I-paste muna ang video URL.'; errBox.classList.add('show'); return; }
 
@@ -939,8 +868,6 @@
     document.getElementById('genPanel').classList.remove('show');
     document.getElementById('musicBlock').style.display = 'none';
 
-    // Embed the video
-    const videoSection = document.getElementById('videoFrame').parentElement;
     if (isYT) {
       document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/' + vid + '?rel=0&modestbranding=1';
       document.getElementById('videoFrame').style.display = 'block';
@@ -948,18 +875,17 @@
       const ttId = (url.match(/\/video\/(\d+)/) || [])[1] || '0';
       document.getElementById('videoFrame').style.display = 'none';
       let ttWrap = document.getElementById('ttEmbedHolder');
-      if (!ttWrap) { ttWrap = document.createElement('div'); ttWrap.id = 'ttEmbedHolder'; videoSection.appendChild(ttWrap); }
+      if (!ttWrap) { ttWrap = document.createElement('div'); ttWrap.id = 'ttEmbedHolder'; document.getElementById('videoFrame').parentElement.appendChild(ttWrap); }
       ttWrap.innerHTML = '<blockquote class="tiktok-embed" cite="' + url + '" data-video-id="' + ttId + '" style="max-width:325px;min-width:325px;border:none;margin:0 auto"></blockquote>';
       const s = document.createElement('script'); s.src = 'https://www.tiktok.com/embed.js'; s.async = true; document.body.appendChild(s);
     } else if (isFB) {
       document.getElementById('videoFrame').style.display = 'none';
       let fbWrap = document.getElementById('fbEmbedHolder');
-      if (!fbWrap) { fbWrap = document.createElement('div'); fbWrap.id = 'fbEmbedHolder'; videoSection.appendChild(fbWrap); }
+      if (!fbWrap) { fbWrap = document.createElement('div'); fbWrap.id = 'fbEmbedHolder'; document.getElementById('videoFrame').parentElement.appendChild(fbWrap); }
       fbWrap.innerHTML = '<div class="fb-video" data-href="' + url + '" data-width="400" data-show-text="false"></div>';
       if (window.FB) window.FB.XFBML.parse(fbWrap);
     }
 
-    // Get title/meta
     let meta = { title: '', author: '' };
     if (isYT) {
       meta = await fetchTitle(vid);
@@ -979,19 +905,10 @@
 
     const platform = isTikTok ? 'TikTok' : isFB ? 'Facebook Reels' : 'YouTube';
 
-    console.log('Video Title:', videoTitle, '| Channel:', meta.author, '| URL:', url);
+    const sysPrompt = 'You are a viral content strategist for Filipino creators. Decode WHY a video went viral. Return ONLY raw JSON, no markdown, no backticks. Structure: {"intro":"one punchy sentence max 15 words","hookAnalysis":"why the hook works psychologically max 40 words","emotionAnalysis":"what emotion it triggers and why Filipinos share it max 40 words","emotionTags":["Tag1","Tag2","Tag3"],"templateExplain":"describe content structure in max 15 words","template":"Hook: [HOOK LINE]. Body: [MAIN POINT 1]. [MAIN POINT 2]. Twist: [UNEXPECTED ANGLE]. CTA: [CALL TO ACTION].","templateRaw":"Hook: [HOOK LINE]. Body: [MAIN POINT 1]. [MAIN POINT 2]. Twist: [UNEXPECTED ANGLE]. CTA: [CALL TO ACTION]."}';
+    const userPrompt = 'Decode the viral formula of this ' + platform + ' video.\n\nVIDEO TITLE: "' + videoTitle + '"\nCHANNEL: ' + (meta.author || 'Unknown') + '\nPLATFORM: ' + platform + '\nURL: ' + url + '\n\nCreate a Taglish plug-and-play template Filipino creators can use.';
 
-    const sysPrompt = 'You are a viral content strategist for Filipino creators. You will be given a video title and channel. Your job is to decode WHY that specific video went viral — analyze the exact title, the hook technique used, and the emotion it triggers. Be SPECIFIC to the actual title given, not generic. Return ONLY a raw JSON object, no markdown, no backticks. Structure: {"intro":"one punchy sentence about THIS specific video max 15 words","hookAnalysis":"why THIS specific hook/title works psychologically max 40 words — be specific to the actual title","emotionAnalysis":"what emotion THIS video triggers and why Filipinos would share it max 40 words","emotionTags":["Tag1","Tag2","Tag3"],"templateExplain":"describe THIS video content structure in max 15 words","template":"Hook: [HOOK LINE]. Body: [MAIN POINT 1]. [MAIN POINT 2]. Twist: [UNEXPECTED ANGLE]. CTA: [CALL TO ACTION].","templateRaw":"Hook: [HOOK LINE]. Body: [MAIN POINT 1]. [MAIN POINT 2]. Twist: [UNEXPECTED ANGLE]. CTA: [CALL TO ACTION]."}';
-
-    const userPrompt = 'Decode the viral formula of this ' + platform + ' video.\n\n'
-      + 'VIDEO TITLE: "' + videoTitle + '"\n'
-      + 'CHANNEL/CREATOR: ' + (meta.author || 'Unknown') + '\n'
-      + 'PLATFORM: ' + platform + '\n'
-      + 'VIDEO URL: ' + url + '\n\n'
-      + 'IMPORTANT: Analyze specifically based on the video title above. Do NOT say "without video access" — use the title and channel name to decode the formula. '
-      + 'The title tells you the hook type (curiosity gap, listicle, how-to, storytime, challenge, reaction, etc.). '
-      + 'Create a Taglish plug-and-play template inspired by this specific video that Filipino creators can use.';
-
+    const errEl = document.getElementById('errorBox');
     try {
       const json = await callClaude(sysPrompt, userPrompt);
       formulaData = JSON.parse(json);
@@ -1000,8 +917,8 @@
     } catch(e) {
       document.getElementById('loadingScreen').classList.remove('show');
       document.getElementById('analyzeBtn').disabled = false;
-      errBox.textContent = '⚠️ Error: ' + (e.message || String(e));
-      errBox.classList.add('show');
+      errEl.textContent = '\u26a0\ufe0f Error: ' + (e.message || String(e));
+      errEl.classList.add('show');
       return;
     }
 
@@ -1017,8 +934,7 @@
     const tagsEl = document.getElementById('etags');
     tagsEl.innerHTML = '';
     (d.emotionTags || []).forEach(function(t) {
-      const s = document.createElement('span');
-      s.className = 'etag'; s.textContent = t; tagsEl.appendChild(s);
+      const s = document.createElement('span'); s.className = 'etag'; s.textContent = t; tagsEl.appendChild(s);
     });
     document.getElementById('templateBody').textContent = d.templateExplain || '';
     const box = document.getElementById('templateBox');
@@ -1033,7 +949,6 @@
     const contentEl = document.getElementById('genContent');
     const copyBtn = document.getElementById('copyAllBtn');
     const btn = document.getElementById('useFormulaBtn');
-
     panel.classList.add('show');
     loading.style.display = 'flex';
     contentEl.style.display = 'none';
@@ -1042,7 +957,7 @@
     panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     const tags = (formulaData.emotionTags || []).join(', ');
-    const sysPrompt = 'You are a Taglish content creator for Filipino TikTok and Facebook. Return ONLY a raw JSON object, no markdown, no backticks. Use this exact structure: {"hook":"one scroll-stopping Taglish opening line","caption":"short Taglish story in 5 lines use the word NEWLINE between lines","cta":"2-line Taglish call to action","hashtags":"10 hashtags space-separated mix Tagalog and English"}';
+    const sysPrompt = 'You are a Taglish content creator for Filipino TikTok and Facebook. Return ONLY raw JSON, no markdown, no backticks. Structure: {"hook":"one scroll-stopping Taglish opening line","caption":"short Taglish story in 5 lines use NEWLINE between lines","cta":"2-line Taglish call to action","hashtags":"10 hashtags space-separated mix Tagalog and English"}';
     const userMsg = 'Create Taglish social media content using this viral formula from "' + videoTitle + '". Template: ' + templateRaw + '. Emotion: ' + tags + '. Make it raw, relatable, confessional like a Filipino millennial creator.';
 
     try {
@@ -1057,7 +972,7 @@
       copyBtn.classList.add('show');
       generateMusic(formulaData.emotionTags, g.hook, g.caption);
     } catch(e) {
-      loading.innerHTML = '<span style="color:#ff6b9d;font-size:13px">Generation failed: ' + (e.message||'Try again') + '</span>';
+      loading.innerHTML = '<span style="color:#ff6b9d;font-size:13px">Generation failed: ' + (e.message || 'Try again') + '</span>';
     }
     btn.disabled = false;
   }
@@ -1067,16 +982,14 @@
     const out = document.getElementById('outMusic');
     block.style.display = 'block';
     out.textContent = 'Finding perfect tracks...';
-
     const tags = (emotionTags || []).join(', ');
-    const sysPrompt = 'You are a music strategist. Return ONLY a raw JSON object, no markdown, no backticks. Structure: {"tracks":[{"title":"Song Title","artist":"Artist Name","platforms":"TikTok, Reels","why":"5 word reason"},{"title":"Song","artist":"Artist","platforms":"TikTok, Reels, Shorts","why":"5 word reason"},{"title":"Song","artist":"Artist","platforms":"Reels, Shorts","why":"5 word reason"},{"title":"Song","artist":"Artist","platforms":"TikTok","why":"5 word reason"},{"title":"OPM Song","artist":"Filipino Artist","platforms":"TikTok, Reels","why":"5 word reason"}]}';
-    const userMsg = 'Recommend 5 music tracks for Filipino social media content. Emotion: ' + tags + '. Hook tone: ' + (hook||'').substring(0,80) + '. Include 1 OPM track. Match emotional vibe.';
-
+    const sysPrompt = 'You are a music strategist. Return ONLY raw JSON, no markdown, no backticks. Structure: {"tracks":[{"title":"Song Title","artist":"Artist Name","platforms":"TikTok, Reels","why":"5 word reason"},{"title":"Song","artist":"Artist","platforms":"TikTok, Reels, Shorts","why":"5 word reason"},{"title":"Song","artist":"Artist","platforms":"Reels, Shorts","why":"5 word reason"},{"title":"Song","artist":"Artist","platforms":"TikTok","why":"5 word reason"},{"title":"OPM Song","artist":"Filipino Artist","platforms":"TikTok, Reels","why":"5 word reason"}]}';
+    const userMsg = 'Recommend 5 music tracks for Filipino social media content. Emotion: ' + tags + '. Hook tone: ' + (hook || '').substring(0, 80) + '. Include 1 OPM track.';
     try {
       const json = await callClaude(sysPrompt, userMsg);
       const m = JSON.parse(json);
       const lines = (m.tracks || []).map(function(t, i) {
-        return (i+1) + '. ' + t.title + ' - ' + t.artist + '\n   Platforms: ' + t.platforms + ' | ' + t.why;
+        return (i + 1) + '. ' + t.title + ' - ' + t.artist + '\n   Platforms: ' + t.platforms + ' | ' + t.why;
       }).join('\n\n');
       out.textContent = lines || 'No tracks found.';
     } catch(e) {
@@ -1106,26 +1019,20 @@
     setTimeout(function() { t.classList.remove('show'); }, 2200);
   }
 
-  // Auto-run on load - read v= param from main site if present
   window.addEventListener('load', function() {
     const params = new URLSearchParams(window.location.search);
-    const preload   = params.get('v');
-    const preTitle  = params.get('title')  ? decodeURIComponent(params.get('title'))  : '';
+    const preload = params.get('v');
+    const preTitle = params.get('title') ? decodeURIComponent(params.get('title')) : '';
     const preAuthor = params.get('author') ? decodeURIComponent(params.get('author')) : '';
-
     if (preload) {
       const decoded = decodeURIComponent(preload);
       const isId = /^[a-zA-Z0-9_-]{11}$/.test(decoded);
-      document.getElementById('urlInput').value = isId
-        ? 'https://www.youtube.com/watch?v=' + decoded
-        : decoded;
+      document.getElementById('urlInput').value = isId ? 'https://www.youtube.com/watch?v=' + decoded : decoded;
     }
-
     if (preTitle) {
-      window._preloadedTitle  = preTitle;
+      window._preloadedTitle = preTitle;
       window._preloadedAuthor = preAuthor;
     }
-
     setTimeout(analyzeVideo, 500);
   });
 </script>
