@@ -2126,35 +2126,14 @@ async function generateContent(){
   document.getElementById('genOutput').style.display='none';
   document.getElementById('loadingDots').style.display='block';
 
-  // Server-side limit check for free users (works across ALL browsers/devices)
+  // Server-side limit check for free users
   if(userData.plan==='free'){
-    if(APPS_SCRIPT_URL){
-      try{
-        const res  = await fetch(APPS_SCRIPT_URL+'?action=checkLimit&email='+encodeURIComponent(userData.email));
-        const data = await res.json();
-        if(!data.canGenerate){
-          showToast('🔒 '+data.message);
-          btn.disabled=false;
-          document.getElementById('loadingDots').style.display='none';
-          return;
-        }
-      }catch(e){
-        // Fallback to localStorage check if server unreachable
-        if(userData.ideasToday>=userData.ideasLimit){
-          showToast('🔒 Na-reach mo na ang 1 free idea mo ngayon. Bukas na ulit! 🌅');
-          btn.disabled=false;
-          document.getElementById('loadingDots').style.display='none';
-          return;
-        }
-      }
-    } else {
-      // No Apps Script yet — use localStorage
-      if(userData.ideasToday>=userData.ideasLimit){
-        showToast('🔒 Na-reach mo na ang 1 free idea mo ngayon. Bukas na ulit! 🌅');
-        btn.disabled=false;
-        document.getElementById('loadingDots').style.display='none';
-        return;
-      }
+    // First check localStorage — if ideasToday is 0, allow generate
+    if((userData.ideasToday||0) >= (userData.ideasLimit||1)){
+      showToast('🔒 Na-reach mo na ang 1 free idea mo ngayon. Mag-upgrade para unlimited!');
+      btn.disabled=false;
+      document.getElementById('loadingDots').style.display='none';
+      return;
     }
   }
 

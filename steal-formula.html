@@ -872,6 +872,20 @@
     const errBox = document.getElementById('errorBox');
     errBox.classList.remove('show');
 
+    // Check daily limit for free users (shared across all features)
+    const savedUser = localStorage.getItem('pnv_user');
+    if (savedUser) {
+      const u = JSON.parse(savedUser);
+      if ((u.plan || 'free') === 'free') {
+        const today = new Date().toDateString();
+        if (u.lastDay === today && (u.ideasToday || 0) >= (u.ideasLimit || 1)) {
+          errBox.textContent = '🔒 Na-reach mo na ang 1 free idea mo ngayon. Mag-upgrade para sa unlimited access!';
+          errBox.classList.add('show');
+          return;
+        }
+      }
+    }
+
     const isTikTok = url.includes('tiktok.com');
     const isFB = url.includes('facebook.com') || url.includes('fb.watch');
     const isYT = !isTikTok && !isFB;
@@ -956,6 +970,15 @@
       formulaData = JSON.parse(json);
       templateRaw = formulaData.templateRaw || formulaData.template || '';
       renderFormula(formulaData);
+
+      // Record use — increment ideasToday in localStorage (shared limit)
+      const saved = localStorage.getItem('pnv_user');
+      if (saved) {
+        const u = JSON.parse(saved);
+        u.ideasToday = (u.ideasToday || 0) + 1;
+        u.lastDay = new Date().toDateString();
+        localStorage.setItem('pnv_user', JSON.stringify(u));
+      }
     } catch(e) {
       document.getElementById('loadingScreen').classList.remove('show');
       document.getElementById('analyzeBtn').disabled = false;
