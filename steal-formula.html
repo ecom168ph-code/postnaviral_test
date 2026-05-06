@@ -1109,21 +1109,6 @@
   // Auto-run on load - read v= param from main site if present
   window.addEventListener('load', function() {
     const params = new URLSearchParams(window.location.search);
-    const preload = params.get('v');
-    const preTitle  = params.get('title')  ? decodeURIComponent(params.get('title'))  : '';
-    const preAuthor = params.get('author') ? decodeURIComponent(params.get('author')) : '';
-
-    if (preload) {
-      const decoded = decodeURIComponent(preload);
-      const isId = /^[a-zA-Z0-9_-]{11}$/.test(decoded);
-      document.getElementById('urlInput').value = isId
-        ? 'https://www.youtube.com/watch?v=' + decoded
-        : decoded;
-    }
-
-  // Auto-run on load - read v= param from main site if present
-  window.addEventListener('load', function() {
-    const params = new URLSearchParams(window.location.search);
     const preload   = params.get('v');
     const preTitle  = params.get('title')  ? decodeURIComponent(params.get('title'))  : '';
     const preAuthor = params.get('author') ? decodeURIComponent(params.get('author')) : '';
