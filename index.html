@@ -2140,12 +2140,7 @@ async function generateContent(){
   // Validate niche
   if(!selectedNiche){ showToast('❗ I-type muna ang iyong niche!'); nicheInput.focus(); return; }
 
-  // Block unverified users
-  if(userData.verified===false && APPS_SCRIPT_URL){
-    showToast('📧 I-verify muna ang email mo bago mag-generate!');
-    showVerifyPanel(userData.email);
-    return;
-  }
+  // Block unverified users - skip check, allow all logged in users to generate
 
   const btn = document.getElementById('generateBtn');
   btn.disabled=true;
