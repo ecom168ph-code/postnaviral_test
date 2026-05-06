@@ -1,0 +1,3892 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post Na Viral – AI Content Generator Para sa Filipino Creators</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C07XR32YWD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-C07XR32YWD');
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<script async src="https://accounts.google.com/gsi/client"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --pink:#FF1B8D;
+  --yellow:#FFD700;
+  --black:#0A0A0A;
+  --dark:#111111;
+  --card:#1A1A1A;
+  --text:#F0F0F0;
+  --muted:#999;
+  --border:#2A2A2A;
+}
+body{background:var(--black);color:var(--text);font-family:'Nunito',sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.bebas{font-family:'Bebas Neue',sans-serif;letter-spacing:1px}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 40px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.95);backdrop-filter:blur(12px)}
+.logo-text{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--pink);letter-spacing:2px}
+.logo-sub{font-size:9px;color:var(--yellow);letter-spacing:4px;display:block;margin-top:-4px}
+nav ul{list-style:none;display:flex;gap:28px}
+nav ul li a{font-size:13px;color:var(--muted);transition:.2s}
+nav ul li a:hover{color:var(--pink)}
+.nav-cta{background:var(--pink);color:#fff;padding:10px 22px;border-radius:50px;font-weight:700;font-size:13px;transition:.2s}
+.nav-cta:hover{transform:scale(1.05);background:#e00070}
+
+/* HERO */
+.hero{padding:40px 40px 30px;max-width:800px;margin:0 auto;text-align:center}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,27,141,0.12);border:1px solid rgba(255,27,141,0.3);color:var(--pink);font-size:11px;font-weight:700;padding:6px 14px;border-radius:50px;letter-spacing:2px;margin-bottom:20px}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:78px;line-height:0.9;margin-bottom:20px}
+.hero h1 span{color:var(--yellow)}
+.hero p{font-size:16px;color:#ccc;line-height:1.7;margin-bottom:32px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.btn-primary{background:var(--pink);color:#fff;padding:14px 28px;border-radius:50px;font-weight:800;font-size:15px;border:none;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,27,141,0.4)}
+.btn-ghost{background:transparent;color:var(--text);padding:14px 28px;border-radius:50px;font-weight:700;font-size:15px;border:1px solid var(--border);cursor:pointer;transition:.2s}
+.btn-ghost:hover{border-color:var(--pink);color:var(--pink)}
+.stats-row{display:flex;gap:32px;margin-top:32px;justify-content:center}
+.stat-item{text-align:center}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--yellow)}
+.stat-label{font-size:11px;color:var(--muted);margin-top:-4px}
+
+/* PREVIEW CARD */
+.preview-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;position:relative;overflow:hidden}
+.preview-card::before{content:'YOUR VIRAL CONTENT IDEA ✨';display:block;background:var(--pink);color:#fff;font-size:11px;font-weight:800;letter-spacing:2px;padding:8px 16px;border-radius:8px;text-align:center;margin-bottom:20px}
+.idea-row{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
+.idea-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:2px}
+.idea-label{font-size:9px;color:var(--pink);font-weight:800;letter-spacing:2px;display:block;margin-bottom:3px}
+.idea-text{font-size:12px;color:#ddd;line-height:1.5}
+.copy-done{display:flex;gap:10px;margin-top:20px;justify-content:center}
+.copy-done span{background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.3);color:var(--yellow);font-weight:800;font-size:13px;padding:8px 18px;border-radius:8px}
+
+/* PAIN SECTION */
+.pain{padding:60px 40px;max-width:1100px;margin:0 auto;text-align:center}
+.section-label{font-size:11px;color:var(--pink);letter-spacing:3px;font-weight:700;margin-bottom:12px}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:52px;margin-bottom:12px}
+.section-title span{color:var(--yellow)}
+.pain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.pain-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;text-align:center;transition:.3s}
+.pain-card:hover{border-color:var(--pink);transform:translateY(-4px)}
+.pain-icon{font-size:32px;margin-bottom:12px}
+.pain-card p{font-size:13px;color:#ccc;line-height:1.5}
+.pain-banner{background:linear-gradient(135deg,rgba(255,27,141,0.1),rgba(255,215,0,0.05));border:1px solid rgba(255,27,141,0.2);border-radius:16px;padding:20px 32px;margin-top:32px;font-family:'Bebas Neue',sans-serif;font-size:28px}
+.pain-banner span{color:var(--pink)}
+
+/* DIFFERENTIATOR */
+.diff{padding:60px 40px;background:rgba(255,27,141,0.04);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.diff-inner{max-width:1100px;margin:0 auto}
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:40px}
+.diff-list{display:flex;flex-direction:column;gap:16px}
+.diff-item{display:flex;gap:14px;align-items:flex-start;padding:16px;background:var(--card);border-radius:14px;border:1px solid var(--border)}
+.diff-check{width:28px;height:28px;background:rgba(255,27,141,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--pink);font-weight:900;flex-shrink:0;margin-top:2px;font-size:13px}
+.diff-content h4{font-size:14px;font-weight:800;margin-bottom:4px}
+.diff-content p{font-size:12px;color:var(--muted)}
+.vs-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px}
+.vs-header{display:flex;gap:8px;margin-bottom:20px}
+.vs-tag{flex:1;text-align:center;padding:8px;border-radius:8px;font-size:11px;font-weight:800;letter-spacing:1px}
+.vs-pnv{background:rgba(255,27,141,0.15);color:var(--pink);border:1px solid rgba(255,27,141,0.3)}
+.vs-gpt{background:rgba(255,255,255,0.05);color:var(--muted);border:1px solid var(--border)}
+.vs-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.vs-cell{font-size:11px;padding:10px 12px;border-radius:8px;line-height:1.4}
+.vs-cell.good{background:rgba(255,27,141,0.08);color:#ddd;border:1px solid rgba(255,27,141,0.15)}
+.vs-cell.bad{background:rgba(255,255,255,0.03);color:var(--muted);border:1px solid var(--border)}
+.vs-feature{font-size:10px;color:var(--muted);grid-column:1/-1;padding:4px 0 2px;font-weight:700;letter-spacing:1px;border-top:1px solid var(--border);margin-top:4px}
+
+/* HOW IT WORKS */
+.how{padding:60px 40px;max-width:1100px;margin:0 auto;text-align:center}
+.steps{display:flex;gap:0;margin-top:40px;position:relative}
+.steps::after{content:'';position:absolute;top:40px;left:calc(16.66% + 20px);right:calc(16.66% + 20px);height:2px;background:linear-gradient(90deg,var(--pink),var(--yellow));z-index:0}
+.step{flex:1;position:relative;z-index:1;padding:0 12px}
+.step-num{width:80px;height:80px;border-radius:50%;background:var(--card);border:2px solid var(--pink);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--pink)}
+.step h4{font-size:14px;font-weight:800;margin-bottom:6px}
+.step p{font-size:12px;color:var(--muted);line-height:1.4}
+
+/* GENERATOR */
+.generator-section{padding:0 40px 60px;max-width:1000px;margin:0 auto}
+.gen-title-wrap{text-align:center;margin-bottom:32px}
+.gen-box{background:var(--card);border:2px solid var(--pink);border-radius:24px;overflow:hidden}
+.gen-header{background:var(--pink);padding:20px 28px;display:flex;justify-content:space-between;align-items:center}
+.gen-header h3{font-family:'Bebas Neue',sans-serif;font-size:24px;color:#fff;letter-spacing:1px}
+.gen-header span{font-size:12px;color:rgba(255,255,255,0.8);font-weight:600}
+.gen-body{padding:28px}
+.gen-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.gen-field{display:flex;flex-direction:column;gap:6px}
+.gen-field label{font-size:11px;color:var(--pink);font-weight:800;letter-spacing:2px}
+.gen-field select,.gen-field input,.gen-field textarea{background:#111;border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:10px;font-family:'Nunito',sans-serif;font-size:13px;outline:none;transition:.2s}
+.gen-field select:focus,.gen-field input:focus,.gen-field textarea:focus{border-color:var(--pink)}
+.gen-field textarea{resize:none;height:70px}
+.niche-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.niche-pill{background:#111;border:1px solid var(--border);color:var(--muted);padding:7px 14px;border-radius:50px;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;user-select:none}
+.niche-pill:hover{border-color:var(--pink);color:var(--pink)}
+.niche-pill.active{background:rgba(255,27,141,0.15);border-color:var(--pink);color:var(--pink)}
+.goal-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.goal-pill{background:#111;border:1px solid var(--border);color:var(--muted);padding:7px 14px;border-radius:50px;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;user-select:none}
+.goal-pill.active{background:rgba(255,215,0,0.1);border-color:var(--yellow);color:var(--yellow)}
+.gen-generate{width:100%;padding:16px;background:var(--pink);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;border:none;border-radius:12px;cursor:pointer;transition:.2s;margin-top:8px}
+.gen-generate:hover{background:#e00070;transform:translateY(-2px)}
+.gen-generate:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.gen-output{margin-top:24px;display:none}
+.output-card{background:#111;border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.output-block{padding:16px 20px;border-bottom:1px solid var(--border)}
+.output-block:last-child{border-bottom:none}
+.output-label{font-size:9px;color:var(--pink);font-weight:800;letter-spacing:3px;margin-bottom:6px}
+.output-content{font-size:14px;line-height:1.6;color:#ddd}
+.output-hashtags{font-size:12px;color:var(--yellow);line-height:1.8}
+.copy-all-btn{width:100%;padding:12px;background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.3);color:var(--yellow);font-weight:800;font-size:14px;border-radius:10px;cursor:pointer;margin-top:16px;transition:.2s}
+.copy-all-btn:hover{background:rgba(255,215,0,0.2)}
+.loading-dots{display:none;text-align:center;padding:40px;color:var(--muted);font-size:14px}
+.loading-dots span{animation:pulse 1s infinite}
+.loading-dots span:nth-child(2){animation-delay:0.2s}
+.loading-dots span:nth-child(3){animation-delay:0.4s}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* REGISTER GATE */
+.gate-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:1000;display:flex;align-items:flex-start;justify-content:center;padding:12px 16px 40px;overflow-y:auto}
+.gate-box{background:var(--card);border:2px solid var(--pink);border-radius:20px;max-width:420px;width:100%;padding:20px 22px 24px;text-align:center;animation:slideUp .4s ease;margin:auto}
+@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+.gate-emoji{font-size:28px;margin-bottom:6px}
+.gate-box h2{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--pink);margin-bottom:4px}
+.gate-box p{font-size:12px;color:#bbb;line-height:1.4;margin-bottom:10px}
+.gate-form{display:flex;flex-direction:column;gap:7px;text-align:left}
+.gate-form label{font-size:10px;color:var(--pink);font-weight:800;letter-spacing:1.5px}
+.gate-form input{background:#111;border:1px solid var(--border);color:var(--text);padding:9px 12px;border-radius:8px;font-family:'Nunito',sans-serif;font-size:13px;outline:none;width:100%;transition:.2s}
+.gate-form input:focus{border-color:var(--pink)}
+.gate-register-btn{background:var(--pink);color:#fff;padding:11px;border-radius:10px;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1.5px;border:none;cursor:pointer;width:100%;transition:.2s;margin-top:4px}
+.gate-register-btn:hover{background:#e00070}
+.gate-login-link{font-size:13px;color:var(--muted);margin-top:12px}
+.gate-login-link a{color:var(--pink);cursor:pointer;font-weight:700}
+.gate-perks{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;margin-bottom:8px}
+.gate-perk{background:rgba(255,27,141,0.08);border:1px solid rgba(255,27,141,0.2);color:#ccc;font-size:11px;padding:5px 12px;border-radius:50px;font-weight:700}
+
+/* COMMUNITY SCROLL */
+.community{padding:60px 0;text-align:center;overflow:hidden}
+.community-inner{max-width:1100px;margin:0 auto;padding:0 40px}
+.scroll-track{display:flex;gap:16px;animation:scrollLeft 30s linear infinite;margin-top:32px;width:max-content}
+.scroll-track:hover{animation-play-state:paused}
+@keyframes scrollLeft{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.avatar-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:12px;min-width:200px;flex-shrink:0;transition:.2s}
+.avatar-card:hover{border-color:var(--pink)}
+.avatar-circle{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex-shrink:0}
+.avatar-name{font-size:13px;font-weight:800;margin-bottom:2px}
+.avatar-niche{font-size:10px;color:var(--muted)}
+.avatar-niche span{color:var(--yellow)}
+
+/* PRICING */
+.pricing{padding:60px 40px;max-width:1100px;margin:0 auto;text-align:center}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.price-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;text-align:left;position:relative;transition:.3s}
+.price-card:hover{transform:translateY(-4px)}
+.price-card.featured{border-color:var(--pink);background:linear-gradient(135deg,rgba(255,27,141,0.08),rgba(255,215,0,0.04))}
+.price-badge{background:var(--pink);color:#fff;font-size:10px;font-weight:800;letter-spacing:2px;padding:5px 12px;border-radius:50px;position:absolute;top:-12px;left:50%;transform:translateX(-50%);white-space:nowrap}
+.price-tier{font-size:11px;color:var(--pink);font-weight:800;letter-spacing:2px;margin-bottom:8px}
+.price-amount{font-family:'Bebas Neue',sans-serif;font-size:54px;color:var(--yellow);line-height:1;margin-bottom:4px}
+.price-period{font-size:12px;color:var(--muted);margin-bottom:20px}
+.price-desc{font-size:14px;color:#ccc;font-weight:700;margin-bottom:20px;padding:10px;background:rgba(255,215,0,0.05);border-radius:8px;text-align:center}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.price-features li{font-size:13px;color:#ccc;display:flex;gap:8px;align-items:flex-start}
+.price-features li::before{content:'✓';color:var(--pink);font-weight:900;flex-shrink:0}
+.price-btn{width:100%;padding:12px;border-radius:10px;font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;cursor:pointer;transition:.2s;border:none}
+.price-btn-free{background:rgba(255,255,255,0.08);color:var(--text)}
+.price-btn-paid{background:var(--pink);color:#fff}
+.price-btn-paid:hover{background:#e00070}
+.price-btn-ultimate{background:linear-gradient(135deg,var(--pink),#ff6b35);color:#fff}
+
+/* PAYMENT MODAL */
+.pay-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.92);backdrop-filter:blur(10px);z-index:1600;display:none;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
+.pay-overlay.open{display:flex}
+.pay-box{background:var(--card);border:2px solid var(--pink);border-radius:24px;max-width:500px;width:100%;padding:32px;animation:slideUp .3s ease;margin:auto}
+.pay-plan-badge{display:inline-block;background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.3);color:var(--yellow);font-size:11px;font-weight:800;letter-spacing:2px;padding:5px 14px;border-radius:50px;margin-bottom:14px}
+.pay-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.pay-tab{flex:1;min-width:70px;padding:8px 6px;border-radius:10px;border:1px solid var(--border);background:#111;color:var(--muted);font-size:11px;font-weight:800;cursor:pointer;text-align:center;transition:.2s}
+.pay-tab.active{border-color:var(--pink);background:rgba(255,27,141,0.1);color:var(--pink)}
+.pay-detail{display:none;background:#111;border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:16px}
+.pay-detail.active{display:block}
+.pay-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #1e1e1e}
+.pay-row:last-child{border-bottom:none}
+.pay-label{font-size:11px;color:var(--muted);font-weight:700}
+.pay-value{font-size:13px;font-weight:800;color:var(--text)}
+.pay-copy{background:rgba(255,27,141,0.1);border:1px solid rgba(255,27,141,0.3);color:var(--pink);font-size:10px;font-weight:800;padding:4px 10px;border-radius:6px;cursor:pointer;transition:.2s;white-space:nowrap}
+.pay-copy:hover{background:rgba(255,27,141,0.25)}
+
+/* GATE TABS */
+.gate-tabs{display:flex;margin-bottom:10px;border-radius:10px;overflow:hidden;border:1px solid var(--border)}
+.gate-tab{flex:1;padding:8px 6px;text-align:center;font-size:11px;font-weight:800;cursor:pointer;transition:.2s;color:var(--muted);background:#111}
+.gate-tab.active{background:var(--pink);color:#fff}
+
+/* ACCESS CODE */
+.code-input-wrap{position:relative}
+.code-input-wrap input{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:4px;text-align:center;text-transform:uppercase}
+.code-validate-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--pink),#ff6b35);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;border:none;border-radius:12px;cursor:pointer;margin-top:8px;transition:.2s}
+.code-validate-btn:hover{transform:translateY(-2px);opacity:.9}
+
+/* CTA FINAL */
+.cta-final{padding:80px 40px;text-align:center;background:linear-gradient(135deg,rgba(255,27,141,0.08),rgba(255,215,0,0.04));border-top:1px solid var(--border)}
+.cta-final h2{font-family:'Bebas Neue',sans-serif;font-size:64px;margin-bottom:8px;line-height:1}
+.cta-final h2 span{color:var(--pink)}
+.cta-final p{font-size:16px;color:#bbb;margin-bottom:32px}
+
+/* FOOTER */
+footer{padding:24px 40px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted)}
+
+/* TOAST */
+.toast{position:fixed;bottom:32px;right:32px;background:var(--card);border:1px solid var(--pink);border-radius:12px;padding:14px 20px;font-size:13px;font-weight:700;color:var(--pink);z-index:9999;animation:fadeInUp .3s ease;display:none}
+@keyframes fadeInUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+.section-divider{width:60px;height:3px;background:var(--pink);margin:12px auto 0;border-radius:2px}
+
+/* PHOTO UPLOAD */
+.photo-upload-area{background:#111;border:2px dashed var(--border);border-radius:10px;padding:20px;text-align:center;cursor:pointer;transition:.2s;min-height:90px;display:flex;align-items:center;justify-content:center}
+.photo-upload-area:hover{border-color:var(--pink);background:rgba(255,27,141,0.04)}
+.photo-upload-area.has-photo{border-style:solid;border-color:var(--pink);background:rgba(255,27,141,0.04);padding:16px;cursor:default}
+.photo-remove-btn{position:absolute;top:-10px;right:-10px;background:var(--pink);border:none;color:#fff;width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:16px;line-height:1;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 2px 8px rgba(255,27,141,0.4);transition:.2s}
+.photo-remove-btn:hover{background:#e00070;transform:scale(1.1)}
+.fade-edges{-webkit-mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent);mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent)}
+@keyframes spinRing{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+
+/* ═══════════════════════════════════
+   MOBILE RESPONSIVE
+═══════════════════════════════════ */
+@media(max-width:768px){
+
+  /* NAV */
+  nav{padding:12px 16px}
+  .logo-text{font-size:20px}
+  nav ul{display:none}
+  .nav-cta{padding:8px 14px;font-size:12px}
+
+  /* HERO */
+  .hero{grid-template-columns:1fr;gap:32px;padding:40px 20px 32px}
+  .hero h1{font-size:52px}
+  .hero p{font-size:14px}
+  .hero-btns{flex-direction:column;gap:10px}
+  .btn-primary,.btn-ghost{width:100%;justify-content:center;padding:13px 20px}
+  .stats-row{gap:16px;flex-wrap:wrap}
+  .stat-num{font-size:28px}
+
+  /* PAIN */
+  .pain{padding:40px 20px}
+  .section-title{font-size:36px}
+  .pain-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .pain-banner{font-size:20px;padding:14px 20px}
+
+  /* DIFFERENTIATOR */
+  .diff{padding:40px 20px}
+  .diff-grid{grid-template-columns:1fr;gap:24px}
+
+  /* HOW IT WORKS */
+  .how{padding:40px 20px}
+  .steps{flex-direction:column;gap:24px}
+  .steps::after{display:none}
+  .step{padding:0}
+
+  /* GENERATOR */
+  .generator-section{padding:40px 20px}
+  .gen-row{grid-template-columns:1fr}
+  .gen-box{border-radius:16px}
+  .gen-body{padding:18px}
+  .gen-generate{font-size:18px;padding:14px}
+  .niche-pills,.goal-pills{gap:6px}
+  .niche-pill,.goal-pill{font-size:11px;padding:6px 10px}
+
+  /* COMMUNITY */
+  .community-inner{padding:0 20px}
+
+  /* PRICING */
+  .pricing{padding:40px 20px}
+  .pricing-grid{grid-template-columns:1fr;gap:16px}
+  .price-card.featured{order:-1}
+
+  /* CTA FINAL */
+  .cta-final{padding:48px 20px}
+  .cta-final h2{font-size:38px}
+  .btn-primary[style]{font-size:15px!important;padding:14px 28px!important;width:100%}
+
+  /* FOOTER */
+  footer{flex-direction:column;gap:8px;text-align:center;padding:20px}
+
+  /* GATE / MODALS */
+  .gate-box{padding:16px 14px;max-width:100%}
+  .gate-box h2{font-size:28px}
+  .gate-tabs{font-size:11px}
+  .gate-tab{padding:8px 6px;font-size:11px}
+
+  /* PAYMENT MODAL */
+  .pay-box{padding:22px 16px}
+  .pay-tabs{gap:4px}
+  .pay-tab{font-size:10px;padding:7px 4px;min-width:52px}
+
+  /* PREVIEW CARD */
+  .preview-card{padding:16px}
+  .idea-text{font-size:11px}
+
+  /* OUTPUT */
+  .output-block{padding:12px 14px}
+  .output-content{font-size:13px}
+
+  /* VS BOX */
+  .vs-box{overflow-x:auto}
+  .vs-cell{font-size:10px;padding:8px}
+
+  /* API MODAL */
+  #apiSetupModal > div{padding:28px 20px}
+}
+
+@media(max-width:420px){
+  .hero h1{font-size:42px}
+  .pain-grid{grid-template-columns:1fr}
+  .stat-item{min-width:80px}
+  .pay-tab{font-size:9px;padding:6px 3px}
+  .gate-tab{font-size:10px;padding:7px 4px}
+  .section-title{font-size:30px}
+}
+</style>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v20.0"></script>
+</head>
+<body>
+
+<!-- REGISTER GATE OVERLAY -->
+<div class="gate-overlay" id="gateOverlay" style="display:none">
+  <div class="gate-box">
+    <div class="gate-tabs">
+      <div class="gate-tab active" id="tabFree" onclick="switchGateTab('free')">🆓 FREE</div>
+      <div class="gate-tab" id="tabCode" onclick="switchGateTab('code')">🔑 MAY ACCESS CODE</div>
+      <div class="gate-tab" id="tabLogin" onclick="switchGateTab('login')">👤 LOGIN</div>
+    </div>
+
+    <!-- FREE TAB -->
+    <div id="gateFreePanel">
+      <!-- Google Sign-In Button -->
+      <div id="g_id_onload" data-client_id="825065340823-gbr1vd12ig4qurss30dct2m2f769fmtc.apps.googleusercontent.com" data-callback="handleGoogleCredential" data-auto_prompt="false"></div>
+      <div style="margin-bottom:8px;display:flex;justify-content:center">
+        <div class="g_id_signin" data-type="standard" data-size="large" data-theme="filled_black" data-text="signup_with" data-shape="pill" data-logo_alignment="left" data-width="340"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <div style="flex:1;height:1px;background:var(--border)"></div>
+        <span style="font-size:10px;color:var(--muted);font-weight:700">O MAG-REGISTER NG EMAIL</span>
+        <div style="flex:1;height:1px;background:var(--border)"></div>
+      </div>
+      <div class="gate-form">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px">
+          <div><label>PANGALAN</label><input type="text" id="regName" placeholder="Juan dela Cruz" autocomplete="name"/></div>
+          <div><label>EMAIL</label><input type="email" id="regEmail" placeholder="email@mo.com" autocomplete="email"/></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px">
+          <div>
+            <label>PASSWORD</label>
+            <div style="position:relative">
+              <input type="password" id="regPassword" placeholder="Min 8 chars" autocomplete="new-password" oninput="checkPasswordStrength(this.value)" style="width:100%;padding-right:32px"/>
+              <span onclick="togglePw('regPassword',this)" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);cursor:pointer;color:#666;font-size:12px">👁</span>
+            </div>
+            <div id="pwStrengthBar" style="height:2px;border-radius:2px;margin-top:4px;background:#333;transition:.3s"><div id="pwStrengthFill" style="height:100%;border-radius:2px;width:0%;transition:.3s"></div></div>
+            <div id="pwStrengthLabel" style="font-size:9px;color:#666;margin-top:2px;letter-spacing:1px"></div>
+          </div>
+          <div>
+            <label>ULITIN PASSWORD</label>
+            <div style="position:relative">
+              <input type="password" id="regConfirmPassword" placeholder="I-type ulit" autocomplete="new-password" style="width:100%;padding-right:32px"/>
+              <span onclick="togglePw('regConfirmPassword',this)" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);cursor:pointer;color:#666;font-size:12px">👁</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:8px">
+          <input type="checkbox" id="regTerms" style="accent-color:var(--pink);width:14px;height:14px;flex-shrink:0"/>
+          <label for="regTerms" style="font-size:10px;color:var(--muted);cursor:pointer">Sumasang-ayon ako sa <a href="#" style="color:var(--pink)">Terms</a> at <a href="#" style="color:var(--pink)">Privacy Policy</a>.</label>
+        </div>
+        <button class="gate-register-btn" onclick="handleRegister()" id="regBtn">MAG-START NG LIBRE →</button>
+        <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:4px">May account ka na? <a style="color:var(--pink);cursor:pointer;font-weight:700" onclick="switchGateTab('login')">Mag-login →</a></p>
+      </div>
+    </div>
+
+    <!-- ACCESS CODE TAB -->
+    <div id="gateCodePanel" style="display:none">
+      <div class="gate-emoji">🔑</div>
+      <h2>I-ENTER ANG CODE</h2>
+      <p>May access code ka na mula sa iyong payment? I-enter dito para ma-unlock ang iyong premium plan.</p>
+      <div class="gate-form">
+        <div><label>PANGALAN</label><input type="text" id="codeName" placeholder="Ilagay ang iyong pangalan"/></div>
+        <div><label>EMAIL</label><input type="email" id="codeEmail" placeholder="email@mo.com"/></div>
+        <div>
+          <label>ACCESS CODE</label>
+          <div class="code-input-wrap">
+            <input type="text" id="accessCodeInput" placeholder="PNV99- o PNV299-XXXXXXXX" maxlength="15" oninput="this.value=this.value.toUpperCase()"/>
+          </div>
+        </div>
+        <button class="code-validate-btn" onclick="validateAccessCode()">🔓 UNLOCK PREMIUM →</button>
+        <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:8px">Wala pang code? <a style="color:var(--yellow);cursor:pointer;font-weight:700" onclick="hideGate();showPaymentModal('Creator','₱99')">Bumili ng plan →</a></p>
+      </div>
+    </div>
+
+    <!-- LOGIN TAB -->
+    <div id="gateLoginPanel" style="display:none">
+      <div class="gate-emoji">👋</div>
+      <h2>WELCOME BACK!</h2>
+      <p>Mag-login gamit ang Google o ang iyong email at password.</p>
+
+      <!-- Google Sign-In -->
+      <div style="margin-bottom:16px;display:flex;justify-content:center">
+        <div class="g_id_signin" data-type="standard" data-size="large" data-theme="filled_black" data-text="signin_with" data-shape="pill" data-logo_alignment="left" data-width="360"></div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="flex:1;height:1px;background:var(--border)"></div>
+        <span style="font-size:11px;color:var(--muted);font-weight:700">O MAG-LOGIN NG EMAIL</span>
+        <div style="flex:1;height:1px;background:var(--border)"></div>
+      </div>
+
+      <div class="gate-form" id="loginFormPanel">
+        <div><label>EMAIL</label><input type="email" id="loginEmail" placeholder="email@mo.com"/></div>
+        <div>
+          <label>PASSWORD</label>
+          <div style="position:relative">
+            <input type="password" id="loginPassword" placeholder="Ilagay ang password mo" onkeydown="if(event.key==='Enter') handleLogin()" autocomplete="current-password" style="width:100%;padding-right:40px"/>
+            <span onclick="togglePw('loginPassword',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;color:#666;font-size:14px">👁</span>
+          </div>
+        </div>
+        <button class="gate-register-btn" id="loginBtn" onclick="handleLogin()">MAG-LOGIN →</button>
+        <div style="display:flex;justify-content:space-between;margin-top:8px">
+          <p style="font-size:11px;color:var(--muted)">Wala pang account? <a style="color:var(--pink);cursor:pointer;font-weight:700" onclick="switchGateTab('free')">Mag-register →</a></p>
+          <a style="font-size:11px;color:var(--muted);cursor:pointer;font-weight:700" onclick="showForgotPassword()">Forgot Password?</a>
+        </div>
+      </div>
+
+      <!-- Forgot Password Panel -->
+      <div id="forgotPasswordPanel" style="display:none">
+        <div style="text-align:center;margin-bottom:16px">
+          <div style="font-size:32px;margin-bottom:8px">🔑</div>
+          <h3 style="color:var(--yellow);font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px">I-RESET ANG PASSWORD</h3>
+          <p style="font-size:13px;color:#bbb;margin-top:6px">I-enter ang email mo — magpapadala kami ng link para mag-set ng bagong password.</p>
+        </div>
+        <div class="gate-form">
+          <div><label>EMAIL</label><input type="email" id="forgotEmail" placeholder="email@mo.com"/></div>
+          <button class="gate-register-btn" onclick="handleForgotPassword()">📧 MAGPADALA NG RESET LINK →</button>
+          <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:8px"><a style="color:var(--pink);cursor:pointer;font-weight:700" onclick="showLoginForm()">← Bumalik sa Login</a></p>
+        </div>
+      </div>
+
+      <!-- Set New Password Panel -->
+      <div id="setNewPasswordPanel" style="display:none">
+        <div style="text-align:center;margin-bottom:16px">
+          <div style="font-size:32px;margin-bottom:8px">✅</div>
+          <h3 style="color:var(--yellow);font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px">MAG-SET NG BAGONG PASSWORD</h3>
+          <p style="font-size:13px;color:#bbb;margin-top:6px">I-enter ang iyong bagong password.</p>
+        </div>
+        <div class="gate-form">
+          <div><label>BAGONG PASSWORD</label><input type="password" id="newPassword1" placeholder="Minimum 6 characters"/></div>
+          <div><label>ULITIN ANG PASSWORD</label><input type="password" id="newPassword2" placeholder="I-type ulit ang password"/></div>
+          <button class="gate-register-btn" onclick="handleSetNewPassword()">✅ I-SAVE ANG PASSWORD →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMAIL VERIFICATION PENDING PANEL -->
+    <div id="gateVerifyPanel" style="display:none">
+      <div class="gate-emoji">📬</div>
+      <h2>I-CHECK ANG EMAIL MO!</h2>
+      <p>Nagpadala kami ng verification link sa <strong id="verifyEmailDisplay" style="color:var(--yellow)">iyong email</strong>. I-click ang link para ma-activate ang account mo.</p>
+      <div style="background:#1A1A1A;border:1px solid rgba(255,27,141,0.25);border-radius:12px;padding:10px 14px;margin:8px 0;text-align:center">
+        <p style="font-size:13px;color:#ccc;line-height:1.6">Tingnan ang <strong style="color:var(--yellow)">inbox</strong> at <strong style="color:var(--yellow)">spam folder</strong> — i-click ang <strong style="color:var(--pink)">"I-VERIFY"</strong> button.</p>
+      </div>
+      <button class="gate-register-btn" id="resendBtn" onclick="resendVerification()">🔁 I-RESEND ANG VERIFICATION EMAIL</button>
+      <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:14px">Na-verify na? <a style="color:var(--yellow);cursor:pointer;font-weight:700" onclick="showGateTabs();switchGateTab('login')">Mag-login →</a></p>
+      <p style="font-size:11px;color:#555;text-align:center;margin-top:8px">Hindi mo to email? <a style="color:#777;cursor:pointer;font-weight:700;text-decoration:underline" onclick="resetAndStartOver()">I-clear at mag-register ulit →</a></p>
+    </div>
+
+    <!-- EMAIL VERIFIED SUCCESS PANEL -->
+    <div id="gateSuccessPanel" style="display:none">
+      <div class="gate-emoji">🎉</div>
+      <h2>EMAIL VERIFIED NA!</h2>
+      <p>Congrats! Verified na ang iyong account. Ready ka nang mag-generate ng viral content ideas!</p>
+      <div style="background:#1A1A1A;border:1px solid rgba(255,215,0,0.25);border-radius:16px;padding:14px;margin:12px 0;text-align:center">
+        <div style="font-size:44px;margin-bottom:10px">🚀</div>
+        <p style="font-size:14px;color:#ccc;line-height:1.8"><strong style="color:var(--yellow)">1 free viral idea</strong> ang naghihintay sa iyo araw-araw. Start posting na!</p>
+      </div>
+      <button class="gate-register-btn" onclick="hideGate()">⚡ MAG-GENERATE NA! →</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div class="pay-overlay" id="payOverlay">
+  <div class="pay-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <div>
+        <div class="pay-plan-badge" id="payPlanBadge">CREATOR PLAN</div>
+        <h2 style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--pink)">PAYMENT DETAILS</h2>
+      </div>
+      <button onclick="hidePaymentModal()" style="background:transparent;border:1px solid var(--border);color:var(--muted);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px">×</button>
+    </div>
+    <p style="font-size:13px;color:#bbb;margin-bottom:16px">Piliin ang paraan ng bayad at i-send ang exact na halaga. Pagkatapos, i-click ang "I PAID NA!" para makatanggap ng access code sa iyong email.</p>
+
+    <!-- Payment method tabs -->
+    <div class="pay-tabs">
+      <div class="pay-tab active" onclick="selectPayTab('gcash')">📱 GCash</div>
+      <div class="pay-tab" onclick="selectPayTab('maya')">💜 Maya</div>
+      <div class="pay-tab" onclick="selectPayTab('bank')">🏦 Bank</div>
+      <div class="pay-tab" onclick="selectPayTab('paypal')">🌐 PayPal</div>
+      <div class="pay-tab" onclick="selectPayTab('card')">💳 Card</div>
+    </div>
+
+    <!-- GCash -->
+    <div class="pay-detail active" id="pay-gcash">
+      <div class="pay-row"><span class="pay-label">GCash Number</span><span style="display:flex;gap:8px;align-items:center"><span class="pay-value" id="gcash-num">09189854480</span><button class="pay-copy" onclick="copyPay('gcash-num')">Copy</button></span></div>
+      <div class="pay-row"><span class="pay-label">Account Name</span><span class="pay-value">ROSALIE DE LEON</span></div>
+      <div class="pay-row"><span class="pay-label">Amount</span><span class="pay-value" id="payAmountGcash" style="color:var(--yellow)">₱99</span></div>
+    </div>
+    <!-- Maya -->
+    <div class="pay-detail" id="pay-maya">
+      <div class="pay-row"><span class="pay-label">Maya Number</span><span style="display:flex;gap:8px;align-items:center"><span class="pay-value" id="maya-num">09228139996</span><button class="pay-copy" onclick="copyPay('maya-num')">Copy</button></span></div>
+      <div class="pay-row"><span class="pay-label">Account Name</span><span class="pay-value">ROSALIE DE LEON</span></div>
+      <div class="pay-row"><span class="pay-label">Amount</span><span class="pay-value" id="payAmountMaya" style="color:var(--yellow)">₱99</span></div>
+    </div>
+    <!-- Bank -->
+    <div class="pay-detail" id="pay-bank">
+      <div class="pay-row"><span class="pay-label">Bank</span><span class="pay-value">BDO</span></div>
+      <div class="pay-row"><span class="pay-label">Account Name</span><span class="pay-value">ROSALIE DE LEON</span></div>
+      <div class="pay-row"><span class="pay-label">Account Number</span><span style="display:flex;gap:8px;align-items:center"><span class="pay-value" id="bank-num">000450242242</span><button class="pay-copy" onclick="copyPay('bank-num')">Copy</button></span></div>
+      <div class="pay-row"><span class="pay-label">Amount</span><span class="pay-value" id="payAmountBank" style="color:var(--yellow)">₱99</span></div>
+    </div>
+    <!-- PayPal -->
+    <div class="pay-detail" id="pay-paypal">
+      <div class="pay-row"><span class="pay-label">PayPal Email</span><span style="display:flex;gap:8px;align-items:center"><span class="pay-value" id="paypal-email">eilasor974@gmail.com</span><button class="pay-copy" onclick="copyPay('paypal-email')">Copy</button></span></div>
+      <div class="pay-row"><span class="pay-label">Amount (USD)</span><span class="pay-value" id="payAmountPaypal" style="color:var(--yellow)">$2</span></div>
+      <div class="pay-row"><span class="pay-label">Note</span><span class="pay-value" style="font-size:11px">Send as "Friends & Family"</span></div>
+    </div>
+    <!-- Card -->
+    <div class="pay-detail" id="pay-card">
+      <div style="text-align:center;padding:12px 0">
+        <div style="display:flex;justify-content:center;gap:8px;margin-bottom:10px;font-size:22px">💳</div>
+        <div style="font-size:13px;color:#bbb;margin-bottom:4px;font-weight:700">Secure card checkout — stays on this page</div>
+        <div style="font-size:11px;color:#555;margin-bottom:16px">Visa · Mastercard · AMEX · All major cards</div>
+        <a href="https://postnaviral.lemonsqueezy.com/checkout/buy/21fee272-9681-44c4-a3f4-4907655ac700"
+           class="lemonsqueezy-button"
+           style="display:inline-block;background:linear-gradient(135deg,#FFD700,#FF6B35);color:#000;padding:14px 32px;border-radius:12px;font-weight:900;font-size:15px;letter-spacing:1px;cursor:pointer;text-decoration:none">
+          🍋 PAY WITH CARD NOW →
+        </a>
+        <div style="font-size:10px;color:#555;margin-top:10px">⚡ Powered by Lemon Squeezy · 100% Secure</div>
+        <div style="font-size:10px;color:#666;margin-top:6px">A popup will open — no need to leave this page</div>
+      </div>
+    </div>
+
+    <!-- I PAID Form -->
+    <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:4px">
+      <div style="font-size:11px;color:var(--pink);font-weight:800;letter-spacing:2px;margin-bottom:12px">AFTER PAYMENT — FILL THIS FORM:</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <input type="text" id="payerName" placeholder="Buong pangalan" style="background:#111;border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:10px;font-family:'Nunito',sans-serif;font-size:13px;outline:none"/>
+        <input type="email" id="payerEmail" placeholder="Email (dito ipapadala ang access code)" style="background:#111;border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:10px;font-family:'Nunito',sans-serif;font-size:13px;outline:none"/>
+        <input type="text" id="payerRef" placeholder="Reference / Transaction number" style="background:#111;border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:10px;font-family:'Nunito',sans-serif;font-size:13px;outline:none"/>
+        <input type="hidden" id="payerPlan"/>
+        <input type="hidden" id="payerAmount"/>
+        <button onclick="submitPaymentProof()" style="width:100%;padding:14px;background:var(--pink);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;border:none;border-radius:12px;cursor:pointer;transition:.2s" onmouseover="this.style.background='#e00070'" onmouseout="this.style.background='var(--pink)'">✅ I PAID NA! SEND MY CODE →</button>
+        <p style="font-size:10px;color:#555;text-align:center">Makakatanggap ka ng access code sa iyong email within a few minutes.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div style="display:flex;align-items:center;gap:12px">
+    <!-- Original Logo -->
+    <img src="https://i.postimg.cc/MpDYyTsF/loggo-payment.png" alt="Post Na Viral Logo"
+         style="height:52px;width:52px;border-radius:50%;object-fit:cover;flex-shrink:0;cursor:pointer;transition:.2s"
+         onclick="document.querySelector('.hero').scrollIntoView({behavior:'smooth'})"
+         onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+    <div>
+      <span class="logo-text">POST NA VIRAL</span>
+      <span class="logo-sub">AI-POWERED CONTENT ENGINE</span>
+    </div>
+  </div>
+  <ul>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#trends">Viral Trends</a></li>
+    <li><a href="#generator">Generator</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:10px">
+    <!-- Login button — shown when NOT logged in -->
+    <button id="navLoginBtn" onclick="window.location.href='register.html?tab=login'" style="background:transparent;color:var(--muted);border:1px solid var(--border);padding:10px 18px;border-radius:50px;font-weight:700;font-size:13px;cursor:pointer;transition:.2s;display:none" onmouseover="this.style.color='var(--pink)';this.style.borderColor='var(--pink)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'">👤 LOGIN</button>
+    <!-- User avatar — shown when logged in -->
+    <div id="navUserBadge" style="display:none;align-items:center;gap:8px;background:rgba(255,27,141,0.1);border:1px solid rgba(255,27,141,0.3);border-radius:50px;padding:6px 14px 6px 6px;cursor:pointer" onclick="showUserMenu()" title="Account">
+      <div id="navAvatar" style="width:28px;height:28px;border-radius:50%;background:var(--pink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:11px;color:#fff;flex-shrink:0">?</div>
+      <span id="navUserName" style="font-size:12px;font-weight:800;color:var(--text);max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Creator</span>
+      <span style="font-size:10px;color:var(--muted)">▾</span>
+    </div>
+    <!-- User dropdown menu -->
+    <div id="navUserMenu" style="display:none;position:absolute;top:64px;right:40px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:8px;min-width:180px;z-index:200;box-shadow:0 8px 32px rgba(0,0,0,0.5)">
+      <div id="menuPlanBadge" style="padding:10px 14px;font-size:10px;color:var(--yellow);font-weight:800;letter-spacing:2px;border-bottom:1px solid var(--border);margin-bottom:6px">FREE PLAN</div>
+      <div id="menuIdeasLeft" style="padding:6px 14px;font-size:12px;color:#ccc">💡 Ideas today: <span style="color:var(--pink);font-weight:700">—</span></div>
+      <div onclick="upgradeFromMenu()" style="padding:10px 14px;font-size:12px;font-weight:800;color:var(--pink);cursor:pointer;border-radius:8px;transition:.2s;margin-top:4px" onmouseover="this.style.background='rgba(255,27,141,0.1)'" onmouseout="this.style.background='transparent'">⚡ Upgrade Plan →</div>
+      <div onclick="handleLogout()" style="padding:10px 14px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;border-radius:8px;transition:.2s;border-top:1px solid var(--border);margin-top:4px" onmouseover="this.style.color='#fff';this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.color='var(--muted)';this.style.background='transparent'">🚪 Mag-logout</div>
+    </div>
+    <button class="nav-cta" id="navTryBtn" onclick="window.location.href='register.html'">TRY FREE NOW →</button>
+  </div>
+</nav>
+
+<script>
+// ═══════════════════════════════════════════════
+// NAV LOGIN STATE MANAGER
+// ═══════════════════════════════════════════════
+function updateNavAuth(){
+  const saved = localStorage.getItem('pnv_user');
+  const loginBtn   = document.getElementById('navLoginBtn');
+  const userBadge  = document.getElementById('navUserBadge');
+  const tryBtn     = document.getElementById('navTryBtn');
+  const navAvatar  = document.getElementById('navAvatar');
+  const navName    = document.getElementById('navUserName');
+  const planBadge  = document.getElementById('menuPlanBadge');
+  const ideasLeft  = document.getElementById('menuIdeasLeft');
+
+  if(saved){
+    const u = JSON.parse(saved);
+    // Show avatar badge, hide login + try buttons
+    loginBtn.style.display  = 'none';
+    userBadge.style.display = 'flex';
+    tryBtn.style.display    = 'none';
+    // Set initials
+    const initials = u.name ? u.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2) : '👤';
+    navAvatar.textContent = initials;
+    navName.textContent   = u.name ? u.name.split(' ')[0] : 'Creator';
+    // Plan badge
+    const planLabel = u.plan==='creator'?'CREATOR PLAN':u.plan==='ultimate'?'ULTIMATE PLAN':'FREE PLAN';
+    planBadge.textContent = planLabel;
+    // Ideas counter
+    const used  = u.ideasToday || 0;
+    const limit = u.ideasLimit || 1;
+    const left  = u.plan==='ultimate' ? '∞ Unlimited' : Math.max(0, limit - used)+' left';
+    ideasLeft.innerHTML = '💡 Ideas ngayon: <span style="color:var(--pink);font-weight:700">'+left+'</span>';
+  } else {
+    // Not logged in — show login button
+    loginBtn.style.display  = 'block';
+    userBadge.style.display = 'none';
+    tryBtn.style.display    = 'block';
+  }
+}
+
+function showUserMenu(){
+  const menu = document.getElementById('navUserMenu');
+  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+
+function upgradeFromMenu(){
+  document.getElementById('navUserMenu').style.display = 'none';
+  showPaymentModal('Creator','₱99');
+}
+
+function handleLogout(){
+  localStorage.removeItem('pnv_user');
+  sessionStorage.clear();
+  userData = null;
+  document.getElementById('navUserMenu').style.display = 'none';
+  updateNavAuth();
+  showToast('👋 Naka-logout ka na. Salamat!');
+  setTimeout(()=>{ window.location.href = 'register.html?tab=login'; }, 900);
+}
+
+// Close menu when clicking outside
+document.addEventListener('click', function(e){
+  const menu  = document.getElementById('navUserMenu');
+  const badge = document.getElementById('navUserBadge');
+  if(menu && badge && !menu.contains(e.target) && !badge.contains(e.target)){
+    menu.style.display = 'none';
+  }
+});
+
+// Run on load + after login/register
+document.addEventListener('DOMContentLoaded', updateNavAuth);
+// Hook into existing hideGate to refresh nav
+const _origHideGate = typeof hideGate === 'function' ? hideGate : null;
+</script>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">🇵🇭 AI-POWERED · PINOY-MADE</div>
+  <h1 class="bebas">WALA KA NANG MAISIP<br><span>I-POST?</span></h1>
+</section>
+
+<!-- VIRAL TRENDS -->
+<section class="yt-section" id="trends">
+<div class="yt-inner">
+
+  <div style="text-align:center;margin-bottom:12px">
+    <span style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--pink);letter-spacing:4px">VIRAL CONTENT DISCOVERY</span>
+  </div>
+  <h2 class="section-title bebas" style="text-align:center">STEAL VIRAL FORMULAS FROM <span>ANY VIDEO</span></h2>
+  <div class="section-divider"></div>
+  <p style="text-align:center;font-size:12px;font-weight:700;margin-top:10px;margin-bottom:6px"><span style="color:var(--yellow)">I-type ang niche mo</span> <span style="color:var(--pink)">→</span> <span style="color:var(--pink)">piliin ang viral video</span> <span style="color:var(--yellow)">→</span> <span style="color:var(--yellow)">i-decode ang formula</span> <span style="color:var(--pink)">→</span> <span style="color:var(--pink)">gawin mong content</span></p>
+
+  <!-- PLATFORM TABS -->
+  <div class="vd-tabs">
+    <div class="vd-tab active" onclick="vdSwitchTab('youtube',this)"><span style="color:#FF0000">▶</span> YouTube</div>
+    <div class="vd-tab" onclick="vdSwitchTab('tiktok',this)">🎵 TikTok</div>
+    <div class="vd-tab" onclick="vdSwitchTab('facebook',this)">👤 FB Reels</div>
+  </div>
+
+  <!-- YOUTUBE PANEL -->
+  <div id="vdPanel-youtube" class="vd-panel">
+    <div class="vd-search-box">
+      <div class="vd-search-label">I-TYPE ANG IYONG NICHE</div>
+      <div style="display:flex;gap:10px">
+        <input type="text" id="vdYtInput" placeholder="Halimbawa: Airbnb, Corporate Giveaways, Hugot, Negosyo..."
+          class="vd-input"
+          onfocus="this.style.borderColor='#FF0000'" onblur="this.style.borderColor='#2a2a2a'"
+          onkeydown="if(event.key==='Enter')vdSearchYouTube()"/>
+        <button onclick="vdSearchYouTube()" class="vd-btn vd-btn-red">▶ SEARCH</button>
+      </div>
+    </div>
+    <div id="vdYtLoading" style="display:none;text-align:center;padding:40px;color:#999">
+      <div style="font-size:32px;margin-bottom:10px;animation:spin 1s linear infinite;display:inline-block">▶️</div>
+      <div id="vdYtLoadingText" style="font-size:14px">Naghahanap ng viral videos...</div>
+    </div>
+    <div id="vdYtError" class="vd-error" style="display:none"></div>
+    <div id="vdYtGrid" class="vd-grid"></div>
+  </div>
+
+  <!-- TIKTOK PANEL -->
+  <div id="vdPanel-tiktok" class="vd-panel" style="display:none">
+    <div class="vd-search-box">
+      <div class="vd-search-label">I-PASTE ANG TIKTOK VIDEO URL</div>
+      <div style="display:flex;gap:10px">
+        <input type="text" id="vdTtInput" placeholder="https://www.tiktok.com/@username/video/..."
+          class="vd-input"
+          onfocus="this.style.borderColor='var(--pink)'" onblur="this.style.borderColor='#2a2a2a'"
+          onkeydown="if(event.key==='Enter')vdEmbedTikTok()"/>
+        <button onclick="vdEmbedTikTok()" class="vd-btn vd-btn-pink">▶ EMBED</button>
+      </div>
+      <div style="margin-top:8px;font-size:12px;color:#444">Tip: Kailangan public ang TikTok video</div>
+    </div>
+    <div id="vdTtError" class="vd-error" style="display:none"></div>
+    <div id="vdTtResult" style="display:none"></div>
+  </div>
+
+  <!-- FACEBOOK PANEL -->
+  <div id="vdPanel-facebook" class="vd-panel" style="display:none">
+    <div class="vd-search-box">
+      <div class="vd-search-label">I-PASTE ANG FACEBOOK VIDEO / REEL URL</div>
+      <div style="display:flex;gap:10px">
+        <input type="text" id="vdFbInput" placeholder="https://www.facebook.com/reel/..."
+          class="vd-input"
+          onfocus="this.style.borderColor='#1877F2'" onblur="this.style.borderColor='#2a2a2a'"
+          onkeydown="if(event.key==='Enter')vdEmbedFacebook()"/>
+        <button onclick="vdEmbedFacebook()" class="vd-btn vd-btn-blue">▶ EMBED</button>
+      </div>
+      <div style="margin-top:8px;font-size:12px;color:#444">Tip: Kailangan public ang Facebook video/Reel</div>
+    </div>
+    <div id="vdFbError" class="vd-error" style="display:none"></div>
+    <div id="vdFbResult" style="display:none"></div>
+  </div>
+
+  <!-- PLAYER MODAL (YouTube) -->
+  <div id="vdPlayerModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:2000;align-items:center;justify-content:center;padding:20px;overflow-y:auto">
+    <div style="background:#1A1A1A;border:2px solid #FF0000;border-radius:20px;max-width:820px;width:100%;overflow:hidden;margin:auto">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid #2a2a2a">
+        <div id="vdPlayerTitle" style="font-size:14px;font-weight:800;color:#f0f0f0;flex:1;margin-right:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></div>
+        <button onclick="vdClosePlayer()" style="background:transparent;border:1px solid #2a2a2a;color:#999;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px;flex-shrink:0">×</button>
+      </div>
+      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden">
+        <iframe id="vdPlayerIframe" src="" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
+      </div>
+      <div style="padding:20px">
+        <div id="vdPlayerMeta" style="font-size:12px;color:#999;margin-bottom:16px"></div>
+        <button onclick="vdStealFromPlayer()" style="width:100%;padding:15px;background:var(--pink);color:#fff;border:none;border-radius:10px;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;cursor:pointer">📋 COPY THIS FORMULA →</button>
+        <button onclick="vdClosePlayer()" style="width:100%;padding:10px;background:transparent;color:#666;border:1px solid #2a2a2a;border-radius:10px;font-size:13px;cursor:pointer;margin-top:8px">Hindi pa muna</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<style>
+.yt-section{padding:40px 40px 60px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.yt-inner{max-width:1100px;margin:0 auto}
+/* Video Discovery Tabs */
+.vd-tabs{display:flex;gap:0;border:1px solid #2a2a2a;border-radius:12px;overflow:hidden;margin:28px 0 0}
+.vd-tab{flex:1;padding:16px 12px;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;cursor:pointer;transition:.2s;color:#555;background:#111}
+.vd-tab:hover{color:#FF1B8D;background:rgba(255,27,141,0.05)}
+.vd-tab.active{color:#fff;background:rgba(255,27,141,0.15);border-bottom:2px solid var(--pink)}
+.vd-panel{padding:24px 0}
+.vd-search-box{background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:20px;margin-bottom:24px}
+.vd-search-label{font-size:10px;color:var(--pink);font-weight:800;letter-spacing:3px;margin-bottom:12px}
+.vd-input{flex:1;background:#0a0a0a;border:1.5px solid #2a2a2a;color:#f0f0f0;padding:13px 16px;border-radius:10px;font-family:'Nunito',sans-serif;font-size:14px;outline:none;transition:.2s}
+.vd-btn{border:none;padding:13px 24px;border-radius:10px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;cursor:pointer;white-space:nowrap;transition:.2s}
+.vd-btn-red{background:#FF0000;color:#fff}.vd-btn-red:hover{background:#cc0000}
+.vd-btn-pink{background:var(--pink);color:#fff}.vd-btn-pink:hover{background:#e00070}
+.vd-btn-blue{background:#1877F2;color:#fff}.vd-btn-blue:hover{background:#1558b0}
+.vd-error{background:rgba(255,27,141,0.08);border:1px solid rgba(255,27,141,0.2);border-radius:10px;padding:14px;color:#ff6b9d;font-size:13px;margin-bottom:16px}
+/* Video Grid */
+.vd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:768px){.yt-section{padding:30px 20px}.vd-grid{grid-template-columns:1fr 1fr!important}}
+@media(max-width:480px){.vd-grid{grid-template-columns:1fr!important}.vd-tabs{flex-wrap:wrap}}
+/* Video Card */
+.vd-card{background:#111;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;transition:.3s;display:flex;flex-direction:column}
+.vd-card:hover{border-color:var(--pink);transform:translateY(-3px)}
+.vd-thumb-wrap{position:relative;cursor:pointer}
+.vd-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.vd-play-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;transition:.2s}
+.vd-thumb-wrap:hover .vd-play-overlay{background:rgba(0,0,0,0.5)}
+.vd-play-btn{width:48px;height:48px;background:#FF0000;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transition:.2s;transform:scale(0.8)}
+.vd-thumb-wrap:hover .vd-play-btn{opacity:1;transform:scale(1)}
+.vd-card-body{padding:12px;flex:1;display:flex;flex-direction:column;gap:6px}
+.vd-card-title{font-size:12px;font-weight:700;color:#f0f0f0;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.vd-channel{font-size:10px;color:var(--pink);font-weight:700}
+.vd-stats{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.vd-views{background:rgba(255,0,0,0.1);border:1px solid rgba(255,0,0,0.2);color:#FF4444;font-size:9px;font-weight:800;padding:2px 8px;border-radius:50px}
+.vd-steal-btn{margin-top:auto;width:100%;padding:10px 6px;background:linear-gradient(135deg,var(--pink),#b5124c);color:#fff;border:none;border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.5px;cursor:pointer;transition:.2s}
+.vd-steal-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(255,27,141,0.4)}
+/* Formula Panel under video */
+.vd-formula{background:#0d0d0d;border:1px solid #1e1e1e;border-radius:12px;padding:16px;margin-top:8px;display:none}
+.vd-formula.show{display:block;animation:slideUp .3s ease}
+.vd-formula-section{margin-bottom:14px}
+.vd-formula-label{font-size:10px;color:var(--pink);font-weight:800;letter-spacing:2px;margin-bottom:6px}
+.vd-formula-text{font-size:12px;color:#aaa;line-height:1.7}
+.vd-etags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.vd-etag{background:rgba(255,27,141,0.1);border:1px solid rgba(255,27,141,0.2);color:var(--pink);font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px}
+.vd-template{background:rgba(255,215,0,0.04);border:1.5px dashed rgba(255,215,0,0.2);border-radius:8px;padding:12px;font-size:11px;color:#888;line-height:1.8;font-style:italic;margin-top:8px;white-space:pre-wrap}
+.vd-template span{color:#FFD700;font-style:normal;font-weight:700}
+.vd-use-btn{width:100%;padding:12px;background:linear-gradient(135deg,var(--pink),#b5124c);color:#fff;border:none;border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;cursor:pointer;margin-top:12px;transition:.2s}
+.vd-use-btn:hover{box-shadow:0 4px 20px rgba(255,27,141,0.4)}
+/* Embed result */
+.vd-embed-result{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+@media(max-width:600px){.vd-embed-result{grid-template-columns:1fr}}
+</style>
+
+<script>
+// ═══════════════════════════════════════════════
+// VIDEO DISCOVERY SYSTEM — Post Na Viral
+// YouTube (API) + TikTok (embed) + FB Reels (embed)
+// Cache-first, quota-protected
+// ═══════════════════════════════════════════════
+
+const YT_API_KEY   = 'AIzaSyB4nIliTPi769ZySS38aZS-WKKLaeolTuo';
+const YT_MIN_VIEWS = 1000000;
+
+// ── CACHE ──
+const YT_CACHE_TTL = { trending:6*3600000, normal:24*3600000, evergreen:72*3600000 };
+const YT_DAILY_CAP_KEY = 'pnv_yt_daily_cap';
+
+function normQ(q){ return q.toLowerCase().trim().replace(/\s+/g,' '); }
+function cacheKey(q){ return 'pnv_yt_cache_'+normQ(q); }
+
+function getCache(q){
+  try{
+    const r=localStorage.getItem(cacheKey(q));
+    if(!r) return null;
+    const d=JSON.parse(r);
+    if(Date.now()>d.expiresAt){ localStorage.removeItem(cacheKey(q)); return null; }
+    return d;
+  }catch(e){ return null; }
+}
+function setCache(q,results,type='normal'){
+  const ttl=YT_CACHE_TTL[type]||YT_CACHE_TTL.normal;
+  try{ localStorage.setItem(cacheKey(q),JSON.stringify({results,cachedAt:Date.now(),expiresAt:Date.now()+ttl})); }catch(e){}
+}
+function getDailyCap(){
+  try{
+    const r=localStorage.getItem(YT_DAILY_CAP_KEY);
+    if(!r) return {date:new Date().toDateString(),count:0};
+    const d=JSON.parse(r);
+    if(d.date!==new Date().toDateString()) return {date:new Date().toDateString(),count:0};
+    return d;
+  }catch(e){ return {date:new Date().toDateString(),count:0}; }
+}
+function incDailyCap(){ const c=getDailyCap(); c.count++; try{localStorage.setItem(YT_DAILY_CAP_KEY,JSON.stringify(c));}catch(e){} }
+function isCapReached(){ return getDailyCap().count>=15; }
+
+// ── UTILS ──
+function fmtViews(n){
+  if(!n) return '0';
+  n=parseInt(n);
+  if(n>=1e9) return (n/1e9).toFixed(1)+'B';
+  if(n>=1e6) return (n/1e6).toFixed(1)+'M';
+  if(n>=1e3) return (n/1e3).toFixed(1)+'K';
+  return n.toLocaleString();
+}
+function fmtDate(d){
+  if(!d) return '';
+  return new Date(d).toLocaleDateString('en-PH',{year:'numeric',month:'short',day:'numeric'});
+}
+function parseDur(iso){
+  if(!iso) return '';
+  const m=iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  if(!m) return '';
+  const h=parseInt(m[1]||0),mn=parseInt(m[2]||0),s=parseInt(m[3]||0);
+  if(h>0) return h+':'+(mn<10?'0':'')+mn+':'+(s<10?'0':'')+s;
+  return mn+':'+(s<10?'0':'')+s;
+}
+
+
+
+// ── FORMULA PANEL HTML ──
+function formulaPanel(videoId, platform){
+  const vid = String(videoId).replace(/'/g,'');
+  const fullUrl = platform === 'youtube'
+    ? 'https://www.youtube.com/watch?v=' + vid
+    : vid;
+  return '<button class="vd-use-btn" onclick="window.open(\'steal-formula.html?v=\'+encodeURIComponent(\''+fullUrl+'\'),\'_blank\')">'
+    +'📋 COPY THIS FORMULA →'
+    +'</button>';
+}
+
+// ── TAB SWITCHER ──
+function vdSwitchTab(tab, el){
+  document.querySelectorAll('.vd-panel').forEach(p=>p.style.display='none');
+  document.querySelectorAll('.vd-tab').forEach(t=>t.classList.remove('active'));
+  const panel=document.getElementById('vdPanel-'+tab);
+  if(panel) panel.style.display='block';
+  if(el) el.classList.add('active');
+}
+
+// ── YOUTUBE SEARCH ──
+let vdYtData = {};
+
+async function vdSearchYouTube(){
+  if(!userData){ showToast('❗ Mag-login muna!'); setTimeout(()=>window.location.href='register.html?tab=login',800); return; }
+  const query = document.getElementById('vdYtInput').value.trim();
+  if(!query){ document.getElementById('vdYtInput').style.borderColor='#FF0000'; setTimeout(()=>document.getElementById('vdYtInput').style.borderColor='#2a2a2a',2000); return; }
+
+  const grid  = document.getElementById('vdYtGrid');
+  const load  = document.getElementById('vdYtLoading');
+  const errEl = document.getElementById('vdYtError');
+  grid.innerHTML=''; errEl.style.display='none';
+  load.style.display='block';
+
+  // Check cache
+  const cached = getCache(query);
+  if(cached && cached.results.length>0){
+    document.getElementById('vdYtLoadingText').textContent='⚡ Loading from cache...';
+    await new Promise(r=>setTimeout(r,300));
+    load.style.display='none';
+    cached.results.forEach(v=>{vdYtData[v.id.videoId]=v; renderVdCard(v,'youtube',grid);});
+    return;
+  }
+
+  // Check server cache
+  if(APPS_SCRIPT_URL){
+    try{
+      const sr=await fetch(APPS_SCRIPT_URL+'?action=getYtCache&query='+encodeURIComponent(normQ(query)));
+      if(sr.ok){
+        const sd=await sr.json();
+        if(sd.found && sd.results && sd.results.length>0){
+          setCache(query, sd.results, sd.cacheType||'normal');
+          load.style.display='none';
+          sd.results.forEach(v=>{vdYtData[v.id.videoId]=v; renderVdCard(v,'youtube',grid);});
+          return;
+        }
+      }
+    }catch(e){}
+  }
+
+  if(isCapReached()){
+    load.style.display='none';
+    errEl.textContent='📦 Showing cached results. Fresh results update soon.';
+    errEl.style.display='block'; return;
+  }
+
+  try{
+    document.getElementById('vdYtLoadingText').textContent='Naghahanap ng viral videos...';
+    // search.list — IDs only (100 units)
+    const sp=new URLSearchParams({part:'id',q:query,type:'video',order:'viewCount',maxResults:'18',regionCode:'PH',key:YT_API_KEY});
+    const sr=await fetch('https://www.googleapis.com/youtube/v3/search?'+sp);
+    if(!sr.ok){ const e=await sr.json(); throw new Error(e?.error?.message||'Search failed'); }
+    const sd=await sr.json();
+    const ids=(sd.items||[]).map(i=>i.id.videoId).filter(Boolean);
+    if(!ids.length){ load.style.display='none'; errEl.textContent='⚠️ Walang videos found. Try ng ibang niche!'; errEl.style.display='block'; return; }
+
+    // videos.list — full details (1 unit)
+    document.getElementById('vdYtLoadingText').textContent='Loading video details...';
+    const vp=new URLSearchParams({part:'snippet,statistics,contentDetails',id:ids.join(','),key:YT_API_KEY});
+    const vr=await fetch('https://www.googleapis.com/youtube/v3/videos?'+vp);
+    const vd=await vr.json();
+
+    const results=[];
+    for(const item of (vd.items||[])){
+      const views=parseInt(item.statistics?.viewCount||0);
+      if(views<YT_MIN_VIEWS) continue;
+      const thumbs=item.snippet?.thumbnails||{};
+      const thumb=(thumbs.maxres||thumbs.high||thumbs.medium||thumbs.default||{}).url||'https://i.ytimg.com/vi/'+item.id+'/hqdefault.jpg';
+      const entry={
+        id:{videoId:item.id},
+        snippet:{title:item.snippet?.title||'Video',channelTitle:item.snippet?.channelTitle||'YouTube',thumbnails:{default:{url:thumb},medium:{url:thumb}},publishedAt:item.snippet?.publishedAt||''},
+        _stats:{viewCount:views,likeCount:parseInt(item.statistics?.likeCount||0),duration:item.contentDetails?.duration||''}
+      };
+      results.push(entry);
+      vdYtData[item.id]=entry;
+    }
+
+    if(!results.length){ load.style.display='none'; errEl.textContent='⚠️ Walang 1M+ views videos sa niche na yan. Try ng ibang keyword!'; errEl.style.display='block'; return; }
+
+    setCache(query,results,'normal');
+    incDailyCap();
+    if(APPS_SCRIPT_URL) fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'saveYtCache',query:normQ(query),cacheType:'normal',results:results.slice(0,20),cachedAt:Date.now(),expiresAt:Date.now()+YT_CACHE_TTL.normal})}).catch(()=>{});
+
+    load.style.display='none';
+    results.forEach(v=>renderVdCard(v,'youtube',grid));
+
+  }catch(e){
+    load.style.display='none';
+    errEl.textContent='⚠️ '+e.message+'. Try ulit!';
+    errEl.style.display='block';
+  }
+}
+
+// ── RENDER VIDEO CARD ──
+function renderVdCard(video, platform, grid){
+  const vid   = video.id.videoId;
+  const title = video.snippet.title||'Video';
+  const ch    = video.snippet.channelTitle||'YouTube';
+  const thumb = video.snippet.thumbnails?.medium?.url||video.snippet.thumbnails?.default?.url||'https://i.ytimg.com/vi/'+vid+'/hqdefault.jpg';
+  const stats = video._stats||{};
+  const views = stats.viewCount||0;
+  const dur   = parseDur(stats.duration||'');
+  const pub   = video.snippet.publishedAt||'';
+
+  const card  = document.createElement('div');
+  card.className = 'vd-card';
+
+  // Thumb
+  const tw = document.createElement('div');
+  tw.className = 'vd-thumb-wrap';
+  tw.dataset.vid = vid; tw.dataset.title=title; tw.dataset.ch=ch; tw.dataset.views=views; tw.dataset.pub=pub;
+  tw.onclick = function(){ vdPlayVideo(this); };
+
+  const img = document.createElement('img');
+  img.className='vd-thumb'; img.src=thumb; img.loading='lazy';
+  img.onerror=function(){ this.src='https://i.ytimg.com/vi/'+vid+'/hqdefault.jpg'; };
+  tw.appendChild(img);
+
+  if(dur){
+    const db=document.createElement('div');
+    db.style.cssText='position:absolute;bottom:6px;right:8px;background:rgba(0,0,0,0.85);color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px';
+    db.textContent=dur; tw.appendChild(db);
+  }
+  const ov=document.createElement('div');
+  ov.className='vd-play-overlay';
+  ov.innerHTML='<div class="vd-play-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>';
+  tw.appendChild(ov);
+  card.appendChild(tw);
+
+  // Body
+  const body=document.createElement('div');
+  body.className='vd-card-body';
+
+  const tEl=document.createElement('div'); tEl.className='vd-card-title'; tEl.textContent=title;
+  const cEl=document.createElement('div'); cEl.className='vd-channel'; cEl.textContent='📺 '+ch;
+  const sEl=document.createElement('div'); sEl.className='vd-stats';
+  sEl.innerHTML='<span class="vd-views">👁 '+fmtViews(views)+' views</span><span style="font-size:9px;color:#555">📅 '+fmtDate(pub)+'</span>';
+
+  const stealBtn=document.createElement('button');
+  stealBtn.className='vd-steal-btn';
+  stealBtn.textContent='📋 COPY THIS FORMULA';
+  stealBtn.onclick=async function(e){
+    e.stopPropagation();
+    stealBtn.textContent='Loading...';
+    stealBtn.disabled=true;
+    const fullUrl='https://www.youtube.com/watch?v='+vid;
+    // Fetch title here (index.html has no CSP restrictions)
+    let title='', author='';
+    try {
+      const r=await fetch('https://noembed.com/embed?url='+encodeURIComponent(fullUrl));
+      if(r.ok){ const d=await r.json(); title=d.title||''; author=d.author_name||''; }
+    } catch(e2){}
+    if(!title){
+      try {
+        const r=await fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet&id='+vid+'&key='+YT_API_KEY);
+        if(r.ok){ const d=await r.json(); const item=(d.items||[])[0]; if(item){ title=item.snippet.title||''; author=item.snippet.channelTitle||''; } }
+      } catch(e2){}
+    }
+    stealBtn.textContent='📋 COPY THIS FORMULA';
+    stealBtn.disabled=false;
+    const params='v='+encodeURIComponent(fullUrl)+'&title='+encodeURIComponent(title)+'&author='+encodeURIComponent(author);
+    window.open('steal-formula.html?'+params,'_blank');
+  };
+
+  body.appendChild(tEl); body.appendChild(cEl); body.appendChild(sEl); body.appendChild(stealBtn);
+  card.appendChild(body);
+  grid.appendChild(card);
+}
+
+// ── PLAY VIDEO (YouTube) ──
+let vdCurrentVideoId = null;
+function vdPlayVideo(el){
+  const d=el.dataset;
+  vdCurrentVideoId=d.vid;
+  document.getElementById('vdPlayerTitle').textContent=d.title;
+  document.getElementById('vdPlayerIframe').src='https://www.youtube.com/embed/'+d.vid+'?autoplay=1&rel=0';
+  document.getElementById('vdPlayerMeta').innerHTML='<span style="color:var(--pink);font-weight:700">📺 '+d.ch+'</span> · 👁 '+fmtViews(d.views)+' views · 📅 '+fmtDate(d.pub);
+  document.getElementById('vdPlayerModal').style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function vdClosePlayer(){
+  document.getElementById('vdPlayerIframe').src='';
+  document.getElementById('vdPlayerModal').style.display='none';
+  document.body.style.overflow='';
+}
+function vdStealFromPlayer(){
+  const vid=vdCurrentVideoId;
+  vdClosePlayer();
+  window.open('steal-formula.html?v=' + encodeURIComponent('https://www.youtube.com/watch?v='+vid), '_blank');
+}
+document.addEventListener('DOMContentLoaded',function(){
+  const pm=document.getElementById('vdPlayerModal');
+  if(pm) pm.addEventListener('click',function(e){if(e.target===this)vdClosePlayer();});
+});
+
+// ── USE FORMULA (opens steal-formula.html as separate page) ──
+function vdUseFormula(videoIdOrUrl, platform){
+  const url = 'steal-formula.html?v=' + encodeURIComponent(videoIdOrUrl);
+  window.open(url, '_blank');
+}
+
+// ── TIKTOK EMBED ──
+function vdEmbedTikTok(){
+  if(!userData){ showToast('❗ Mag-login muna!'); setTimeout(()=>window.location.href='register.html?tab=login',800); return; }
+  const url=document.getElementById('vdTtInput').value.trim();
+  const errEl=document.getElementById('vdTtError');
+  const resultEl=document.getElementById('vdTtResult');
+  errEl.style.display='none'; resultEl.style.display='none';
+
+  if(!url||!url.includes('tiktok.com')){
+    errEl.textContent='❗ I-paste ang valid TikTok URL. Halimbawa: https://www.tiktok.com/@username/video/123...';
+    errEl.style.display='block'; return;
+  }
+
+  const vidMatch=url.match(/\/video\/(\d+)/);
+  const videoId=vidMatch?vidMatch[1]:'0';
+
+  resultEl.innerHTML=`
+    <div class="vd-embed-result">
+      <div style="display:flex;justify-content:center">
+        <blockquote class="tiktok-embed" cite="${url}" data-video-id="${videoId}" style="max-width:325px;min-width:325px;border:none;margin:0"></blockquote>
+      </div>
+      <div style="background:#0d0d0d;border:1px solid #1e1e1e;border-radius:12px;padding:16px">
+        ${formulaPanel(url,'tiktok')}
+      </div>
+    </div>`;
+  resultEl.style.display='block';
+
+  // Load TikTok embed.js
+  const old=document.getElementById('ttScript');
+  if(old) old.remove();
+  const s=document.createElement('script');
+  s.id='ttScript'; s.src='https://www.tiktok.com/embed.js'; s.async=true;
+  document.body.appendChild(s);
+  resultEl.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── FACEBOOK EMBED ──
+function vdEmbedFacebook(){
+  if(!userData){ showToast('❗ Mag-login muna!'); setTimeout(()=>window.location.href='register.html?tab=login',800); return; }
+  const url=document.getElementById('vdFbInput').value.trim();
+  const errEl=document.getElementById('vdFbError');
+  const resultEl=document.getElementById('vdFbResult');
+  errEl.style.display='none'; resultEl.style.display='none';
+
+  if(!url||!url.includes('facebook.com')){
+    errEl.textContent='❗ I-paste ang valid Facebook URL. Halimbawa: https://www.facebook.com/reel/123...';
+    errEl.style.display='block'; return;
+  }
+
+  resultEl.innerHTML=`
+    <div class="vd-embed-result">
+      <div style="display:flex;justify-content:center">
+        <div class="fb-video" data-href="${url}" data-width="400" data-show-text="false" data-allowfullscreen="true"></div>
+      </div>
+      <div style="background:#0d0d0d;border:1px solid #1e1e1e;border-radius:12px;padding:16px">
+        ${formulaPanel(url,'facebook')}
+      </div>
+    </div>`;
+  resultEl.style.display='block';
+
+  if(window.FB){ window.FB.XFBML.parse(resultEl); }
+  resultEl.scrollIntoView({behavior:'smooth',block:'start'});
+}
+</script>
+
+
+<!-- GENERATOR DEMO -->
+<section class="generator-section" id="generator">
+  <div class="gen-box" id="generatorBox">
+    <div style="padding:24px 28px;border-bottom:1px solid var(--border);text-align:center">
+      <h2 class="section-title bebas" style="margin-bottom:20px">✍️ GUMAWA NG <span style="color:var(--yellow)">SARILING CONTENT</span></h2>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:20px">
+        <button class="btn-primary" onclick="window.location.href='register.html'">⚡ Try 1 Free Idea Now →</button>
+        <button class="btn-ghost" onclick="document.getElementById('generator').scrollIntoView({behavior:'smooth'})">See How It Works</button>
+      </div>
+      <div style="display:flex;gap:40px;flex-wrap:wrap;justify-content:center;margin-bottom:12px">
+        <div style="text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--yellow)">3 SEC</div><div style="font-size:11px;color:var(--muted);letter-spacing:1px">IDEA GENERATION</div></div>
+        <div style="text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--yellow);line-height:1.1">HELPING CREATORS</div><div style="font-size:11px;color:var(--muted);letter-spacing:1px">GENERATE CONTENT FASTER</div></div>
+        <div style="text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--yellow)">100%</div><div style="font-size:11px;color:var(--muted);letter-spacing:1px">TAGLISH READY</div></div>
+      </div>
+      <div id="ideaCounter" style="display:none;font-size:12px;color:var(--pink);font-weight:700"></div>
+    </div>
+    <div class="gen-body">
+      <div style="margin-bottom:12px">
+        <div class="gen-field" style="margin-bottom:8px"><label>I-TYPE ANG NAPILI MONG NICHE</label></div>
+        <input type="text" id="nicheInput" placeholder="Halimbawa: Corporate Giveaways, Airbnb, Hugot, Online Seller, Food, KDP..."
+          style="width:100%;background:#111;border:1px solid var(--border);color:var(--text);padding:12px 16px;border-radius:10px;font-family:'Nunito',sans-serif;font-size:14px;outline:none;transition:.2s;box-sizing:border-box"
+          onfocus="this.style.borderColor='var(--pink)'" onblur="this.style.borderColor='var(--border)'"
+          oninput="selectedNiche=this.value"/>
+      </div>
+      <div style="margin-bottom:12px">
+        <div class="gen-field" style="margin-bottom:8px"><label>CONTENT GOAL</label></div>
+        <div class="goal-pills" id="goalPills">
+          <span class="goal-pill active" onclick="selectGoal(this)">🔥 Viral/Trending</span>
+          <span class="goal-pill" onclick="selectGoal(this)">💰 Sell/Convert</span>
+          <span class="goal-pill" onclick="selectGoal(this)">💡 Educate</span>
+          <span class="goal-pill" onclick="selectGoal(this)">❤️ Inspire</span>
+          <span class="goal-pill" onclick="selectGoal(this)">😂 Entertain/Relatable</span>
+        </div>
+      </div>
+      <div class="gen-row">
+        <div class="gen-field">
+          <label>PLATFORM</label>
+          <select id="platform">
+            <option>TikTok Slides</option>
+            <option>Instagram Reels</option>
+            <option>Facebook Carousel</option>
+            <option>Facebook Video</option>
+          </select>
+        </div>
+        <div class="gen-field">
+          <label>TONE</label>
+          <select id="tone">
+            <option>Relatable / Real talk</option>
+            <option>Funny / Makulit</option>
+            <option>Emotional / Hugot</option>
+            <option>Inspirational</option>
+            <option>Educational</option>
+          </select>
+        </div>
+      </div>
+      <div class="gen-field" style="margin-bottom:16px">
+        <label>TOPIC O TWIST (OPTIONAL)</label>
+        <textarea id="topicInput" placeholder="Halimbawa: 'tungkol sa mga OFW parents' o 'viral challenge for small businesses'..."></textarea>
+      </div>
+
+      <!-- PHOTO UPLOAD -->
+      <div class="gen-field" style="margin-bottom:16px">
+        <label>📸 UPLOAD PHOTO (OPTIONAL)</label>
+        <div class="photo-upload-area" id="photoUploadArea" onclick="triggerPhotoUpload()">
+          <input type="file" id="photoInput" accept="image/*" style="display:none" onchange="handlePhotoUpload(event)">
+          <div id="uploadPlaceholder">
+            <div style="font-size:30px;margin-bottom:8px">📸</div>
+            <div style="font-size:13px;font-weight:700;color:var(--muted)">I-click para mag-upload ng larawan</div>
+            <div style="font-size:11px;color:#555;margin-top:4px">PNG, JPG, WEBP · Max 5MB · Para sa mas targeted na idea</div>
+          </div>
+          <div id="photoPreview" style="display:none;position:relative;width:100%">
+            <img id="previewImg" style="max-width:100%;max-height:180px;border-radius:10px;object-fit:contain;display:block;margin:0 auto">
+            <button class="photo-remove-btn" id="removePhotoBtn" onclick="removePhoto(event)">×</button>
+            <div id="photoFileName" style="font-size:11px;color:var(--muted);margin-top:10px;text-align:center;font-weight:700"></div>
+            <div style="font-size:10px;color:var(--pink);text-align:center;margin-top:4px;font-weight:700;letter-spacing:1px">✓ PHOTO READY — AI WILL USE THIS</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="gen-generate" id="generateBtn" onclick="generateContent()">⚡ GENERATE NG VIRAL IDEA →</button>
+
+    </div>
+  </div>
+</section>
+
+<!-- LOADING + OUTPUT — outside generatorBox so visible even when form is hidden -->
+<div style="max-width:1000px;margin:0 auto;padding:0 40px 60px">
+  <div class="loading-dots" id="loadingDots">
+    <span>●</span><span>●</span><span>●</span>
+    <div style="margin-top:8px">Ginagawa ang iyong viral content idea...</div>
+  </div>
+
+  <div class="gen-output" id="genOutput">
+    <div class="output-card">
+      <div class="output-block">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <div class="output-label">🎣 HOOK</div>
+          <span id="viralScore" style="background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.3);color:var(--yellow);font-size:10px;font-weight:800;padding:3px 10px;border-radius:50px;letter-spacing:1px"></span>
+        </div>
+        <div class="output-content" id="outHook"></div>
+      </div>
+      <div class="output-block">
+        <div class="output-label">💡 CONCEPT / ANGLE</div>
+        <div class="output-content" id="outConcept"></div>
+      </div>
+      <div class="output-block">
+        <div class="output-label">📋 SLIDE SCRIPT</div>
+        <div class="output-content" id="outScript"></div>
+      </div>
+      <div class="output-block">
+        <div class="output-label">✍️ CAPTION</div>
+        <div class="output-content" id="outCaption"></div>
+      </div>
+      <div class="output-block">
+        <div class="output-label">📢 CALL TO ACTION</div>
+        <div class="output-content" id="outCTA"></div>
+      </div>
+      <div class="output-block">
+        <div class="output-label">🎵 MUSIC VIBE</div>
+        <div class="output-content" id="outMusic"></div>
+      </div>
+      <div class="output-block">
+        <div class="output-label"># HASHTAGS</div>
+        <div class="output-hashtags" id="outHashtags"></div>
+      </div>
+    </div>
+    <button class="copy-all-btn" onclick="copyAll()">📋 COPY LAHAT NG IDEA →</button>
+    <button class="copy-all-btn" style="margin-top:8px;color:var(--pink);border-color:rgba(255,27,141,0.3)" onclick="generateContent()">🔁 REMIX — IBANG ANGLE →</button>
+  </div>
+</div>
+
+<!-- PAIN SECTION -->
+<section class="pain">
+  <div class="section-label">RELATE KA BA DITO?</div>
+  <h2 class="section-title bebas">HINDI IKAW ANG PROBLEMA.<br><span>IDEA</span> ANG KULANG.</h2>
+  <div class="section-divider"></div>
+  <div class="pain-grid">
+    <div class="pain-card"><div class="pain-icon">⏰</div><p>2 hours ka na nag-iisip... wala pa rin</p></div>
+    <div class="pain-card"><div class="pain-icon">🔄</div><p>Paulit-ulit na content mo, walang bago</p></div>
+    <div class="pain-card"><div class="pain-icon">📉</div><p>Walang engagement kahit effort mo</p></div>
+    <div class="pain-card"><div class="pain-icon">😰</div><p>Gusto mo mag-start... pero di mo alam paano</p></div>
+  </div>
+  <div class="pain-banner">ITO ANG <span>SHORTCUT</span> MO.</div>
+</section>
+
+<!-- WHY DIFFERENT -->
+<section class="diff">
+  <div class="diff-inner">
+    <div class="section-label" style="text-align:center">HINDI ITO ANG USUAL NA AI</div>
+    <h2 class="section-title bebas" style="text-align:center">BAKIT MAS MALAKAS<br><span>POST NA VIRAL</span>?</h2>
+    <div class="section-divider"></div>
+    <div class="diff-grid">
+      <div class="diff-list">
+        <div class="diff-item">
+          <div class="diff-check">✓</div>
+          <div class="diff-content">
+            <h4>🇵🇭 Pinoy Culture-Trained Engine</h4>
+            <p>Hindi generic AI — trained sa Filipino humor, context, platform behavior, at trending formats sa PH. Alam niya ang OPM references, Fil-English tone, at paano mag-hook sa Pinoy audience.</p>
+          </div>
+        </div>
+        <div class="diff-item">
+          <div class="diff-check">✓</div>
+          <div class="diff-content">
+            <h4>🎯 Platform-Specific Formats</h4>
+            <p>May built-in logic para sa TikTok slides, Reels carousels, at Facebook posts. Hindi isa lang ang format — tinutulungan ka based sa kung saan mo i-post.</p>
+          </div>
+        </div>
+        <div class="diff-item">
+          <div class="diff-check">✓</div>
+          <div class="diff-content">
+            <h4>📊 Viral Score Predictor</h4>
+            <p>Bawat idea may Viral Potential Score (0–100) na base sa hook strength, shareability, at trend alignment — hindi lang basta content, alam mo pa kung gaano ka-viral bago i-post.</p>
+          </div>
+        </div>
+        <div class="diff-item">
+          <div class="diff-check">✓</div>
+          <div class="diff-content">
+            <h4>🔁 Content Remix Engine</h4>
+            <p>Pag di mo gusto ang result, i-remix in one click. Magbibigay ng 3 variations — iba-ibang angle, tone, at format para sa same niche.</p>
+          </div>
+        </div>
+      </div>
+      <div class="vs-box">
+        <div class="vs-header">
+          <div class="vs-tag vs-pnv">POST NA VIRAL</div>
+          <div class="vs-tag vs-gpt">CHATGPT / CLAUDE</div>
+        </div>
+        <div class="vs-feature">PINOY CONTEXT</div>
+        <div class="vs-row">
+          <div class="vs-cell good">✓ Taglish-native, OPM refs, PH platform-aware</div>
+          <div class="vs-cell bad">✗ Generic English or awkward Tagalog</div>
+        </div>
+        <div class="vs-feature">OUTPUT FORMAT</div>
+        <div class="vs-row">
+          <div class="vs-cell good">✓ Ready-to-copy: hook + script + caption + music + hashtags</div>
+          <div class="vs-cell bad">✗ Text walls — kailangan mo pang i-format</div>
+        </div>
+        <div class="vs-feature">VIRAL PREDICTION</div>
+        <div class="vs-row">
+          <div class="vs-cell good">✓ Viral Score + trend alignment score</div>
+          <div class="vs-cell bad">✗ Wala — you guess if it'll work</div>
+        </div>
+        <div class="vs-feature">PLATFORM LOGIC</div>
+        <div class="vs-row">
+          <div class="vs-cell good">✓ TikTok / Reels / FB — optimized per platform</div>
+          <div class="vs-cell bad">✗ One-size-fits-all generic output</div>
+        </div>
+        <div class="vs-feature">REMIX / VARIATIONS</div>
+        <div class="vs-row">
+          <div class="vs-cell good">✓ 3 variations per idea, one click</div>
+          <div class="vs-cell bad">✗ Need mo pang mag-prompt ng iba-iba</div>
+        </div>
+        <div class="vs-feature">SPEED</div>
+        <div class="vs-row">
+          <div class="vs-cell good">✓ 3 seconds, no prompting needed</div>
+          <div class="vs-cell bad">✗ 5–10 mins ng back-and-forth prompting</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-label">GAANO KASIMPLE?</div>
+  <h2 class="section-title bebas">3 STEPS LANG. <span>TAPOS.</span></h2>
+  <div class="section-divider"></div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num bebas">01</div>
+      <h4>Pumili ng Niche</h4>
+      <p>Piliin ang iyong niche at content goal — viral, sell, inspire, o entertain.</p>
+    </div>
+    <div class="step">
+      <div class="step-num bebas">02</div>
+      <h4>I-click ang Generate</h4>
+      <p>Sa loob ng 3 segundo, may kumpleto kang viral content idea ready to use.</p>
+    </div>
+    <div class="step">
+      <div class="step-num bebas">03</div>
+      <h4>Copy. Post. Done.</h4>
+      <p>I-copy ang buong idea — hook, script, caption, music, hashtags — tapos i-post na!</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- COMMUNITY SCROLL -->
+<section class="community">
+  <div class="community-inner">
+    <div class="section-label">GINAGAMIT NA NG</div>
+    <h2 class="section-title bebas">50,000+ <span>PINOY CREATORS</span></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="fade-edges" style="margin-top:32px;overflow:hidden">
+    <div class="scroll-track" id="scrollTrack"></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-label">PUMILI NG PLANO</div>
+  <h2 class="section-title bebas">SIMPLE LANG. <span>SULIT PA.</span></h2>
+  <div class="section-divider"></div>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-tier">FREE</div>
+      <div class="price-amount bebas">₱0</div>
+      <div class="price-period">habang buhay · after registration</div>
+      <div class="price-desc">1 viral content idea araw-araw</div>
+      <ul class="price-features">
+        <li>1 content idea per day</li>
+        <li>Basic niches available</li>
+        <li>Hook + Script + Caption + Hashtags</li>
+        <li>Standard Taglish output</li>
+        <li>TikTok / FB format</li>
+      </ul>
+      <button class="price-btn price-btn-free" onclick="window.location.href='register.html'">START FREE →</button>
+    </div>
+    <div class="price-card featured">
+      <div class="price-badge">MOST POPULAR</div>
+      <div class="price-tier" style="color:var(--yellow)">CREATOR</div>
+      <div class="price-amount bebas">₱99</div>
+      <div class="price-period">one-time payment · lifetime access</div>
+      <div class="price-desc">10 viral content ideas araw-araw</div>
+      <ul class="price-features">
+        <li>10 content ideas per day</li>
+        <li>All niches unlocked</li>
+        <li>Advanced hooks & scripts</li>
+        <li>Viral Score predictor</li>
+        <li>3-variation Remix engine</li>
+        <li>Priority content output</li>
+        <li>Music + trending sound suggestions</li>
+      </ul>
+      <button class="price-btn price-btn-paid" onclick="showPaymentModal('Creator','₱99')">UNLOCK NOW ₱99 →</button>
+    </div>
+    <div class="price-card">
+      <div class="price-tier" style="color:var(--yellow)">UNLIMITED</div>
+      <div class="price-amount bebas">₱299</div>
+      <div class="price-period">one-time payment · lifetime access</div>
+      <div class="price-desc">Unlimited content ideas araw-araw</div>
+      <ul class="price-features">
+        <li>UNLIMITED ideas every day</li>
+        <li>All niches + custom niche input</li>
+        <li>Full advanced script engine</li>
+        <li>Viral Score + Trend Alignment</li>
+        <li>Unlimited remixes</li>
+        <li>Bulk idea generation (5 at once)</li>
+        <li>Priority support + early features</li>
+        <li>Business / Brand content mode</li>
+      </ul>
+      <button class="price-btn price-btn-ultimate" onclick="showPaymentModal('Unlimited','₱299')">GO UNLIMITED ₱299 →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-final">
+  <h2 class="bebas">KUNG GUSTO MO NA MAGING CONSISTENT...<br><span>STOP THINKING.</span> START POSTING.</h2>
+  <p>Isang click lang ang nagpapaghiwalay sa iyo sa viral content idea mo.</p>
+  <button class="btn-primary" style="font-size:18px;padding:18px 40px" onclick="window.location.href='register.html'">🚀 TRY 1 FREE IDEA NOW →</button>
+  <p style="margin-top:16px;font-size:11px;color:var(--muted)">© Libre lang. Walang risk.</p>
+</section>
+
+<footer>
+  <span>© 2026 Post Na Viral · postnaviral.netlify.app</span>
+  <span style="color:var(--pink);font-weight:700">Made with ❤️ para sa mga Pinoy Creators</span>
+  <span onclick="showApiSetup()" style="cursor:pointer;color:#444;font-size:11px;transition:.2s" onmouseover="this.style.color='var(--pink)'" onmouseout="this.style.color='#444'">⚙️ API</span>
+  <a href="admin.html" style="font-size:11px;color:#333;transition:.2s" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='#333'">🔐 Admin</a>
+ter>
+
+<div class="toast" id="toast"></div>
+
+<!-- API KEY SETUP MODAL -->
+<div id="apiSetupModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(8px);z-index:2000;align-items:center;justify-content:center;padding:20px">
+  <div style="background:#1A1A1A;border:2px solid var(--pink);border-radius:24px;max-width:420px;width:100%;padding:36px;animation:slideUp .3s ease">
+    <div style="font-size:36px;text-align:center;margin-bottom:12px">🔑</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--pink);text-align:center;margin-bottom:8px">ANTHROPIC API KEY</h2>
+    <p style="font-size:13px;color:#bbb;text-align:center;line-height:1.6;margin-bottom:20px">I-paste ang iyong Anthropic API key. Kailangan ito para mag-generate ng content. Libre ang signup — kumuha sa <a href="https://console.anthropic.com" target="_blank" style="color:var(--yellow);font-weight:700">console.anthropic.com</a>.</p>
+    <div style="background:#111;border:1px solid #2A2A2A;border-radius:10px;padding:12px 16px;margin-bottom:8px">
+      <div style="font-size:10px;color:var(--pink);font-weight:800;letter-spacing:2px;margin-bottom:6px">I-PASTE ANG API KEY MO DITO</div>
+      <input id="apiKeyInput" type="password" placeholder="sk-ant-api03-..." style="background:transparent;border:none;color:#F0F0F0;font-family:'Nunito',sans-serif;font-size:13px;outline:none;width:100%" />
+    </div>
+    <p style="font-size:10px;color:#555;margin-bottom:20px;line-height:1.5">🔒 Naka-save lang sa <strong style="color:#777">iyong browser</strong> (localStorage). <strong style="color:#777">Hindi naka-store sa code</strong> — ligtas ito.</p>
+    <button onclick="saveApiKey()" style="width:100%;padding:14px;background:var(--pink);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;border:none;border-radius:12px;cursor:pointer;margin-bottom:10px">SAVE AT I-START →</button>
+    <button onclick="hideApiSetup()" style="width:100%;padding:10px;background:transparent;color:var(--muted);font-size:13px;border:1px solid #2A2A2A;border-radius:10px;cursor:pointer">Isara</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// CONFIG — Your payment details
+// ═══════════════════════════════════════════════
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyHS8DVmH5XNqzZ2cRUNZVdcfcNha7OqRWZ28kswKizfaot9oOXcKn1eZjXOUL8TN5SrA/exec';
+
+// ═══════════════════════════════════════════════
+// API KEY — Paste your key below (visitors never see this)
+// ═══════════════════════════════════════════════
+// API key is stored on Netlify server as environment variable — never in browser code
+function getApiKey(){ return 'server'; } // Always truthy — actual key is server-side only
+function saveApiKey(){ hideApiSetup(); showToast('✅ Settings saved!'); }
+function showApiSetup(){ document.getElementById('apiSetupModal').style.display='flex'; }
+function hideApiSetup(){ document.getElementById('apiSetupModal').style.display='none'; }
+
+// ═══════════════════════════════════════════════
+// GATE TABS
+// ═══════════════════════════════════════════════
+function switchGateTab(tab){
+  document.getElementById('gateFreePanel').style.display   = tab==='free'  ? 'block':'none';
+  document.getElementById('gateCodePanel').style.display   = tab==='code'  ? 'block':'none';
+  document.getElementById('gateLoginPanel').style.display  = tab==='login' ? 'block':'none';
+  document.getElementById('gateVerifyPanel').style.display = 'none';
+  document.getElementById('gateSuccessPanel').style.display= 'none';
+  document.getElementById('tabFree').classList.toggle('active',  tab==='free');
+  document.getElementById('tabCode').classList.toggle('active',  tab==='code');
+  document.getElementById('tabLogin').classList.toggle('active', tab==='login');
+  document.querySelector('.gate-tabs').style.display = 'flex';
+}
+function showGateTabs(){
+  document.querySelector('.gate-tabs').style.display='flex';
+}
+function showVerifyPanel(email){
+  document.getElementById('gateFreePanel').style.display   = 'none';
+  document.getElementById('gateCodePanel').style.display   = 'none';
+  document.getElementById('gateLoginPanel').style.display  = 'none';
+  document.getElementById('gateSuccessPanel').style.display= 'none';
+  document.getElementById('gateVerifyPanel').style.display = 'block';
+  document.querySelector('.gate-tabs').style.display       = 'none';
+  if(email) document.getElementById('verifyEmailDisplay').textContent = email;
+  showGate();
+}
+function showSuccessPanel(){
+  document.getElementById('gateFreePanel').style.display   = 'none';
+  document.getElementById('gateCodePanel').style.display   = 'none';
+  document.getElementById('gateLoginPanel').style.display  = 'none';
+  document.getElementById('gateVerifyPanel').style.display = 'none';
+  document.getElementById('gateSuccessPanel').style.display= 'block';
+  document.querySelector('.gate-tabs').style.display       = 'none';
+  showGate();
+}
+
+function resetAndStartOver(){
+  localStorage.removeItem('pnv_user');
+  userData = null;
+  updateNavAuth();
+  switchGateTab('free');
+  showGate();
+  showToast('🔄 Na-reset na. Mag-register ulit!');
+}
+// ═══════════════════════════════════════════════
+function showPaymentModal(plan, price){
+  const isUnlimited = plan === 'Unlimited';
+  const phpAmt = isUnlimited ? '₱299' : '₱99';
+  const usdAmt = isUnlimited ? '$5'   : '$2';
+
+  ['GCash','Maya','Bank'].forEach(m=>{
+    const el = document.getElementById('payAmount'+m);
+    if(el) el.textContent = phpAmt;
+  });
+  const pp = document.getElementById('payAmountPaypal');
+  if(pp) pp.textContent = usdAmt;
+
+  document.getElementById('payPlanBadge').textContent = plan.toUpperCase()+' PLAN — '+phpAmt;
+  document.getElementById('payerPlan').value   = plan;
+  document.getElementById('payerAmount').value = phpAmt;
+
+  // Default to gcash tab
+  document.querySelectorAll('.pay-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.pay-detail').forEach(d=>d.classList.remove('active'));
+  document.querySelector('.pay-tab').classList.add('active');
+  document.getElementById('pay-gcash').classList.add('active');
+
+  document.getElementById('payOverlay').classList.add('open');
+}
+function hidePaymentModal(){ document.getElementById('payOverlay').classList.remove('open'); }
+
+function selectPayTab(method){
+  document.querySelectorAll('.pay-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.pay-detail').forEach(d=>d.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById('pay-'+method).classList.add('active');
+}
+
+function copyPay(id){
+  const txt = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(txt).then(()=>showToast('✅ Copied: '+txt));
+}
+
+async function submitPaymentProof(){
+  const name   = document.getElementById('payerName').value.trim();
+  const email  = document.getElementById('payerEmail').value.trim();
+  const ref    = document.getElementById('payerRef').value.trim();
+  const plan   = document.getElementById('payerPlan').value;
+  const amount = document.getElementById('payerAmount').value;
+  if(!name||!email||!ref){ showToast('❗ Kumpletuhin ang lahat ng fields!'); return; }
+  if(!email.includes('@')){ showToast('❗ Valid email ang ilagay!'); return; }
+  if(!APPS_SCRIPT_URL){ showToast('⚠️ Payment system not yet configured. Contact admin.'); return; }
+
+  const btn = event.target;
+  btn.disabled=true; btn.textContent='SENDING...';
+  try{
+    await fetch(APPS_SCRIPT_URL, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'text/plain'},
+      body: JSON.stringify({action:'submitPayment',name,email,ref,plan,amount,timestamp:new Date().toISOString()})
+    });
+    hidePaymentModal();
+    showToast('🎉 Submitted! Check your email for your access code.');
+    setTimeout(()=>{ window.location.href='register.html?tab=code&email='+encodeURIComponent(email); },1200);
+  }catch(e){
+    showToast('⚠️ Error. Try ulit or contact admin.');
+  }finally{
+    btn.disabled=false; btn.textContent='✅ I PAID NA! SEND MY CODE →';
+  }
+}
+
+// ═══════════════════════════════════════════════
+// ACCESS CODE VALIDATION
+// ═══════════════════════════════════════════════
+async function validateAccessCode(){
+  const code  = document.getElementById('accessCodeInput').value.trim().toUpperCase();
+  const name  = document.getElementById('codeName').value.trim();
+  const email = document.getElementById('codeEmail').value.trim();
+  if(!code||!name||!email){ showToast('❗ Kumpletuhin ang lahat ng fields!'); return; }
+  if(!code.startsWith('PNV99-') && !code.startsWith('PNV299-')){ showToast('❗ Invalid code. Dapat magsimula sa PNV99- o PNV299-'); return; }
+  if(!APPS_SCRIPT_URL){ showToast('⚠️ Contact admin for access.'); return; }
+
+  const btn = event.target;
+  btn.disabled=true; btn.textContent='VALIDATING...';
+  try{
+    const res  = await fetch(APPS_SCRIPT_URL+'?action=validate&code='+encodeURIComponent(code)+'&email='+encodeURIComponent(email));
+    const data = await res.json();
+    if(data.valid){
+      const limit = data.ideasLimit || (data.plan==='ultimate' ? 9999 : 10);
+      userData={name,email,plan:data.plan,ideasToday:0,ideasLimit:limit,code,lastDay:new Date().toDateString(),verified:true};
+      localStorage.setItem('pnv_user',JSON.stringify(userData));
+      hideGate();
+      updateNavAuth();
+      const planLabel = data.plan==='ultimate' ? 'ULTIMATE' : 'CREATOR';
+      showToast('🎉 Welcome, '+name+'! '+planLabel+' Plan activated!');
+      document.getElementById('ideaCounter').style.display='block'; document.getElementById('ideaCounter').textContent='✅ '+planLabel+' Plan — Welcome, '+name+'!';
+    } else {
+      showToast('❌ '+(data.message||'Invalid or already used code.'));
+    }
+  }catch(e){
+    showToast('⚠️ Validation error. Try ulit.');
+  }finally{
+    btn.disabled=false; btn.textContent='🔓 UNLOCK PREMIUM →';
+  }
+}
+
+// ═══════════════════════════════════════════════
+// USER STATE & GATE
+// ═══════════════════════════════════════════════
+let userData = null;
+let selectedNiche = '';
+let selectedGoal  = '🔥 Viral/Trending';
+let uploadedPhotoBase64 = null;
+let uploadedPhotoType   = null;
+
+function showGate(){ document.getElementById('gateOverlay').style.display='flex'; }
+function hideGate(){ document.getElementById('gateOverlay').style.display='none'; if(typeof updateNavAuth==='function') updateNavAuth(); }
+
+// ── RATE LIMITER ──
+const _rateLimits = {};
+function rateLimit(key, maxAttempts, windowMs) {
+  const now = Date.now();
+  if (!_rateLimits[key]) _rateLimits[key] = [];
+  _rateLimits[key] = _rateLimits[key].filter(t => now - t < windowMs);
+  if (_rateLimits[key].length >= maxAttempts) {
+    const waitSec = Math.ceil((windowMs - (now - _rateLimits[key][0])) / 1000);
+    showToast('⏳ Too many attempts. Wait ' + waitSec + 's bago ulit.');
+    return false;
+  }
+  _rateLimits[key].push(now);
+  return true;
+}
+
+// ── PASSWORD STRENGTH ──
+function checkPasswordStrength(pw) {
+  const fill = document.getElementById('pwStrengthFill');
+  const label = document.getElementById('pwStrengthLabel');
+  if (!fill || !label) return;
+  let score = 0;
+  if (pw.length >= 8) score++;
+  if (pw.length >= 12) score++;
+  if (/[A-Z]/.test(pw)) score++;
+  if (/[0-9]/.test(pw)) score++;
+  if (/[^A-Za-z0-9]/.test(pw)) score++;
+  const levels = [
+    { pct:'20%', color:'#e53935', text:'MAHINA' },
+    { pct:'40%', color:'#fb8c00', text:'PWEDE NA' },
+    { pct:'60%', color:'#fdd835', text:'KATAMTAMAN' },
+    { pct:'80%', color:'#7cb342', text:'MALAKAS' },
+    { pct:'100%', color:'#43a047', text:'NAPAKALAKAS ✓' },
+  ];
+  const lvl = levels[Math.min(score, 4)];
+  fill.style.width = lvl.pct;
+  fill.style.background = lvl.color;
+  label.textContent = lvl.text;
+  label.style.color = lvl.color;
+}
+
+function togglePw(id, el) {
+  const input = document.getElementById(id);
+  if (!input) return;
+  input.type = input.type === 'password' ? 'text' : 'password';
+  el.textContent = input.type === 'password' ? '👁' : '🙈';
+}
+
+function validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+}
+
+function validatePasswordStrength(pw) {
+  if (pw.length < 8) return 'Minimum 8 characters ang password.';
+  if (!/[0-9]/.test(pw)) return 'Dapat may number ang password (0-9).';
+  if (!/[^A-Za-z0-9]/.test(pw)) return 'Dapat may special character (!@#$%^&*).';
+  return null;
+}
+
+async function handleRegister(){
+  const name     = document.getElementById('regName').value.trim();
+  const email    = document.getElementById('regEmail').value.trim().toLowerCase();
+  const password = document.getElementById('regPassword').value;
+  const confirm  = document.getElementById('regConfirmPassword').value;
+  const niche    = '';
+  const terms    = document.getElementById('regTerms').checked;
+
+  // Validation
+  if(!name){ showToast('❗ Ilagay ang iyong buong pangalan!'); return; }
+  if(name.length < 2){ showToast('❗ Pangalan ay masyadong maikli!'); return; }
+  if(!email){ showToast('❗ Ilagay ang iyong email address!'); return; }
+  if(!validateEmail(email)){ showToast('❗ Invalid email format. Example: juan@gmail.com'); return; }
+  if(!password){ showToast('❗ Ilagay ang password!'); return; }
+  const pwError = validatePasswordStrength(password);
+  if(pwError){ showToast('❗ ' + pwError); return; }
+  if(password !== confirm){ showToast('❗ Hindi match ang passwords! I-check ulit.'); return; }
+
+  if(!terms){ showToast('❗ I-agree muna sa Terms of Service!'); return; }
+
+  // Rate limit: max 3 register attempts per 5 minutes
+  if(!rateLimit('register_' + email, 3, 5*60*1000)) return;
+
+  const btn = document.getElementById('regBtn');
+  btn.disabled=true; btn.textContent='Checking...';
+
+  if(APPS_SCRIPT_URL){
+    try{
+      // Check if already registered first
+      const checkRes  = await fetch(APPS_SCRIPT_URL+'?action=getUser&email='+encodeURIComponent(email));
+      const checkData = await checkRes.json();
+
+      if(checkData.found && checkData.verified){
+        // Already registered and verified — redirect to login
+        btn.disabled=false; btn.textContent='MAG-START NG LIBRE →';
+        showToast('⚠️ May account ka na sa email na yan! Mag-login na lang.');
+        setTimeout(()=>switchGateTab('login'), 1500);
+        return;
+      }
+
+      if(checkData.found && !checkData.verified){
+        // Registered but not verified — resend verification
+        btn.textContent='Nagpapadala ng verification...';
+        fetch(APPS_SCRIPT_URL+'?action=resendVerifyGet&email='+encodeURIComponent(email)+'&name='+encodeURIComponent(name)).catch(()=>{});
+        userData={name,email,niche,plan:'free',ideasToday:0,ideasLimit:1,lastDay:new Date().toDateString(),verified:false,regDate:new Date().toISOString()};
+        localStorage.setItem('pnv_user',JSON.stringify(userData));
+        showVerifyPanel(email);
+        showToast('📧 Na-register ka na — nagpadala kami ng bagong verification email!');
+        btn.disabled=false; btn.textContent='MAG-START NG LIBRE →';
+        return;
+      }
+
+      // Brand new user — register
+      btn.textContent='Nagrerehistro...';
+      localStorage.removeItem('pnv_user');
+      userData={name,email,niche,plan:'free',ideasToday:0,ideasLimit:1,lastDay:new Date().toDateString(),verified:false,regDate:new Date().toISOString()};
+      localStorage.setItem('pnv_user',JSON.stringify(userData));
+
+      await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'register',name,email,niche})});
+
+      // Set password if provided
+      if(password){
+        await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'setPassword',email,password})});
+      }
+
+      btn.textContent='Nagpapadala ng verification...';
+      await fetch(APPS_SCRIPT_URL+'?action=resendVerifyGet&email='+encodeURIComponent(email)+'&name='+encodeURIComponent(name));
+      showVerifyPanel(email);
+      showToast('📧 Check ang email mo para sa verification link!');
+    }catch(e){
+      console.log('Register error:',e);
+      userData={name,email,niche,plan:'free',ideasToday:0,ideasLimit:1,lastDay:new Date().toDateString(),verified:false,regDate:new Date().toISOString()};
+      localStorage.setItem('pnv_user',JSON.stringify(userData));
+      showVerifyPanel(email);
+      showToast('📧 Check ang email mo para sa verification link!');
+    }
+  } else {
+    userData={name,email,niche,plan:'free',ideasToday:0,ideasLimit:1,lastDay:new Date().toDateString(),verified:true};
+    localStorage.setItem('pnv_user',JSON.stringify(userData));
+    hideGate(); showToast('🎉 Welcome, '+name+'! 1 free idea ready na!');
+    document.getElementById('ideaCounter').style.display='block';
+    document.getElementById('ideaCounter').textContent='1 free idea available, '+name+'!';
+  }
+  btn.disabled=false; btn.textContent='MAG-START NG LIBRE →';
+}
+
+async function handleLogin(){
+  const email    = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const password = document.getElementById('loginPassword').value;
+  if(!email){ showToast('❗ Ilagay ang iyong email!'); return; }
+  if(!validateEmail(email)){ showToast('❗ Invalid email format.'); return; }
+  if(!password){ showToast('❗ Ilagay ang password!'); return; }
+
+  // Rate limit: max 5 login attempts per 5 minutes per email
+  if(!rateLimit('login_' + email, 5, 5*60*1000)) return;
+
+  const btn = document.getElementById('loginBtn');
+  btn.disabled=true; btn.textContent='Checking...';
+
+  if(APPS_SCRIPT_URL){
+    try{
+      const res  = await fetch(APPS_SCRIPT_URL,{
+        method:'POST', headers:{'Content-Type':'text/plain'},
+        body:JSON.stringify({action:'login',email,password})
+      });
+      const data = await res.json();
+
+      if(data.success){
+        userData={
+          name:data.name, email, plan:data.plan||'free',
+          ideasToday:data.ideasToday||0, ideasLimit:data.ideasLimit||1,
+          lastDay:new Date().toDateString(), verified:true
+        };
+        localStorage.setItem('pnv_user',JSON.stringify(userData));
+        updateNavAuth();
+        hideGate();
+        showToast('👋 Welcome back, '+data.name+'!');
+        document.getElementById('ideaCounter').style.display='block';
+        document.getElementById('ideaCounter').textContent='Welcome back, '+data.name+'!';
+      } else {
+        showToast('❗ '+(data.message||'Mali ang email o password. Try ulit!'));
+      }
+    }catch(e){
+      // Fallback to localStorage
+      const saved=localStorage.getItem('pnv_user');
+      if(saved){
+        const u=JSON.parse(saved);
+        if(u.email===email){
+          userData=u;
+          if(!userData.verified){ showVerifyPanel(email); showToast('📧 I-verify muna ang email mo!'); }
+          else { hideGate(); showToast('👋 Welcome back, '+userData.name+'!'); }
+        } else { showToast('❗ Hindi match ang email. Try ulit.'); }
+      } else { showToast('❗ Wala pang account? Mag-register muna!'); }
+    }
+  } else {
+    const saved=localStorage.getItem('pnv_user');
+    if(saved){
+      const u=JSON.parse(saved);
+      if(!email||u.email===email){ userData=u; hideGate(); showToast('👋 Welcome back, '+userData.name+'!'); }
+      else { showToast('❗ Hindi match ang email. Try ulit.'); }
+    } else { showToast('❗ Wala pang account? Mag-register muna!'); }
+  }
+  btn.disabled=false; btn.textContent='MAG-LOGIN →';
+}
+
+// ── Google Sign-In handler ──
+async function handleGoogleCredential(response){
+  try{
+    // Decode JWT payload
+    const payload = JSON.parse(atob(response.credential.split('.')[1]));
+    const googleName  = payload.name || payload.given_name || 'Creator';
+    const googleEmail = payload.email;
+    const googleId    = payload.sub;
+
+    showToast('🔄 Nag-lo-login gamit ang Google...');
+
+    if(APPS_SCRIPT_URL){
+      const res  = await fetch(APPS_SCRIPT_URL,{
+        method:'POST', headers:{'Content-Type':'text/plain'},
+        body:JSON.stringify({action:'login',email:googleEmail,googleId,googleName})
+      });
+      const data = await res.json();
+      if(data.success){
+        userData={
+          name:data.name||googleName, email:googleEmail,
+          plan:data.plan||'free', ideasToday:data.ideasToday||0,
+          ideasLimit:data.ideasLimit||1, lastDay:new Date().toDateString(), verified:true
+        };
+        localStorage.setItem('pnv_user',JSON.stringify(userData));
+        updateNavAuth();
+        hideGate();
+        const msg = data.isNew ? '🎉 Welcome sa Post Na Viral, '+googleName+'!' : '👋 Welcome back, '+googleName+'!';
+        showToast(msg);
+        document.getElementById('ideaCounter').style.display='block';
+        document.getElementById('ideaCounter').textContent=(data.isNew?'1 free idea ready na':'Welcome back')+', '+googleName+'!';
+      } else {
+        showToast('⚠️ '+(data.message||'Google login failed. Try ulit!'));
+      }
+    } else {
+      // Dev mode
+      userData={name:googleName,email:googleEmail,plan:'free',ideasToday:0,ideasLimit:1,lastDay:new Date().toDateString(),verified:true};
+      localStorage.setItem('pnv_user',JSON.stringify(userData));
+      updateNavAuth(); hideGate();
+      showToast('🎉 Welcome, '+googleName+'!');
+    }
+  }catch(e){
+    console.error('Google login error:',e);
+    showToast('⚠️ Google login error. Try ulit!');
+  }
+}
+
+function showForgotPassword(){
+  document.getElementById('loginFormPanel').style.display='none';
+  document.getElementById('forgotPasswordPanel').style.display='block';
+  document.getElementById('setNewPasswordPanel').style.display='none';
+}
+
+function showLoginForm(){
+  document.getElementById('loginFormPanel').style.display='block';
+  document.getElementById('forgotPasswordPanel').style.display='none';
+  document.getElementById('setNewPasswordPanel').style.display='none';
+}
+
+async function handleForgotPassword(){
+  const email = document.getElementById('forgotEmail').value.trim().toLowerCase();
+  if(!email){ showToast('❗ Ilagay ang iyong email!'); return; }
+  if(!validateEmail(email)){ showToast('❗ Invalid email format.'); return; }
+
+  // Rate limit: max 3 forgot password attempts per 10 minutes
+  if(!rateLimit('forgot_' + email, 3, 10*60*1000)) return;
+
+  const btn = event.target;
+  btn.disabled=true; btn.textContent='Nagpapadala...';
+
+  // Safe message — never reveal if email exists
+  const safeMsg = '📧 Kung naka-register ang email na yan, padadalahan ka namin ng reset link. I-check ang inbox at spam folder.';
+
+  try{
+    // Use GET to avoid 302 redirect issue
+    const res = await fetch(APPS_SCRIPT_URL + '?action=sendResetGet&email=' + encodeURIComponent(email));
+    const text = await res.text();
+    console.log('Reset response:', text.substring(0,200));
+  }catch(e){
+    console.error('Reset error:', e);
+  }
+  // Always show safe message
+  showToast(safeMsg);
+  btn.textContent='✅ SENT! I-check ang inbox at spam.';
+  setTimeout(()=>{ btn.disabled=false; btn.textContent='📧 MAGPADALA NG RESET LINK →'; }, 30000);
+}
+
+async function handleSetNewPassword(){
+  const p1 = document.getElementById('newPassword1').value;
+  const p2 = document.getElementById('newPassword2').value;
+  if(!p1||!p2){ showToast('❗ Kumpletuhin ang lahat ng fields!'); return; }
+  const pwErr = validatePasswordStrength(p1);
+  if(pwErr){ showToast('❗ ' + pwErr); return; }
+  if(p1 !== p2){ showToast('❗ Hindi match ang passwords! I-try ulit.'); return; }
+
+  // Get reset token from URL
+  const params = new URLSearchParams(window.location.search);
+  const token  = params.get('reset_token');
+  const email  = params.get('remail');
+  if(!token||!email){ showToast('❗ Invalid reset link. Mag-request ulit ng reset.'); return; }
+
+  const btn = event.target;
+  btn.disabled=true; btn.textContent='Nagse-save...';
+
+  try{
+    const res  = await fetch(APPS_SCRIPT_URL, {
+      method:'POST', headers:{'Content-Type':'text/plain'},
+      body: JSON.stringify({action:'resetPassword', email, token, password:p1})
+    });
+    const data = await res.json();
+    if(data.success){
+      showToast('✅ Na-update na ang password mo! Mag-login na.');
+      // Clean URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+      setTimeout(()=>{ showLoginForm(); showGate(); switchGateTab('login'); }, 1500);
+    } else {
+      showToast('❗ '+(data.message||'Error. Try ulit!'));
+      btn.disabled=false; btn.textContent='✅ I-SAVE ANG PASSWORD →';
+    }
+  }catch(e){
+    showToast('⚠️ Error. Try ulit!');
+    btn.disabled=false; btn.textContent='✅ I-SAVE ANG PASSWORD →';
+  }
+}
+
+async function resendVerification(){
+  if(!userData){ showToast('❗ Mag-register muna!'); return; }
+  // Rate limit: max 3 resend attempts per 10 minutes
+  if(!rateLimit('resend_' + (userData.email||'anon'), 3, 10*60*1000)) return;
+  const btn=document.getElementById('resendBtn');
+  btn.disabled=true; btn.textContent='Nagpapadala...';
+  if(APPS_SCRIPT_URL){
+    try{
+      const url = APPS_SCRIPT_URL + '?action=resendVerifyGet&email=' + encodeURIComponent(userData.email) + '&name=' + encodeURIComponent(userData.name||'');
+      await fetch(url);
+      console.log('Resend verification sent');
+    }catch(e){ console.log('Resend error:',e); }
+  }
+  showToast('📧 Napadala na ulit! Tingnan ang inbox at spam folder mo.');
+  setTimeout(()=>{ btn.disabled=false; btn.textContent='🔁 I-RESEND ANG VERIFICATION EMAIL'; },8000);
+}
+
+function selectNiche(el){
+  document.querySelectorAll('.niche-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  selectedNiche=el.textContent.trim();
+}
+function selectGoal(el){
+  document.querySelectorAll('.goal-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  selectedGoal=el.textContent.trim();
+}
+
+// ═══════════════════════════════════════════════
+// PHOTO UPLOAD
+// ═══════════════════════════════════════════════
+function triggerPhotoUpload(){
+  if(!uploadedPhotoBase64) document.getElementById('photoInput').click();
+}
+function handlePhotoUpload(event){
+  const file=event.target.files[0];
+  if(!file) return;
+  if(file.size>5*1024*1024){ showToast('⚠️ Max 5MB lang!'); return; }
+  const reader=new FileReader();
+  reader.onload=function(e){
+    uploadedPhotoBase64=e.target.result.split(',')[1];
+    uploadedPhotoType=file.type;
+    document.getElementById('previewImg').src=e.target.result;
+    document.getElementById('photoFileName').textContent=file.name;
+    document.getElementById('uploadPlaceholder').style.display='none';
+    document.getElementById('photoPreview').style.display='block';
+    document.getElementById('photoUploadArea').classList.add('has-photo');
+    showToast('📸 Photo uploaded!');
+  };
+  reader.readAsDataURL(file);
+}
+function removePhoto(event){
+  event.stopPropagation();
+  uploadedPhotoBase64=null; uploadedPhotoType=null;
+  document.getElementById('photoInput').value='';
+  document.getElementById('previewImg').src='';
+  document.getElementById('photoFileName').textContent='';
+  document.getElementById('photoPreview').style.display='none';
+  document.getElementById('uploadPlaceholder').style.display='block';
+  document.getElementById('photoUploadArea').classList.remove('has-photo');
+}
+
+// ═══════════════════════════════════════════════
+// CONTENT GENERATION
+// ═══════════════════════════════════════════════
+async function generateContent(){
+  if(!userData){ window.location.href='register.html'; return; }
+
+  // Read niche from input field
+  const nicheInput = document.getElementById('nicheInput');
+  if(nicheInput) selectedNiche = nicheInput.value.trim() || 'Content Creator';
+
+  // Validate niche
+  if(!selectedNiche){ showToast('❗ I-type muna ang iyong niche!'); nicheInput.focus(); return; }
+
+  // Block unverified users
+  if(userData.verified===false && APPS_SCRIPT_URL){
+    showToast('📧 I-verify muna ang email mo bago mag-generate!');
+    showVerifyPanel(userData.email);
+    return;
+  }
+
+  const btn = document.getElementById('generateBtn');
+  btn.disabled=true;
+  document.getElementById('genOutput').style.display='none';
+  document.getElementById('loadingDots').style.display='block';
+
+  // Server-side limit check for free users (works across ALL browsers/devices)
+  if(userData.plan==='free'){
+    if(APPS_SCRIPT_URL){
+      try{
+        const res  = await fetch(APPS_SCRIPT_URL+'?action=checkLimit&email='+encodeURIComponent(userData.email));
+        const data = await res.json();
+        if(!data.canGenerate){
+          showToast('🔒 '+data.message);
+          btn.disabled=false;
+          document.getElementById('loadingDots').style.display='none';
+          return;
+        }
+      }catch(e){
+        // Fallback to localStorage check if server unreachable
+        if(userData.ideasToday>=userData.ideasLimit){
+          showToast('🔒 Na-reach mo na ang 1 free idea mo ngayon. Bukas na ulit! 🌅');
+          btn.disabled=false;
+          document.getElementById('loadingDots').style.display='none';
+          return;
+        }
+      }
+    } else {
+      // No Apps Script yet — use localStorage
+      if(userData.ideasToday>=userData.ideasLimit){
+        showToast('🔒 Na-reach mo na ang 1 free idea mo ngayon. Bukas na ulit! 🌅');
+        btn.disabled=false;
+        document.getElementById('loadingDots').style.display='none';
+        return;
+      }
+    }
+  }
+
+  const platform = document.getElementById('platform').value;
+  const tone     = document.getElementById('tone').value;
+  const topic    = document.getElementById('topicInput').value;
+
+  const prompt=`You are a Filipino content creator making viral content for your audience.
+
+NICHE: ${selectedNiche}
+GOAL: ${selectedGoal}
+PLATFORM: ${platform}
+TONE: ${tone}
+TOPIC: ${topic||'Piliin ang pinaka-viral na angle para sa niche na ito ngayon'}
+
+TAGLISH TONE GUIDE — VERY IMPORTANT:
+❌ Hindi: "Ang nilalaman na ito ay makatutulong sa iyo upang..."
+✅ Instead: "Ito yung makakatulong sayo kung..."
+❌ Hindi: "Narito ang mga pamamaraan upang..."
+✅ Instead: "Ganito mo gagawin:"
+❌ Hindi: "Lubos na nakakatulong ito sa iyong..."
+✅ Instead: "Malaking tulong to kung..."
+❌ Hindi: "Ito ang aking natutunan tungkol sa..."
+✅ Instead: "Hindi ko alam na ganito pala yun. Sayang yung time ko dati."
+❌ Hindi: "Ang inyong tagumpay ay nakasalalay sa..."
+✅ Instead: "Kaya mo 'to. Sineseryoso ko."
+
+Sound like a real TikTok/Facebook user. Short sentences. Natural flow. May emosyon.
+Use words like: "Uy", "Grabe", "Di ba", "Eh kasi", "Kaya nga", "Actually", "Legit", "No joke", "Seryoso?", "Gets mo?", "Tapos ganun", "Char", "Sayang", "Basta", "Malaking deal to"
+
+PH REFERENCES: GCash, Maya, Shopee, Lazada, jeep, 13th month, payday, traffic, "boss/ate/kuya", OFW, barkada, merienda, "sana all"
+
+NICHE CONTEXT:
+- Corporate Giveaways: B2B, Christmas season, employee gifts, "level up ang brand mo"
+- Airbnb: Staycation, barkada trips, "Instagrammable", couples getaway
+- Confession/Storytime: Totoo, raw emotions — kilig, gigil, inis, lungkot
+- KDP/Digital: "Habang tulog kumikita", side hustle, passive income
+- Online Seller: Shopee/Lazada struggles, COD problems, flash sales
+
+Respond ONLY with valid JSON, no markdown, no backticks:
+{
+  "hook": "1-2 sentences. Scroll-stopping, relatable, may emosyon. Natural Taglish. Parang kwento sa kaibigan.",
+  "concept": "2-3 sentences. Bakit gagana ito sa Pinoy audience? May specific pain point. Short sentences.",
+  "script": "Slide-by-slide, 1-2 lines bawat slide:\\nSlide 1: [hook/problema]\\nSlide 2: [relate — amplify ang pain]\\nSlide 3: [reveal — unexpected]\\nSlide 4: [solusyon/tip]\\nSlide 5: [CTA]",
+  "caption": "3-4 sentences. Parang FB post ng kaibigan. May emosyon. Nagtatapos sa tanong o CTA.",
+  "cta": "Natural, hindi parang ad. Parang sinasabi mo talaga.",
+  "music": "Specific audio vibe na bagay sa mood.",
+  "hashtags": "Minimum 10 hashtags. PH niche + trending + broad. Kasama #PostNaViral",
+  "viralScore": a number between 65 and 97
+}`;
+
+  let messageContent;
+  if(uploadedPhotoBase64){
+    messageContent=[
+      {type:'image',source:{type:'base64',media_type:uploadedPhotoType,data:uploadedPhotoBase64}},
+      {type:'text',text:prompt+'\n\nNOTE: May na-upload na larawan. Gamitin ang visual context para gawing mas targeted ang idea.'}
+    ];
+  } else {
+    messageContent=prompt;
+  }
+
+  const apiKey=getApiKey();
+  if(!apiKey){ showApiSetup(); btn.disabled=false; document.getElementById('loadingDots').style.display='none'; return; }
+
+  try{
+    const res=await fetch('/api/generate',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-haiku-4-5',
+        max_tokens:1200,
+        system:'You are a Filipino content creator who writes in natural Taglish. Rules: Use conversational Taglish — not formal, not deep Tagalog. Mix English + Tagalog naturally like how Filipinos speak online. Keep sentences short and easy to read. Avoid deep/old Tagalog words. Avoid robotic grammar. Sound like a real Facebook/TikTok user. Always respond with valid JSON only — no markdown, no backticks.',
+        messages:[{role:'user',content:messageContent}]
+      })
+    });
+    const data=await res.json();
+    if(data.error){ showToast('⚠️ API Error: '+data.error.message); return; }
+    const raw=data.content.find(b=>b.type==='text')?.text||'{}';
+    const clean=raw.replace(/```json|```/g,'').trim();
+    const idea=JSON.parse(clean);
+    userData.ideasToday=(userData.ideasToday||0)+1;
+    localStorage.setItem('pnv_user',JSON.stringify(userData));
+    if(typeof updateNavAuth==='function') updateNavAuth();
+    displayIdea(idea);
+    // Record use server-side for free users
+    if(userData.plan==='free' && APPS_SCRIPT_URL){
+      fetch(APPS_SCRIPT_URL,{
+        method:'POST', mode:'no-cors',
+        headers:{'Content-Type':'text/plain'},
+        body:JSON.stringify({action:'recordUse',email:userData.email})
+      }).catch(e=>console.log('recordUse error:',e));
+    }
+  }catch(e){
+    showToast('⚠️ Error: '+e.message);
+    console.error(e);
+  }finally{
+    btn.disabled=false;
+    document.getElementById('loadingDots').style.display='none';
+  }
+}
+
+function displayIdea(idea){
+  document.getElementById('outHook').textContent=idea.hook||'';
+  document.getElementById('outConcept').textContent=idea.concept||'';
+  document.getElementById('outScript').innerHTML=(idea.script||'').replace(/\n/g,'<br>');
+  document.getElementById('outCaption').textContent=idea.caption||'';
+  document.getElementById('outCTA').textContent=idea.cta||'';
+  document.getElementById('outMusic').textContent=idea.music||'';
+  document.getElementById('outHashtags').textContent=idea.hashtags||'';
+  const score=idea.viralScore||Math.floor(Math.random()*20+75);
+  document.getElementById('viralScore').textContent='VIRAL SCORE: '+score+'/100';
+
+  // Show YouTube inspiration badge if applicable
+  const existingBadge = document.getElementById('ytInspirationBadge');
+  if(existingBadge) existingBadge.remove();
+  if(idea._ytInspired){
+    const badge = document.createElement('div');
+    badge.id = 'ytInspirationBadge';
+    badge.style.cssText = 'background:rgba(255,0,0,0.08);border:1px solid rgba(255,0,0,0.25);border-radius:10px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#FF6666;font-weight:700;display:flex;align-items:center;gap:8px';
+    badge.innerHTML = '▶️ ' + idea._ytInspired;
+    const outputCard = document.querySelector('.output-card');
+    if(outputCard) outputCard.insertBefore(badge, outputCard.firstChild);
+  }
+
+  document.getElementById('genOutput').style.display='block';
+  document.getElementById('genOutput').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function copyAll(){
+  const parts=[
+    '🎣 HOOK:\n'+document.getElementById('outHook').textContent,
+    '💡 CONCEPT:\n'+document.getElementById('outConcept').textContent,
+    '📋 SLIDE SCRIPT:\n'+document.getElementById('outScript').innerText,
+    '✍️ CAPTION:\n'+document.getElementById('outCaption').textContent,
+    '📢 CTA:\n'+document.getElementById('outCTA').textContent,
+    '🎵 MUSIC:\n'+document.getElementById('outMusic').textContent,
+    '#️⃣ HASHTAGS:\n'+document.getElementById('outHashtags').textContent,
+    '\n— Generated by Post Na Viral (postnaviral.netlify.app)'
+  ];
+  navigator.clipboard.writeText(parts.join('\n\n')).then(()=>showToast('✅ Nakopya na! I-paste sa iyong post!'));
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.style.display='block';
+  setTimeout(()=>t.style.display='none',3500);
+}
+
+// ═══════════════════════════════════════════════
+// COMMUNITY SCROLL
+// ═══════════════════════════════════════════════
+const creators=[
+  {name:'Jessa M.',niche:'TikTok Creator',color:'#FF1B8D',bg:'rgba(255,27,141,0.15)',init:'JM'},
+  {name:'Mark A.',niche:'Online Seller',color:'#FFD700',bg:'rgba(255,215,0,0.15)',init:'MA'},
+  {name:'Anna R.',niche:'Corporate Giveaways',color:'#4EC9FF',bg:'rgba(78,201,255,0.15)',init:'AR'},
+  {name:'Carla B.',niche:'KDP Publisher',color:'#FF6B35',bg:'rgba(255,107,53,0.15)',init:'CB'},
+  {name:'Paolo S.',niche:'Airbnb Host',color:'#A78BFF',bg:'rgba(167,139,255,0.15)',init:'PS'},
+  {name:'Mia D.',niche:'Confession Content',color:'#FF1B8D',bg:'rgba(255,27,141,0.15)',init:'MD'},
+  {name:'Nico F.',niche:'Freelancer VA',color:'#4EC9FF',bg:'rgba(78,201,255,0.15)',init:'NF'},
+  {name:'Lara C.',niche:'Food Lifestyle',color:'#FFD700',bg:'rgba(255,215,0,0.15)',init:'LC'},
+  {name:'Renz T.',niche:'Digital Products',color:'#FF6B35',bg:'rgba(255,107,53,0.15)',init:'RT'},
+  {name:'Shiela V.',niche:'Motivational',color:'#A78BFF',bg:'rgba(167,139,255,0.15)',init:'SV'},
+  {name:'Kaye O.',niche:'OFW Content',color:'#FF1B8D',bg:'rgba(255,27,141,0.15)',init:'KO'},
+  {name:'Dino L.',niche:'Small Biz Tips',color:'#FFD700',bg:'rgba(255,215,0,0.15)',init:'DL'},
+  {name:'Grace P.',niche:'Mom Creator',color:'#4EC9FF',bg:'rgba(78,201,255,0.15)',init:'GP'},
+  {name:'Kurt N.',niche:'Gaming Content',color:'#FF6B35',bg:'rgba(255,107,53,0.15)',init:'KN'},
+  {name:'Aika M.',niche:'Storytime Creator',color:'#A78BFF',bg:'rgba(167,139,255,0.15)',init:'AM'},
+  {name:'EJ Santos',niche:'Corporate Sales',color:'#FF1B8D',bg:'rgba(255,27,141,0.15)',init:'EJ'},
+  {name:'Toni R.',niche:'Healing Content',color:'#FFD700',bg:'rgba(255,215,0,0.15)',init:'TR'},
+  {name:'Bea V.',niche:'Airbnb + TikTok',color:'#4EC9FF',bg:'rgba(78,201,255,0.15)',init:'BV'},
+  {name:'Alden C.',niche:'Hugot Creator',color:'#FF6B35',bg:'rgba(255,107,53,0.15)',init:'AC'},
+  {name:'Ysa M.',niche:'Kids Content',color:'#A78BFF',bg:'rgba(167,139,255,0.15)',init:'YM'},
+];
+function buildScrollTrack(){
+  const track=document.getElementById('scrollTrack');
+  if(!track) return;
+  const all=[...creators,...creators];
+  all.forEach(c=>{
+    const card=document.createElement('div');
+    card.className='avatar-card';
+    card.innerHTML=`<div class="avatar-circle" style="background:${c.bg};color:${c.color}">${c.init}</div><div><div class="avatar-name">${c.name}</div><div class="avatar-niche">Uses: <span>${c.niche}</span></div></div>`;
+    track.appendChild(card);
+  });
+}
+buildScrollTrack();
+
+// ═══════════════════════════════════════════════
+// AUTO LOGIN CHECK
+// ═══════════════════════════════════════════════
+window.addEventListener('load',async ()=>{
+  // ── Check for email verification link (?verify=TOKEN&vemail=EMAIL) ──
+  const urlParams   = new URLSearchParams(window.location.search);
+  const verifyToken = urlParams.get('verify');
+  const verifyEmail = urlParams.get('vemail');
+
+  if(verifyToken && verifyEmail && APPS_SCRIPT_URL){
+    showToast('⏳ Nagva-verify ng email...');
+    try{
+      const res  = await fetch(APPS_SCRIPT_URL+'?action=verifyEmail&token='+encodeURIComponent(verifyToken)+'&email='+encodeURIComponent(verifyEmail));
+      const data = await res.json();
+      if(data.verified){
+        let saved = localStorage.getItem('pnv_user');
+        if(saved){
+          let u=JSON.parse(saved);
+          u.verified=true;
+          u.ideasToday=0;
+          u.lastDay=new Date().toDateString();
+          if(data.name) u.name=data.name;
+          localStorage.setItem('pnv_user',JSON.stringify(u));
+          userData=u;
+        } else {
+          userData={name:data.name||'Creator',email:verifyEmail,plan:'free',ideasToday:0,ideasLimit:1,lastDay:new Date().toDateString(),verified:true};
+          localStorage.setItem('pnv_user',JSON.stringify(userData));
+        }
+        window.history.replaceState({},document.title,'/');
+        showSuccessPanel();
+        document.getElementById('ideaCounter').style.display='block';
+        document.getElementById('ideaCounter').textContent='Email verified! Welcome, '+userData.name+'! 🎉';
+      } else if(data.expired){
+        window.history.replaceState({},document.title,'/');
+        showGate(); switchGateTab('login');
+        showToast('⏰ Expired na ang verification link. Mag-login at i-resend.');
+        const saved=localStorage.getItem('pnv_user');
+        if(saved){ const u=JSON.parse(saved); userData=u; showVerifyPanel(u.email); }
+      } else {
+        showToast('❗ '+(data.message||'Invalid verification link. I-request ng bago!'));
+        window.history.replaceState({},document.title,'/');
+        const saved=localStorage.getItem('pnv_user');
+        if(!saved){ showGate(); switchGateTab('free'); }
+        else { const u=JSON.parse(saved); userData=u; showVerifyPanel(u.email); }
+      }
+    }catch(e){
+      console.log('Verify load error:',e);
+      window.history.replaceState({},document.title,'/');
+    }
+    return; // Stop here — don't run normal load
+  }
+
+  // Check for password reset token in URL
+  if(urlParams.get('reset_token') && urlParams.get('remail')){
+    showGate();
+    switchGateTab('login');
+    document.getElementById('loginFormPanel').style.display='none';
+    document.getElementById('setNewPasswordPanel').style.display='block';
+    return;
+  }
+  const saved=localStorage.getItem('pnv_user');
+  if(saved){
+    userData=JSON.parse(saved);
+    const today=new Date().toDateString();
+
+    // Reset counter if: new day OR corrupted value
+    if(userData.lastDay!==today || typeof userData.ideasToday!=='number' || userData.ideasToday<0){
+      userData.ideasToday=0;
+      userData.lastDay=today;
+      localStorage.setItem('pnv_user',JSON.stringify(userData));
+    }
+
+    // Check if stuck unverified for too long (more than 3 days) — auto-clear
+    if(userData.verified===false){
+      const regDate = userData.regDate ? new Date(userData.regDate) : null;
+      const daysSinceReg = regDate ? Math.floor((Date.now()-regDate.getTime())/(1000*60*60*24)) : 99;
+      if(daysSinceReg > 3){
+        // Too long unverified — clear and show fresh landing page
+        localStorage.removeItem('pnv_user');
+        userData = null;
+        // Just show the landing page normally — no gate, no verify screen
+        return;
+      }
+    }
+
+    if(userData.verified===false && APPS_SCRIPT_URL){
+      // Still within 3-day window — show verify panel BUT with a clear escape option
+      showVerifyPanel(userData.email);
+    } else if(userData.verified===true){
+      hideGate();
+      updateNavAuth();
+      document.getElementById('ideaCounter').style.display='block'; document.getElementById('ideaCounter').textContent='Welcome back, '+userData.name+'!';
+    } else {
+      // verified is undefined or no APPS_SCRIPT_URL — treat as verified (dev mode)
+      hideGate();
+      updateNavAuth();
+      document.getElementById('ideaCounter').style.display='block'; document.getElementById('ideaCounter').textContent='Welcome back, '+userData.name+'!';
+    }
+  }
+  // No saved user — show landing page normally, no gate popup
+});
+</script>
+
+<!-- STEAL FORMULA MODAL -->
+<style>
+#sfModal{position:fixed;inset:0;z-index:9999;background:#080808;overflow-y:auto;display:none;flex-direction:column}
+#sfCloseBtn{position:sticky;top:14px;float:right;margin:14px 20px 0 0;z-index:100;background:rgba(255,31,110,0.15);border:1px solid rgba(255,31,110,0.3);color:#ff1f6e;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding:7px 16px;border-radius:6px;cursor:pointer}
+#sfModal .sf-wrap{max-width:900px;margin:0 auto;padding:10px 24px 80px;clear:both}
+
+  :root {
+    --black: #080808;
+    --pink: #ff1f6e;
+    --gold: #f5c518;
+    --white: #f2f2f2;
+    --card: #111111;
+    --card2: #161616;
+    --border: #1e1e1e;
+    --border2: #2a2a2a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    padding: 0 28px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1.5px solid #1a1a1a;
+    position: sticky;
+    top: 0;
+    background: var(--black);
+    z-index: 10;
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 3px;
+    color: var(--gold);
+  }
+  .logo em { color: var(--pink); font-style: normal; }
+  .pill {
+    background: rgba(255,31,110,0.12);
+    border: 1px solid rgba(255,31,110,0.25);
+    color: var(--pink);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+  .header-right {
+    margin-left: auto;
+    font-size: 11px;
+    color: #3a3a3a;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ── INPUT BAR ── */
+  .input-bar {
+    max-width: 900px;
+    margin: 36px auto 0;
+    padding: 0 24px;
+  }
+  .input-label {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #3d3d3d;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .input-row {
+    display: flex;
+    gap: 10px;
+  }
+  .url-input {
+    flex: 1;
+    background: var(--card);
+    border: 1.5px solid var(--border2);
+    border-radius: 8px;
+    padding: 15px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .url-input::placeholder { color: #2e2e2e; }
+  .url-input:focus { border-color: var(--pink); }
+
+  .analyze-btn {
+    background: var(--pink);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 30px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2.5px;
+    cursor: pointer;
+    transition: background 0.18s, transform 0.1s, box-shadow 0.18s;
+    box-shadow: 0 0 0 rgba(255,31,110,0);
+    white-space: nowrap;
+  }
+  .analyze-btn:hover {
+    background: #d4155a;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(255,31,110,0.35);
+  }
+  .analyze-btn:disabled { background: #2a2a2a; color: #444; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  .error-box {
+    margin-top: 12px;
+    background: rgba(255,31,110,0.07);
+    border: 1px solid rgba(255,31,110,0.2);
+    border-radius: 6px;
+    padding: 12px 16px;
+    color: #ff6b9d;
+    font-size: 13px;
+    display: none;
+  }
+  .error-box.show { display: block; }
+
+  /* ── LOADING ── */
+  .loading-screen {
+    display: none;
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .loading-screen.show { display: block; }
+  .pulse-ring {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    border: 2px solid var(--border2);
+    border-top-color: var(--pink);
+    animation: spin 0.9s linear infinite;
+    margin: 0 auto 24px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .loading-sub { color: #333; font-size: 13px; letter-spacing: 0.5px; }
+
+  /* ── MAIN RESULTS ── */
+  .results-wrap {
+    display: none;
+    max-width: 900px;
+    margin: 36px auto 0;
+    padding: 0 24px;
+  }
+  .results-wrap.show { display: block; animation: riseIn 0.45s ease; }
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── VIDEO SECTION ── */
+  .video-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+    align-items: start;
+  }
+  @media(max-width:650px) { .video-section { grid-template-columns: 1fr; } }
+
+  .video-embed-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid var(--border2);
+    background: #000;
+  }
+  .video-embed-wrap iframe {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; border: none;
+  }
+
+  .video-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .viral-badge-large {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245,197,24,0.08);
+    border: 1px solid rgba(245,197,24,0.2);
+    color: var(--gold);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2.5px;
+    padding: 6px 14px;
+    border-radius: 4px;
+    width: fit-content;
+  }
+  .vid-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--white);
+  }
+  .vid-channel {
+    font-size: 12px;
+    color: #444;
+    margin-top: -4px;
+  }
+  .decoded-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #2e2e2e;
+    font-weight: 600;
+  }
+  .formula-intro {
+    font-size: 13px;
+    color: #3a3a3a;
+    line-height: 1.6;
+    padding-top: 4px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── FORMULA CARDS ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  @media(max-width:600px){ .cards-grid { grid-template-columns: 1fr; } }
+
+  .fcard {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 20px 20px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .fcard:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .fcard.wide { grid-column: 1 / -1; }
+
+  .fcard-stripe {
+    position: absolute;
+    left: 0; top: 0;
+    width: 3px; height: 100%;
+  }
+  .s-pink  { background: var(--pink); }
+  .s-gold  { background: var(--gold); }
+  .s-teal  { background: #26c6da; }
+
+  .fcard-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .fcard-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .fcard-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .fcard-sublabel {
+    font-size: 10px;
+    color: #333;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .fcard-body {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #aaa;
+  }
+  .fcard-body strong { color: var(--white); font-weight: 600; }
+
+  /* emotion tags */
+  .etags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .etag {
+    background: rgba(255,31,110,0.1);
+    border: 1px solid rgba(255,31,110,0.22);
+    color: var(--pink);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 11px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  /* template box */
+  .tpl-box {
+    margin-top: 14px;
+    background: rgba(245,197,24,0.04);
+    border: 1.5px dashed rgba(245,197,24,0.22);
+    border-radius: 8px;
+    padding: 16px 18px;
+    font-size: 13.5px;
+    line-height: 1.85;
+    color: #bbb;
+    font-style: italic;
+    white-space: pre-wrap;
+  }
+  .tpl-var {
+    background: rgba(245,197,24,0.13);
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 11.5px;
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+
+  /* ── CTA ROW ── */
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .main-cta {
+    flex: 1;
+    min-width: 220px;
+    background: linear-gradient(135deg, #ff1f6e 0%, #b5124c 100%);
+    border: none;
+    border-radius: 9px;
+    padding: 19px 26px;
+    color: #fff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 21px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 20px rgba(255,31,110,0.25);
+  }
+  .main-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,31,110,0.4); }
+  .main-cta:disabled { background: #1e1e1e; color: #333; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  .sec-cta {
+    background: var(--card);
+    border: 1.5px solid var(--border2);
+    border-radius: 9px;
+    padding: 19px 22px;
+    color: #888;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .sec-cta:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── GENERATED CONTENT ── */
+  .gen-panel {
+    display: none;
+    margin-top: 24px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid rgba(255,31,110,0.3);
+  }
+  .gen-panel.show { display: block; animation: riseIn 0.35s ease; }
+
+  .gen-header-bar {
+    background: linear-gradient(90deg, rgba(255,31,110,0.15) 0%, rgba(255,31,110,0.04) 100%);
+    border-bottom: 1px solid rgba(255,31,110,0.15);
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .gen-header-bar .title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 3px;
+    color: var(--gold);
+  }
+  .gen-header-bar .sub {
+    font-size: 11px;
+    color: #444;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-left: auto;
+  }
+
+  .gen-body { background: var(--card); padding: 22px; }
+
+  .gen-loading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 0 20px;
+  }
+  .mini-spin {
+    width: 22px; height: 22px;
+    border: 2px solid var(--border2);
+    border-top-color: var(--pink);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    flex-shrink: 0;
+  }
+  .gen-loading-text { font-size: 13px; color: #444; }
+
+  .gen-content { display: none; }
+  .gen-block { margin-bottom: 18px; }
+  .gen-block:last-child { margin-bottom: 0; }
+  .gen-block-label {
+    font-size: 9.5px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--pink);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .gen-block-text {
+    background: #0c0c0c;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 14px 16px;
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: var(--white);
+    white-space: pre-wrap;
+  }
+
+  .copy-all-btn {
+    margin-top: 18px;
+    width: 100%;
+    background: rgba(245,197,24,0.07);
+    border: 1.5px solid rgba(245,197,24,0.2);
+    border-radius: 7px;
+    padding: 13px;
+    color: var(--gold);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: none;
+  }
+  .copy-all-btn.show { display: block; }
+  .copy-all-btn:hover { background: rgba(245,197,24,0.13); }
+
+  /* ── MUSIC SECTION ── */
+  .music-section {
+    display: none;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid rgba(100, 220, 255, 0.18);
+  }
+  .music-section.show { display: block; animation: riseIn 0.35s ease; }
+
+  .music-header-bar {
+    background: linear-gradient(90deg, rgba(100,220,255,0.1) 0%, rgba(100,220,255,0.03) 100%);
+    border-bottom: 1px solid rgba(100,220,255,0.12);
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .music-header-bar .title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 19px;
+    letter-spacing: 3px;
+    color: #64dcff;
+  }
+  .music-header-bar .sub {
+    font-size: 10px;
+    color: #333;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-left: auto;
+  }
+
+  .music-body { background: var(--card); padding: 20px 22px; }
+
+  .music-vibe-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .music-vibe-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #333;
+    font-weight: 600;
+  }
+  .vibe-tag {
+    background: rgba(100,220,255,0.08);
+    border: 1px solid rgba(100,220,255,0.2);
+    color: #64dcff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .music-tracks { display: flex; flex-direction: column; gap: 10px; }
+
+  .track-card {
+    background: #0c0c0c;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    align-items: center;
+    gap: 14px;
+    transition: border-color 0.2s;
+  }
+  .track-card:hover { border-color: rgba(100,220,255,0.25); }
+
+  .track-num {
+    width: 40px; height: 40px;
+    background: rgba(100,220,255,0.07);
+    border: 1px solid rgba(100,220,255,0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: #64dcff;
+    flex-shrink: 0;
+  }
+
+  .track-info { min-width: 0; }
+  .track-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .track-artist {
+    font-size: 12px;
+    color: #444;
+    margin-bottom: 6px;
+  }
+  .track-platforms {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .platform-tag {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+  }
+  .pt-tiktok { background: rgba(255,31,110,0.12); color: var(--pink); border: 1px solid rgba(255,31,110,0.2); }
+  .pt-reels  { background: rgba(245,197,24,0.1);  color: var(--gold); border: 1px solid rgba(245,197,24,0.2); }
+  .pt-shorts { background: rgba(100,220,255,0.08); color: #64dcff;    border: 1px solid rgba(100,220,255,0.18); }
+
+  .track-why {
+    font-size: 11px;
+    color: #333;
+    text-align: right;
+    max-width: 120px;
+    line-height: 1.4;
+  }
+
+  .music-tip {
+    margin-top: 14px;
+    background: rgba(245,197,24,0.04);
+    border: 1px dashed rgba(245,197,24,0.15);
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 12px;
+    color: #444;
+    line-height: 1.6;
+  }
+  .music-tip strong { color: var(--gold); }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    background: var(--gold);
+    color: #000;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 11px 22px;
+    border-radius: 6px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+    z-index: 100;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+
+</style>
+
+<div id="sfModal">
+  <button id="sfCloseBtn" onclick="closeSfModal()">✕ CLOSE</button>
+  <div class="sf-wrap">
+<!-- HEADER -->
+
+
+<!-- INPUT -->
+<div class="input-bar">
+  <div class="input-label">YouTube Video URL</div>
+  <div class="input-row">
+    <input id="sf_urlInput" class="url-input" type="text"
+      placeholder="Paste any YouTube link..."
+      value="https://youtu.be/bIn2ZNr0jts"/>
+    <button id="sf_analyzeBtn" class="analyze-btn" onclick="sf_analyzeVideo()">🔍 DECODE</button>
+  </div>
+  <div class="error-box" id="sf_errorBox"></div>
+</div>
+
+<!-- LOADING -->
+<div class="loading-screen" id="sf_loadingScreen">
+  <div class="pulse-ring"></div>
+  <div class="loading-title">Decoding Viral Formula...</div>
+  <div class="loading-sub">AI is reverse-engineering why this video blew up</div>
+</div>
+
+<!-- RESULTS -->
+<div class="results-wrap" id="sf_resultsWrap">
+
+  <!-- VIDEO + META -->
+  <div class="video-section">
+    <div class="video-embed-wrap">
+      <iframe id="sf_videoFrame" src="" allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    </div>
+    <div class="video-meta">
+      <div class="viral-badge-large">⚡ FORMULA DECODED</div>
+      <div class="vid-title" id="sf_vidTitle">Loading...</div>
+      <div class="vid-channel" id="sf_vidChannel"></div>
+      <div class="decoded-label">What makes this go viral?</div>
+      <div class="formula-intro" id="sf_formulaIntro">Analyzing...</div>
+    </div>
+  </div>
+
+  <!-- CARDS -->
+  <div class="cards-grid">
+
+    <!-- Hook -->
+    <div class="fcard">
+      <div class="fcard-stripe s-pink"></div>
+      <div class="fcard-top">
+        <div class="fcard-icon">🎣</div>
+        <div>
+          <div class="fcard-label">Why The Hook Works</div>
+          <div class="fcard-sublabel">Psychology of the click</div>
+        </div>
+      </div>
+      <div class="fcard-body" id="sf_hookBody"><em style="color:#2a2a2a">Analyzing...</em></div>
+    </div>
+
+    <!-- Emotion -->
+    <div class="fcard">
+      <div class="fcard-stripe s-gold"></div>
+      <div class="fcard-top">
+        <div class="fcard-icon">🧠</div>
+        <div>
+          <div class="fcard-label">Emotion It Triggers</div>
+          <div class="fcard-sublabel">Why viewers share this</div>
+        </div>
+      </div>
+      <div class="fcard-body" id="sf_emotionBody"><em style="color:#2a2a2a">Analyzing...</em></div>
+      <div class="etags" id="sf_etags"></div>
+    </div>
+
+    <!-- Template -->
+    <div class="fcard wide">
+      <div class="fcard-stripe s-teal"></div>
+      <div class="fcard-top">
+        <div class="fcard-icon">📋</div>
+        <div>
+          <div class="fcard-label">Plug-and-Play Template</div>
+          <div class="fcard-sublabel">Swipe this structure for your own content</div>
+        </div>
+      </div>
+      <div class="fcard-body" id="sf_templateBody"><em style="color:#2a2a2a">Analyzing...</em></div>
+      <div id="sf_templateBox"></div>
+    </div>
+
+  </div>
+
+  <!-- CTAs -->
+  <div class="cta-row">
+    <button class="main-cta" id="sf_useFormulaBtn" onclick="sf_generateContent()">
+      🔁 USE THIS FORMULA - GENERATE MY CONTENT
+    </button>
+    <button class="sec-cta" onclick="sf_copyTemplate()">📋 COPY TEMPLATE</button>
+  </div>
+
+  <!-- GENERATED PANEL -->
+  <div class="gen-panel" id="sf_genPanel">
+    <div class="gen-header-bar">
+      <span>✨</span>
+      <div class="title">YOUR CONTENT IS READY</div>
+      <div class="sub">Taglish • Ready to Post</div>
+    </div>
+    <div class="gen-body">
+      <div class="gen-loading" id="sf_genLoading">
+        <div class="mini-spin"></div>
+        <div class="gen-loading-text">Generating your hook, caption, CTA + hashtags in Taglish...</div>
+      </div>
+      <div class="gen-content" id="sf_genContent">
+        <div class="gen-block">
+          <div class="gen-block-label">🎣 Your Hook</div>
+          <div class="gen-block-text" id="sf_outHook"></div>
+        </div>
+        <div class="gen-block">
+          <div class="gen-block-label">📝 Your Caption</div>
+          <div class="gen-block-text" id="sf_outCaption"></div>
+        </div>
+        <div class="gen-block">
+          <div class="gen-block-label">📣 Your CTA</div>
+          <div class="gen-block-text" id="sf_outCta"></div>
+        </div>
+        <div class="gen-block">
+          <div class="gen-block-label">#️⃣ Hashtags</div>
+          <div class="gen-block-text" id="sf_outHashtags"></div>
+        </div>
+        <div class="gen-block" id="sf_musicBlock" style="display:none;">
+          <div class="gen-block-label">🎵 Music Recommendations</div>
+          <div class="gen-block-text" id="sf_outMusic"></div>
+        </div>
+        <button class="copy-all-btn" id="sf_copyAllBtn" onclick="sf_copyAll()">📋 COPY EVERYTHING</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="sf_toast">✓ COPIED!</div>
+
+<script>
+  const VIDEO_ID = 'bIn2ZNr0jts';
+  let formulaData = null;
+  let videoTitle = '';
+  let templateRaw = '';
+
+  function extractId(url) {
+    const patterns = [
+      /youtu\.be\/([a-zA-Z0-9_-]{11})/,
+      /[?&]v=([a-zA-Z0-9_-]{11})/,
+      /embed\/([a-zA-Z0-9_-]{11})/,
+      /shorts\/([a-zA-Z0-9_-]{11})/,
+    ];
+    for (const p of patterns) { const m = url.match(p); if (m) return m[1]; }
+    return null;
+  }
+
+  async function fetchTitle(vid) {
+    try {
+      const r = await fetch('https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=' + vid + '&format=json');
+      if (r.ok) { const d = await r.json(); return { title: d.title || 'YouTube Video', author: d.author_name || '' }; }
+    } catch(e) {}
+    return { title: 'YouTube Video', author: '' };
+  }
+
+  // API call via Netlify server — key never exposed to browser
+  async function callClaude(systemPrompt, userPrompt) {
+    const r = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5',
+        max_tokens: 3000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userPrompt }]
+      })
+    });
+    const d = await r.json();
+    console.log('API response preview:', JSON.stringify(d).substring(0, 300));
+    if (d.error) throw new Error('API Error: ' + d.error.type + ' - ' + d.error.message);
+    const raw = (d.content || []).map(function(c) { return c.text || ''; }).join('');
+    // Extract JSON object by brace counting
+    let start = raw.indexOf('{');
+    if (start === -1) throw new Error('No JSON in response');
+    let depth = 0, inStr = false, esc = false, end = -1;
+    for (let i = start; i < raw.length; i++) {
+      const ch = raw[i];
+      if (esc) { esc = false; continue; }
+      if (ch === '\\') { esc = true; continue; }
+      if (ch === '"') { inStr = !inStr; continue; }
+      if (inStr) continue;
+      if (ch === '{') depth++;
+      if (ch === '}') { depth--; if (depth === 0) { end = i; break; } }
+    }
+    if (end === -1) throw new Error('JSON was cut off. Try again.');
+    const jsonStr = raw.substring(start, end + 1);
+    console.log('Extracted JSON preview:', jsonStr.substring(0, 200));
+    // Sanitize smart chars that break JSON.parse
+    const clean = jsonStr
+      .replace(/\u2014/g, '-')   // em dash
+      .replace(/\u2013/g, '-')   // en dash
+      .replace(/\u2018/g, "'")   // left single quote
+      .replace(/\u2019/g, "'")   // right single quote
+      .replace(/\u201c/g, '"')   // left double quote
+      .replace(/\u201d/g, '"')   // right double quote
+      .replace(/\u2026/g, '...')  // ellipsis
+      .replace(/[\u0080-\u009f]/g, ''); // control chars
+    return clean;
+  }
+
+  async function analyzeVideo() {
+    const url = document.getElementById('urlInput').value.trim();
+    const errBox = document.getElementById('errorBox');
+    errBox.classList.remove('show');
+    const vid = url ? extractId(url) : VIDEO_ID;
+    if (!vid) { errBox.textContent = 'Invalid YouTube URL.'; errBox.classList.add('show'); return; }
+
+    document.getElementById('analyzeBtn').disabled = true;
+    document.getElementById('loadingScreen').classList.add('show');
+    document.getElementById('resultsWrap').classList.remove('show');
+    document.getElementById('genPanel').classList.remove('show');
+    document.getElementById('musicBlock').style.display = 'none';
+
+    document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/' + vid + '?rel=0&modestbranding=1';
+    const meta = await fetchTitle(vid);
+    videoTitle = meta.title;
+    document.getElementById('vidTitle').textContent = videoTitle;
+    document.getElementById('vidChannel').textContent = meta.author ? 'by ' + meta.author : '';
+
+    const sysPrompt = 'You are a viral content strategist. Return ONLY a raw JSON object, no markdown, no backticks, no extra text. Use this exact structure: {"intro":"one punchy sentence max 15 words","hookAnalysis":"why the hook works psychologically max 40 words","emotionAnalysis":"what emotion it triggers and why people share max 40 words","emotionTags":["Tag1","Tag2","Tag3"],"templateExplain":"describe the content structure in max 15 words","template":"Hook: [HOOK LINE]. Body: [MAIN POINT 1]. [MAIN POINT 2]. Twist: [UNEXPECTED ANGLE]. CTA: [CALL TO ACTION].","templateRaw":"Hook: [HOOK LINE]. Body: [MAIN POINT 1]. [MAIN POINT 2]. Twist: [UNEXPECTED ANGLE]. CTA: [CALL TO ACTION]."}';
+
+    const userPrompt = 'Decode the viral formula of this YouTube video. Title: "' + videoTitle + '". Channel: ' + meta.author + '. Analyze the psychological triggers and create a Taglish-friendly content template.';
+
+    try {
+      const json = await callClaude(sysPrompt, userPrompt);
+      formulaData = JSON.parse(json);
+      templateRaw = formulaData.templateRaw || formulaData.template || '';
+      renderFormula(formulaData);
+    } catch(e) {
+      console.error('Analyze error:', e);
+      errBox.textContent = 'Error: ' + (e.message || String(e));
+      errBox.classList.add('show');
+      document.getElementById('loadingScreen').classList.remove('show');
+      document.getElementById('analyzeBtn').disabled = false;
+      return;
+    }
+
+    document.getElementById('loadingScreen').classList.remove('show');
+    document.getElementById('resultsWrap').classList.add('show');
+    document.getElementById('analyzeBtn').disabled = false;
+  }
+
+  function renderFormula(d) {
+    document.getElementById('formulaIntro').textContent = d.intro || '';
+    document.getElementById('hookBody').innerHTML = d.hookAnalysis || '';
+    document.getElementById('emotionBody').innerHTML = d.emotionAnalysis || '';
+    const tagsEl = document.getElementById('etags');
+    tagsEl.innerHTML = '';
+    (d.emotionTags || []).forEach(function(t) {
+      const s = document.createElement('span');
+      s.className = 'etag'; s.textContent = t; tagsEl.appendChild(s);
+    });
+    document.getElementById('templateBody').textContent = d.templateExplain || '';
+    const box = document.getElementById('templateBox');
+    const highlighted = (d.template || '').replace(/\[([^\]]+)\]/g, '<span class="tpl-var">[$1]</span>');
+    box.innerHTML = '<div class="tpl-box">' + highlighted + '</div>';
+  }
+
+  async function generateContent() {
+    if (!formulaData) return;
+    const panel = document.getElementById('genPanel');
+    const loading = document.getElementById('genLoading');
+    const contentEl = document.getElementById('genContent');
+    const copyBtn = document.getElementById('copyAllBtn');
+    const btn = document.getElementById('useFormulaBtn');
+
+    panel.classList.add('show');
+    loading.style.display = 'flex';
+    contentEl.style.display = 'none';
+    copyBtn.classList.remove('show');
+    btn.disabled = true;
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    const tags = (formulaData.emotionTags || []).join(', ');
+    const sysPrompt = 'You are a Taglish content creator for Filipino TikTok and Facebook. Return ONLY a raw JSON object, no markdown, no backticks. Use this exact structure: {"hook":"one scroll-stopping Taglish opening line","caption":"short Taglish story in 5 lines use the word NEWLINE between lines","cta":"2-line Taglish call to action","hashtags":"10 hashtags space-separated mix Tagalog and English"}';
+    const userMsg = 'Create Taglish social media content using this viral formula from "' + videoTitle + '". Template: ' + templateRaw + '. Emotion: ' + tags + '. Make it raw, relatable, confessional like a Filipino millennial creator.';
+
+    try {
+      const json = await callClaude(sysPrompt, userMsg);
+      const g = JSON.parse(json);
+      document.getElementById('outHook').textContent = g.hook || '';
+      document.getElementById('outCaption').textContent = (g.caption || '').replace(/NEWLINE/g, '\n');
+      document.getElementById('outCta').textContent = g.cta || '';
+      document.getElementById('outHashtags').textContent = g.hashtags || '';
+      loading.style.display = 'none';
+      contentEl.style.display = 'block';
+      copyBtn.classList.add('show');
+      generateMusic(formulaData.emotionTags, g.hook, g.caption);
+    } catch(e) {
+      loading.innerHTML = '<span style="color:#ff6b9d;font-size:13px">Generation failed: ' + (e.message||'Try again') + '</span>';
+    }
+    btn.disabled = false;
+  }
+
+  async function generateMusic(emotionTags, hook, caption) {
+    const block = document.getElementById('musicBlock');
+    const out = document.getElementById('outMusic');
+    block.style.display = 'block';
+    out.textContent = 'Finding perfect tracks...';
+
+    const tags = (emotionTags || []).join(', ');
+    const sysPrompt = 'You are a music strategist. Return ONLY a raw JSON object, no markdown, no backticks. Structure: {"tracks":[{"title":"Song Title","artist":"Artist Name","platforms":"TikTok, Reels","why":"5 word reason"},{"title":"Song","artist":"Artist","platforms":"TikTok, Reels, Shorts","why":"5 word reason"},{"title":"Song","artist":"Artist","platforms":"Reels, Shorts","why":"5 word reason"},{"title":"Song","artist":"Artist","platforms":"TikTok","why":"5 word reason"},{"title":"OPM Song","artist":"Filipino Artist","platforms":"TikTok, Reels","why":"5 word reason"}]}';
+    const userMsg = 'Recommend 5 music tracks for Filipino social media content. Emotion: ' + tags + '. Hook tone: ' + (hook||'').substring(0,80) + '. Include 1 OPM track. Match emotional vibe.';
+
+    try {
+      const json = await callClaude(sysPrompt, userMsg);
+      const m = JSON.parse(json);
+      const lines = (m.tracks || []).map(function(t, i) {
+        return (i+1) + '. ' + t.title + ' - ' + t.artist + '\n   Platforms: ' + t.platforms + ' | ' + t.why;
+      }).join('\n\n');
+      out.textContent = lines || 'No tracks found.';
+    } catch(e) {
+      out.textContent = 'Could not load music. Try again.';
+    }
+  }
+
+  function copyTemplate() {
+    if (!templateRaw) return;
+    navigator.clipboard.writeText(templateRaw).then(showToast);
+  }
+
+  function copyAll() {
+    const parts = [
+      'HOOK\n' + document.getElementById('outHook').textContent,
+      'CAPTION\n' + document.getElementById('outCaption').textContent,
+      'CTA\n' + document.getElementById('outCta').textContent,
+      'HASHTAGS\n' + document.getElementById('outHashtags').textContent,
+      'MUSIC\n' + document.getElementById('outMusic').textContent,
+    ];
+    navigator.clipboard.writeText(parts.join('\n\n')).then(showToast);
+  }
+
+  function showToast() {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(function() { t.classList.remove('show'); }, 2200);
+  }
+
+  // Auto-run on load - read v= param from main site if present
+  window.addEventListener('load', function() {
+    const params = new URLSearchParams(window.location.search);
+    const preload = params.get('v');
+    if (preload) document.getElementById('urlInput').value = decodeURIComponent(preload);
+    setTimeout(analyzeVideo, 500);
+  });
+</script>
+  </div>
+</div>
+
+<script>
+// Steal Formula state vars — declared first to avoid temporal dead zone
+  var sf_formulaData = null;
+  var sf_videoTitle  = '';
+  var sf_templateRaw = '';
+  var sf_VIDEO_ID    = 'bIn2ZNr0jts';
+
+function openSfModal(videoId){
+  try {
+    const m = document.getElementById('sfModal');
+    if(!m){ console.error('sfModal not found'); return; }
+    sf_formulaData = null; sf_videoTitle = ''; sf_templateRaw = '';
+    document.getElementById('sf_urlInput').value = 'https://www.youtube.com/watch?v=' + videoId;
+    const rw = document.getElementById('sf_resultsWrap');
+    const gp = document.getElementById('sf_genPanel');
+    const mb = document.getElementById('sf_musicBlock');
+    const eb = document.getElementById('sf_errorBox');
+    if(rw) rw.classList.remove('show');
+    if(gp) gp.classList.remove('show');
+    if(mb) mb.style.display = 'none';
+    if(eb) eb.classList.remove('show');
+    m.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    setTimeout(function(){ sf_analyzeVideo(); }, 400);
+  } catch(e) { console.error('openSfModal error:', e); }
+}
+function closeSfModal(){
+  const m = document.getElementById('sfModal');
+  if(m) m.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+  function sf_extractId(url) {
+    const patterns = [
+      /youtu\.be\/([a-zA-Z0-9_-]{11})/,
+      /[?&]v=([a-zA-Z0-9_-]{11})/,
+      /embed\/([a-zA-Z0-9_-]{11})/,
+      /shorts\/([a-zA-Z0-9_-]{11})/,
+    ];
+    for (const p of patterns) { const m = url.match(p); if (m) return m[1]; }
+    return null;
+  }
+
+  async function sf_fetchTitle(vid) {
+    try {
+      const r = await fetch('https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=' + vid + '&format=json');
+      if (r.ok) { const d = await r.json(); return { title: d.title || 'YouTube Video', author: d.author_name || '' }; }
+    } catch(e) {}
+    return { title: 'YouTube Video', author: '' };
+  }
+
+  // API call via Netlify server — key never exposed to browser
+  async function sf_callClaude(systemPrompt, userPrompt) {
+    const r = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5',
+        max_tokens: 3000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userPrompt }]
+      })
+    });
+    const d = await r.json();
+    console.log('API response preview:', JSON.stringify(d).substring(0, 300));
+    if (d.error) throw new Error('API Error: ' + d.error.type + ' - ' + d.error.message);
+    const raw = (d.content || []).map(function(c) { return c.text || ''; }).join('');
+    // Extract JSON object by brace counting
+    let start = raw.indexOf('{');
+    if (start === -1) throw new Error('No JSON in response');
+    let depth = 0, inStr = false, esc = false, end = -1;
+    for (let i = start; i < raw.length; i++) {
+      const ch = raw[i];
+      if (esc) { esc = false; continue; }
+      if (ch === '\\') { esc = true; continue; }
+      if (ch === '"') { inStr = !inStr; continue; }
+      if (inStr) continue;
+      if (ch === '{') depth++;
+      if (ch === '}') { depth--; if (depth === 0) { end = i; break; } }
+    }
+    if (end === -1) throw new Error('JSON was cut off. Try again.');
+    const jsonStr = raw.substring(start, end + 1);
+    console.log('Extracted JSON preview:', jsonStr.substring(0, 200));
+    // Sanitize smart chars that break JSON.parse
+    const clean = jsonStr
+      .replace(/\u2014/g, '-')   // em dash
+      .replace(/\u2013/g, '-')   // en dash
+      .replace(/\u2018/g, "'")   // left single quote
+      .replace(/\u2019/g, "'")   // right single quote
+      .replace(/\u201c/g, '"')   // left double quote
+      .replace(/\u201d/g, '"')   // right double quote
+      .replace(/\u2026/g, '...')  // ellipsis
+      .replace(/[\u0080-\u009f]/g, ''); // control chars
+    return clean;
+  }
+
+  async function sf_analyzeVideo() {
+    const url = document.getElementById('sf_urlInput').value.trim();
+    const errBox = document.getElementById('sf_errorBox');
+    errBox.classList.remove('show');
+    const vid = url ? sf_extractId(url) : VIDEO_ID;
+    if (!vid) { errBox.textContent = 'Invalid YouTube URL.'; errBox.classList.add('show'); return; }
+
+    document.getElementById('sf_analyzeBtn').disabled = true;
+    document.getElementById('sf_loadingScreen').classList.add('show');
+    document.getElementById('sf_resultsWrap').classList.remove('show');
+    document.getElementById('sf_genPanel').classList.remove('show');
+    document.getElementById('sf_musicBlock').style.display = 'none';
+
+    document.getElementById('sf_videoFrame').src = 'https://www.youtube.com/embed/' + vid + '?rel=0&modestbranding=1';
+    const meta = await sf_fetchTitle(vid);
+    sf_videoTitle = meta.title;
+    document.getElementById('sf_vidTitle').textContent = sf_videoTitle;
+    document.getElementById('sf_vidChannel').textContent = meta.author ? 'by ' + meta.author : '';
+
+    const sysPrompt = 'You are a viral content strategist. Return ONLY a raw JSON object, no markdown, no backticks, no extra text. Use this exact structure: {"intro":"one punchy sentence max 15 words","hookAnalysis":"why the hook works psychologically max 40 words","emotionAnalysis":"what emotion it triggers and why people share max 40 words","emotionTags":["Tag1","Tag2","Tag3"],"templateExplain":"describe the content structure in max 15 words","template":"Hook: [HOOK LINE]. Body: [MAIN POINT 1]. [MAIN POINT 2]. Twist: [UNEXPECTED ANGLE]. CTA: [CALL TO ACTION].","sf_templateRaw":"Hook: [HOOK LINE]. Body: [MAIN POINT 1]. [MAIN POINT 2]. Twist: [UNEXPECTED ANGLE]. CTA: [CALL TO ACTION]."}';
+
+    const userPrompt = 'Decode the viral formula of this YouTube video. Title: "' + sf_videoTitle + '". Channel: ' + meta.author + '. Analyze the psychological triggers and create a Taglish-friendly content template.';
+
+    try {
+      const json = await sf_callClaude(sysPrompt, userPrompt);
+      sf_formulaData = JSON.parse(json);
+      sf_templateRaw = sf_formulaData.templateRaw || sf_formulaData.template || '';
+      sf_renderFormula(sf_formulaData);
+    } catch(e) {
+      console.error('Analyze error:', e);
+      errBox.textContent = 'Error: ' + (e.message || String(e));
+      errBox.classList.add('show');
+      document.getElementById('sf_loadingScreen').classList.remove('show');
+      document.getElementById('sf_analyzeBtn').disabled = false;
+      return;
+    }
+
+    document.getElementById('sf_loadingScreen').classList.remove('show');
+    document.getElementById('sf_resultsWrap').classList.add('show');
+    document.getElementById('sf_analyzeBtn').disabled = false;
+  }
+
+  function sf_renderFormula(d) {
+    document.getElementById('sf_formulaIntro').textContent = d.intro || '';
+    document.getElementById('sf_hookBody').innerHTML = d.hookAnalysis || '';
+    document.getElementById('sf_emotionBody').innerHTML = d.emotionAnalysis || '';
+    const tagsEl = document.getElementById('sf_etags');
+    tagsEl.innerHTML = '';
+    (d.emotionTags || []).forEach(function(t) {
+      const s = document.createElement('span');
+      s.className = 'etag'; s.textContent = t; tagsEl.appendChild(s);
+    });
+    document.getElementById('sf_templateBody').textContent = d.templateExplain || '';
+    const box = document.getElementById('sf_templateBox');
+    const highlighted = (d.template || '').replace(/\[([^\]]+)\]/g, '<span class="tpl-var">[$1]</span>');
+    box.innerHTML = '<div class="tpl-box">' + highlighted + '</div>';
+  }
+
+  async function sf_generateContent() {
+    if (!sf_formulaData) return;
+    const panel = document.getElementById('sf_genPanel');
+    const loading = document.getElementById('sf_genLoading');
+    const contentEl = document.getElementById('sf_genContent');
+    const copyBtn = document.getElementById('sf_copyAllBtn');
+    const btn = document.getElementById('sf_useFormulaBtn');
+
+    panel.classList.add('show');
+    loading.style.display = 'flex';
+    contentEl.style.display = 'none';
+    copyBtn.classList.remove('show');
+    btn.disabled = true;
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    const tags = (sf_formulaData.emotionTags || []).join(', ');
+    const sysPrompt = 'You are a Taglish content creator for Filipino TikTok and Facebook. Return ONLY a raw JSON object, no markdown, no backticks. Use this exact structure: {"hook":"one scroll-stopping Taglish opening line","caption":"short Taglish story in 5 lines use the word NEWLINE between lines","cta":"2-line Taglish call to action","hashtags":"10 hashtags space-separated mix Tagalog and English"}';
+    const userMsg = 'Create Taglish social media content using this viral formula from "' + sf_videoTitle + '". Template: ' + sf_templateRaw + '. Emotion: ' + tags + '. Make it raw, relatable, confessional like a Filipino millennial creator.';
+
+    try {
+      const json = await sf_callClaude(sysPrompt, userMsg);
+      const g = JSON.parse(json);
+      document.getElementById('sf_outHook').textContent = g.hook || '';
+      document.getElementById('sf_outCaption').textContent = (g.caption || '').replace(/NEWLINE/g, '\n');
+      document.getElementById('sf_outCta').textContent = g.cta || '';
+      document.getElementById('sf_outHashtags').textContent = g.hashtags || '';
+      loading.style.display = 'none';
+      contentEl.style.display = 'block';
+      copyBtn.classList.add('show');
+      sf_generateMusic(sf_formulaData.emotionTags, g.hook, g.caption);
+    } catch(e) {
+      loading.innerHTML = '<span style="color:#ff6b9d;font-size:13px">Generation failed: ' + (e.message||'Try again') + '</span>';
+    }
+    btn.disabled = false;
+  }
+
+  async function sf_generateMusic(emotionTags, hook, caption) {
+    const block = document.getElementById('sf_musicBlock');
+    const out = document.getElementById('sf_outMusic');
+    block.style.display = 'block';
+    out.textContent = 'Finding perfect tracks...';
+
+    const tags = (emotionTags || []).join(', ');
+    const sysPrompt = 'You are a music strategist. Return ONLY a raw JSON object, no markdown, no backticks. Structure: {"tracks":[{"title":"Song Title","artist":"Artist Name","platforms":"TikTok, Reels","why":"5 word reason"},{"title":"Song","artist":"Artist","platforms":"TikTok, Reels, Shorts","why":"5 word reason"},{"title":"Song","artist":"Artist","platforms":"Reels, Shorts","why":"5 word reason"},{"title":"Song","artist":"Artist","platforms":"TikTok","why":"5 word reason"},{"title":"OPM Song","artist":"Filipino Artist","platforms":"TikTok, Reels","why":"5 word reason"}]}';
+    const userMsg = 'Recommend 5 music tracks for Filipino social media content. Emotion: ' + tags + '. Hook tone: ' + (hook||'').substring(0,80) + '. Include 1 OPM track. Match emotional vibe.';
+
+    try {
+      const json = await sf_callClaude(sysPrompt, userMsg);
+      const m = JSON.parse(json);
+      const lines = (m.tracks || []).map(function(t, i) {
+        return (i+1) + '. ' + t.title + ' - ' + t.artist + '\n   Platforms: ' + t.platforms + ' | ' + t.why;
+      }).join('\n\n');
+      out.textContent = lines || 'No tracks found.';
+    } catch(e) {
+      out.textContent = 'Could not load music. Try again.';
+    }
+  }
+
+  function sf_copyTemplate() {
+    if (!sf_templateRaw) return;
+    navigator.clipboard.writeText(sf_templateRaw).then(showToast);
+  }
+
+  function sf_copyAll() {
+    const parts = [
+      'HOOK\n' + document.getElementById('sf_outHook').textContent,
+      'CAPTION\n' + document.getElementById('sf_outCaption').textContent,
+      'CTA\n' + document.getElementById('sf_outCta').textContent,
+      'HASHTAGS\n' + document.getElementById('sf_outHashtags').textContent,
+      'MUSIC\n' + document.getElementById('sf_outMusic').textContent,
+    ];
+    navigator.clipboard.writeText(parts.join('\n\n')).then(showToast);
+  }
+
+  function sf_showToast() {
+    const t = document.getElementById('sf_toast');
+    t.classList.add('show');
+    setTimeout(function() { t.classList.remove('show'); }, 2200);
+  }
+
+  // Auto-run on load - read v= param from main site if present
+  // auto-run removed
+
+</script>
+
+
+<script>
+// ═══════════════════════════════════════════════
+// MAIN TAB SWITCHER (YouTube / TikTok / Facebook)
+// ═══════════════════════════════════════════════
+function switchMainTab(tab, el) {
+  document.querySelectorAll('.main-tab-panel').forEach(p => p.style.display = 'none');
+  document.querySelectorAll('.yt-tab').forEach(t => t.classList.remove('active'));
+  const panel = document.getElementById('mainTab-' + tab);
+  if (panel) panel.style.display = 'block';
+  if (el) el.classList.add('active');
+}
+
+// ═══════════════════════════════════════════════
+// FORMULA PREVIEW — shown under each TikTok/FB video
+// ═══════════════════════════════════════════════
+function buildFormulaPreview(url, platform) {
+  return `
+    <div style="margin-bottom:14px">
+      <div style="font-size:10px;color:#FF1B8D;font-weight:800;letter-spacing:2px;margin-bottom:6px">🔥 VIRAL FORMULA DETECTED</div>
+      <div style="font-size:13px;color:#bbb;line-height:1.6">Nagsimula agad sa relatable + emotional tension — walang intro, diretso sa problem.</div>
+    </div>
+    <div style="margin-bottom:14px;background:rgba(255,27,141,0.06);border:1px solid rgba(255,27,141,0.15);border-radius:8px;padding:12px">
+      <div style="font-size:10px;color:#FFD700;font-weight:800;letter-spacing:1px;margin-bottom:6px">🧠 EMOTION IT TRIGGERS</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <span style="background:rgba(255,27,141,0.1);border:1px solid rgba(255,27,141,0.2);color:#FF1B8D;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">Relatability</span>
+        <span style="background:rgba(255,27,141,0.1);border:1px solid rgba(255,27,141,0.2);color:#FF1B8D;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">Curiosity</span>
+        <span style="background:rgba(255,27,141,0.1);border:1px solid rgba(255,27,141,0.2);color:#FF1B8D;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">Frustration</span>
+      </div>
+    </div>
+    <div style="margin-bottom:16px;background:rgba(255,215,0,0.04);border:1.5px dashed rgba(255,215,0,0.2);border-radius:8px;padding:12px">
+      <div style="font-size:10px;color:#FFD700;font-weight:800;letter-spacing:1px;margin-bottom:8px">📋 PLUG-AND-PLAY TEMPLATE</div>
+      <div style="font-size:12px;color:#888;line-height:1.8;font-style:italic">
+        HOOK: <span style="color:#FFD700">"Alam mo yung feeling na ______? 😩"</span><br>
+        SCENE 1: Normal situation (relatable setup)<br>
+        SCENE 2: Biglang may problem<br>
+        SCENE 3: Reaction (frustrated / funny)<br>
+        SCENE 4: Build tension<br>
+        ENDING: Funny / satisfying / relatable<br>
+        CTA: <span style="color:#FFD700">"Relate ka ba? Try mo 👇"</span>
+      </div>
+    </div>
+    <button onclick="openSfModal('${url}')" style="width:100%;padding:14px;background:var(--pink);color:#fff;border:none;border-radius:10px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;cursor:pointer;transition:.2s" onmouseover="this.style.background='#e00070'" onmouseout="this.style.background='var(--pink)'">
+      🚀 USE THIS FORMULA →
+    </button>
+  `;
+}
+
+// ═══════════════════════════════════════════════
+// TIKTOK EMBED
+// ═══════════════════════════════════════════════
+function extractTikTokId(url) {
+  const m = url.match(/\/video\/(\d+)/);
+  return m ? m[1] : null;
+}
+
+async function embedTikTok() {
+  const url = document.getElementById('ttUrlInput').value.trim();
+  const errEl = document.getElementById('ttError');
+  const wrapEl = document.getElementById('ttEmbedWrap');
+  const loadEl = document.getElementById('ttLoading');
+  errEl.style.display = 'none';
+  wrapEl.style.display = 'none';
+
+  if (!url || !url.includes('tiktok.com')) {
+    errEl.textContent = '❗ I-paste ang valid TikTok URL. Example: https://www.tiktok.com/@username/video/123...';
+    errEl.style.display = 'block'; return;
+  }
+
+  const videoId = extractTikTokId(url);
+  if (!videoId) {
+    // Try oEmbed to get video ID
+    loadEl.style.display = 'block';
+    try {
+      const oembed = await fetch('https://www.tiktok.com/oembed?url=' + encodeURIComponent(url));
+      const data = await oembed.json();
+      loadEl.style.display = 'none';
+      if (data.html) {
+        renderTikTok(url, data.html);
+      } else {
+        errEl.textContent = '⚠️ Hindi ma-embed ang video na ito. Siguraduhing public ang TikTok video.';
+        errEl.style.display = 'block';
+      }
+    } catch(e) {
+      loadEl.style.display = 'none';
+      errEl.textContent = '⚠️ Error loading TikTok. Try ulit — siguraduhing public ang video.';
+      errEl.style.display = 'block';
+    }
+    return;
+  }
+
+  // Direct embed using blockquote format
+  const username = url.match(/@([^/]+)/)?.[1] || 'user';
+  const embedHtml = `<blockquote class="tiktok-embed" cite="${url}" data-video-id="${videoId}" style="max-width:325px;min-width:325px;border:none;margin:0"></blockquote>`;
+  renderTikTok(url, embedHtml);
+}
+
+function renderTikTok(url, embedHtml) {
+  const embedEl = document.getElementById('ttEmbed');
+  const previewEl = document.getElementById('ttFormulaPreview');
+  const wrapEl = document.getElementById('ttEmbedWrap');
+
+  embedEl.innerHTML = embedHtml;
+  previewEl.innerHTML = buildFormulaPreview(url, 'tiktok');
+  wrapEl.style.display = 'block';
+
+  // Load TikTok embed script
+  const existing = document.getElementById('ttEmbedScript');
+  if (existing) existing.remove();
+  const s = document.createElement('script');
+  s.id = 'ttEmbedScript';
+  s.src = 'https://www.tiktok.com/embed.js';
+  s.async = true;
+  document.body.appendChild(s);
+
+  wrapEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ═══════════════════════════════════════════════
+// FACEBOOK REELS EMBED
+// ═══════════════════════════════════════════════
+function embedFacebook() {
+  const url = document.getElementById('fbUrlInput').value.trim();
+  const errEl = document.getElementById('fbError');
+  const wrapEl = document.getElementById('fbEmbedWrap');
+  errEl.style.display = 'none';
+  wrapEl.style.display = 'none';
+
+  if (!url || !url.includes('facebook.com')) {
+    errEl.textContent = '❗ I-paste ang valid Facebook URL. Example: https://www.facebook.com/reel/123...';
+    errEl.style.display = 'block'; return;
+  }
+
+  const embedEl = document.getElementById('fbEmbed');
+  const previewEl = document.getElementById('fbFormulaPreview');
+
+  embedEl.innerHTML = `<div class="fb-video"
+    data-href="${url}"
+    data-width="400"
+    data-show-text="false"
+    data-allowfullscreen="true">
+  </div>`;
+
+  previewEl.innerHTML = buildFormulaPreview(url, 'facebook');
+  wrapEl.style.display = 'block';
+
+  // Re-parse FB embeds
+  if (window.FB) {
+    window.FB.XFBML.parse(embedEl);
+  } else {
+    // FB SDK not loaded yet — wait for it
+    window.fbAsyncInit = function() {
+      FB.init({ xfbml: true, version: 'v20.0' });
+    };
+  }
+
+  wrapEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ═══════════════════════════════════════════════
+// Override openSfModal to also accept full URLs
+// (TikTok / FB pass URL instead of videoId)
+// ═══════════════════════════════════════════════
+const _origOpenSfModal = openSfModal;
+function openSfModal(videoIdOrUrl) {
+  // If it's a TikTok or FB URL, set it directly in the sf input
+  if (videoIdOrUrl && (videoIdOrUrl.includes('tiktok.com') || videoIdOrUrl.includes('facebook.com'))) {
+    try {
+      var sf_f = null; var sf_v = ''; var sf_t = '';
+      sf_formulaData = null; sf_videoTitle = ''; sf_templateRaw = '';
+      const m = document.getElementById('sfModal');
+      if (!m) { console.error('sfModal missing'); return; }
+      document.getElementById('sf_urlInput').value = videoIdOrUrl;
+      const rw = document.getElementById('sf_resultsWrap');
+      const gp = document.getElementById('sf_genPanel');
+      const mb = document.getElementById('sf_musicBlock');
+      const eb = document.getElementById('sf_errorBox');
+      if (rw) rw.classList.remove('show');
+      if (gp) gp.classList.remove('show');
+      if (mb) mb.style.display = 'none';
+      if (eb) eb.classList.remove('show');
+      m.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      setTimeout(function() { sf_analyzeVideo(); }, 400);
+    } catch(e) { console.error('openSfModal URL error:', e); }
+  } else {
+    // YouTube video ID — use original
+    _origOpenSfModal(videoIdOrUrl);
+  }
+}
+</script>
+
+</body>
+</html>

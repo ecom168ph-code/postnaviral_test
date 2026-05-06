@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mag-Register | Post Na Viral</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<script async src="https://accounts.google.com/gsi/client"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --pink:#FF1B8D;
+  --yellow:#FFD700;
+  --black:#0A0A0A;
+  --dark:#111111;
+  --card:#1A1A1A;
+  --text:#F0F0F0;
+  --muted:#999;
+  --border:#2A2A2A;
+}
+body{background:var(--black);color:var(--text);font-family:'Nunito',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px}
+a{color:inherit;text-decoration:none}
+.bebas{font-family:'Bebas Neue',sans-serif;letter-spacing:1px}
+
+/* NAV */
+nav{width:100%;display:flex;justify-content:space-between;align-items:center;padding:16px 40px;border-bottom:1px solid var(--border);position:fixed;top:0;z-index:100;background:rgba(10,10,10,0.95);backdrop-filter:blur(12px)}
+.logo-text{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--pink);letter-spacing:2px;cursor:pointer}
+.logo-sub{font-size:9px;color:var(--yellow);letter-spacing:4px;display:block;margin-top:-4px}
+.back-link{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px;transition:.2s}
+.back-link:hover{color:var(--pink)}
+
+/* MAIN CONTAINER */
+.page-wrap{width:100%;max-width:460px;margin-top:80px;padding:24px 16px 40px}
+
+/* CARD */
+.auth-card{background:var(--card);border:2px solid var(--pink);border-radius:20px;padding:28px 24px;animation:slideUp .4s ease}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.auth-card h2{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--pink);margin-bottom:4px;text-align:center}
+.auth-card p{font-size:12px;color:#bbb;line-height:1.5;text-align:center;margin-bottom:16px}
+
+/* TABS */
+.gate-tabs{display:flex;margin-bottom:16px;border-radius:10px;overflow:hidden;border:1px solid var(--border)}
+.gate-tab{flex:1;padding:9px 6px;text-align:center;font-size:11px;font-weight:800;cursor:pointer;transition:.2s;color:var(--muted);background:#111;letter-spacing:.5px}
+.gate-tab.active{background:var(--pink);color:#fff}
+
+/* FORM */
+.gate-form{display:flex;flex-direction:column;gap:10px}
+.gate-form label{font-size:10px;color:var(--pink);font-weight:800;letter-spacing:1.5px;display:block;margin-bottom:3px}
+.gate-form input{background:#111;border:1px solid var(--border);color:var(--text);padding:10px 13px;border-radius:8px;font-family:'Nunito',sans-serif;font-size:13px;outline:none;width:100%;transition:.2s}
+.gate-form input:focus{border-color:var(--pink);box-shadow:0 0 0 2px rgba(255,27,141,0.1)}
+.gate-form input::placeholder{color:#555}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pw-wrap{position:relative}
+.pw-wrap input{padding-right:36px}
+.pw-eye{position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer;color:#555;font-size:14px;background:none;border:none;padding:0}
+.pw-strength{height:3px;border-radius:3px;background:#222;margin-top:5px;overflow:hidden}
+.pw-strength-fill{height:100%;border-radius:3px;width:0%;transition:.3s}
+.pw-label{font-size:9px;color:#666;margin-top:2px;letter-spacing:1px}
+.terms-row{display:flex;align-items:center;gap:8px}
+.terms-row input[type="checkbox"]{accent-color:var(--pink);width:14px;height:14px;flex-shrink:0}
+.terms-row label{font-size:10px;color:var(--muted);cursor:pointer;line-height:1.4}
+.terms-row a{color:var(--pink)}
+
+/* BUTTONS */
+.btn-main{background:var(--pink);color:#fff;padding:12px;border-radius:10px;font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:1.5px;border:none;cursor:pointer;width:100%;transition:.2s;margin-top:4px}
+.btn-main:hover{background:#e00070;transform:translateY(-1px)}
+.btn-main:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-code{background:linear-gradient(135deg,var(--pink),#ff6b35);color:#fff;padding:14px;border-radius:12px;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;border:none;cursor:pointer;width:100%;transition:.2s}
+.btn-code:hover{opacity:.9;transform:translateY(-1px)}
+.btn-code:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.code-input{font-family:'Bebas Neue',sans-serif!important;font-size:22px!important;letter-spacing:4px!important;text-align:center!important}
+.link-btn{color:var(--pink);cursor:pointer;font-weight:700;background:none;border:none;font-family:'Nunito',sans-serif;font-size:inherit;padding:0}
+.link-btn:hover{text-decoration:underline}
+.hint{font-size:11px;color:var(--muted);text-align:center;margin-top:6px}
+
+/* DIVIDER */
+.divider{display:flex;align-items:center;gap:10px;margin:8px 0}
+.divider span{font-size:10px;color:var(--muted);font-weight:700;white-space:nowrap}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* GOOGLE BTN */
+.google-wrap{display:flex;justify-content:center;margin-bottom:8px}
+
+/* VERIFY PANEL */
+.verify-panel,.success-panel{text-align:center}
+.panel-emoji{font-size:40px;margin-bottom:10px}
+.verify-panel h2,.success-panel h2{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--pink);margin-bottom:8px}
+.verify-panel p,.success-panel p{font-size:13px;color:#bbb;line-height:1.6;margin-bottom:14px}
+.info-box{background:#1A1A1A;border:1px solid rgba(255,215,0,0.25);border-radius:12px;padding:12px 16px;margin:10px 0;text-align:left}
+.info-box p{font-size:12px;color:#ccc;line-height:1.7}
+
+/* PERKS */
+.perks{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:12px}
+.perk{background:rgba(255,27,141,0.08);border:1px solid rgba(255,27,141,0.2);color:#ccc;font-size:10px;padding:5px 12px;border-radius:50px;font-weight:700}
+
+/* TOAST */
+.toast{position:fixed;bottom:28px;right:24px;background:var(--card);border:1px solid var(--pink);border-radius:12px;padding:12px 18px;font-size:13px;font-weight:700;color:var(--pink);z-index:9999;display:none;max-width:320px;line-height:1.4}
+
+/* FORGOT PASSWORD */
+#forgotPanel,#resetPanel{display:none}
+
+@media(max-width:480px){
+  nav{padding:12px 16px}
+  .logo-text{font-size:20px}
+  .page-wrap{max-width:100%;margin-top:70px;padding:20px 12px 40px}
+  .auth-card{padding:20px 16px}
+  .two-col{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div>
+    <span class="logo-text" onclick="window.location.href='index.html'">POST NA VIRAL</span>
+    <span class="logo-sub">AI CONTENT GENERATOR</span>
+  </div>
+  <a class="back-link" href="index.html">← Bumalik sa Home</a>
+</nav>
+
+<div class="page-wrap">
+  <!-- PERKS PREVIEW -->
+  <div style="text-align:center;margin-bottom:18px">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--muted);letter-spacing:2px;margin-bottom:10px">SUMALI SA 50,000+ PINOY CREATORS</div>
+    <div class="perks">
+      <span class="perk">🆓 1 Free Idea/Day</span>
+      <span class="perk">⚡ 3-Second Generation</span>
+      <span class="perk">🇵🇭 100% Taglish</span>
+      <span class="perk">🎵 Music Suggestions</span>
+    </div>
+  </div>
+
+  <div class="auth-card">
+    <!-- TABS -->
+    <div class="gate-tabs" id="mainTabs">
+      <div class="gate-tab active" id="tabFree" onclick="switchTab('free')">🆓 FREE</div>
+      <div class="gate-tab" id="tabCode" onclick="switchTab('code')">🔑 MAY CODE</div>
+      <div class="gate-tab" id="tabLogin" onclick="switchTab('login')">👤 LOGIN</div>
+    </div>
+
+    <!-- ── FREE REGISTER PANEL ── -->
+    <div id="freePanel">
+      <h2>MAG-REGISTER</h2>
+      <p>Libre. Walang credit card kailangan.</p>
+
+      <!-- Google Sign-In -->
+      <div id="g_id_onload"
+        data-client_id="825065340823-gbr1vd12ig4qurss30dct2m2f769fmtc.apps.googleusercontent.com"
+        data-callback="handleGoogleCredential"
+        data-auto_prompt="false">
+      </div>
+      <div class="google-wrap">
+        <div class="g_id_signin"
+          data-type="standard"
+          data-size="large"
+          data-theme="filled_black"
+          data-text="signup_with"
+          data-shape="pill"
+          data-logo_alignment="left"
+          data-width="380">
+        </div>
+      </div>
+      <div class="divider"><span>O MAG-REGISTER NG EMAIL</span></div>
+
+      <div class="gate-form">
+        <div class="two-col">
+          <div>
+            <label>PANGALAN</label>
+            <input type="text" id="regName" placeholder="Juan dela Cruz" autocomplete="name"/>
+          </div>
+          <div>
+            <label>EMAIL</label>
+            <input type="email" id="regEmail" placeholder="email@mo.com" autocomplete="email"/>
+          </div>
+        </div>
+        <div class="two-col">
+          <div>
+            <label>PASSWORD</label>
+            <div class="pw-wrap">
+              <input type="password" id="regPassword" placeholder="Min 8 characters" autocomplete="new-password" oninput="checkPwStrength(this.value)"/>
+              <button class="pw-eye" onclick="togglePw('regPassword',this)" type="button">👁</button>
+            </div>
+            <div class="pw-strength"><div class="pw-strength-fill" id="pwFill"></div></div>
+            <div class="pw-label" id="pwLabel"></div>
+          </div>
+          <div>
+            <label>ULITIN PASSWORD</label>
+            <div class="pw-wrap">
+              <input type="password" id="regConfirm" placeholder="I-type ulit" autocomplete="new-password"/>
+              <button class="pw-eye" onclick="togglePw('regConfirm',this)" type="button">👁</button>
+            </div>
+          </div>
+        </div>
+        <div class="terms-row">
+          <input type="checkbox" id="regTerms"/>
+          <label for="regTerms">Sumasang-ayon ako sa <a href="#">Terms</a> at <a href="#">Privacy Policy</a>.</label>
+        </div>
+        <button class="btn-main" id="regBtn" onclick="handleRegister()">⚡ MAG-START NG LIBRE →</button>
+        <p class="hint">May account na? <button class="link-btn" onclick="switchTab('login')">Mag-login →</button></p>
+      </div>
+    </div>
+
+    <!-- ── ACCESS CODE PANEL ── -->
+    <div id="codePanel" style="display:none">
+      <div style="text-align:center;margin-bottom:12px">
+        <div style="font-size:36px;margin-bottom:6px">🔑</div>
+        <h2>I-ENTER ANG CODE</h2>
+        <p>May access code ka mula sa payment? I-enter dito para ma-unlock ang premium plan mo.</p>
+      </div>
+      <div class="gate-form">
+        <div>
+          <label>PANGALAN</label>
+          <input type="text" id="codeName" placeholder="Ilagay ang iyong pangalan"/>
+        </div>
+        <div>
+          <label>EMAIL</label>
+          <input type="email" id="codeEmail" placeholder="email@mo.com"/>
+        </div>
+        <div>
+          <label>ACCESS CODE</label>
+          <input type="text" class="code-input" id="accessCodeInput" placeholder="PNV99-XXXXXXXX" maxlength="15" oninput="this.value=this.value.toUpperCase()"/>
+        </div>
+        <button class="btn-code" id="codeBtn" onclick="validateAccessCode()">🔓 UNLOCK PREMIUM →</button>
+        <p class="hint">Wala pang code? <a style="color:var(--yellow);font-weight:700;cursor:pointer" onclick="window.location.href='index.html#pricing'">Bumili ng plan →</a></p>
+      </div>
+    </div>
+
+    <!-- ── LOGIN PANEL ── -->
+    <div id="loginPanel" style="display:none">
+      <div style="text-align:center;margin-bottom:12px">
+        <div style="font-size:32px;margin-bottom:6px">👋</div>
+        <h2>WELCOME BACK!</h2>
+        <p>Mag-login gamit ang Google o ang iyong email at password.</p>
+      </div>
+
+      <!-- Google -->
+      <div class="google-wrap">
+        <div class="g_id_signin"
+          data-type="standard"
+          data-size="large"
+          data-theme="filled_black"
+          data-text="signin_with"
+          data-shape="pill"
+          data-logo_alignment="left"
+          data-width="380">
+        </div>
+      </div>
+      <div class="divider"><span>O MAG-LOGIN NG EMAIL</span></div>
+
+      <!-- Login Form -->
+      <div id="loginFormPanel">
+        <div class="gate-form">
+          <div>
+            <label>EMAIL</label>
+            <input type="email" id="loginEmail" placeholder="email@mo.com" autocomplete="email"/>
+          </div>
+          <div>
+            <label>PASSWORD</label>
+            <div class="pw-wrap">
+              <input type="password" id="loginPassword" placeholder="Ilagay ang password mo" autocomplete="current-password" onkeydown="if(event.key==='Enter')handleLogin()"/>
+              <button class="pw-eye" onclick="togglePw('loginPassword',this)" type="button">👁</button>
+            </div>
+          </div>
+          <button class="btn-main" id="loginBtn" onclick="handleLogin()">MAG-LOGIN →</button>
+          <div style="display:flex;justify-content:space-between;margin-top:4px">
+            <p class="hint" style="margin:0">Wala pang account? <button class="link-btn" onclick="switchTab('free')">Mag-register →</button></p>
+            <button class="link-btn" style="font-size:11px;color:var(--muted)" onclick="showForgot()">Forgot Password?</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Forgot Password -->
+      <div id="forgotPanel">
+        <div style="text-align:center;margin-bottom:14px">
+          <div style="font-size:32px;margin-bottom:6px">🔑</div>
+          <h3 style="color:var(--yellow);font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px">I-RESET ANG PASSWORD</h3>
+          <p style="font-size:12px;color:#bbb;margin-top:6px">I-enter ang email mo — magpapadala kami ng reset link.</p>
+        </div>
+        <div class="gate-form">
+          <div>
+            <label>EMAIL</label>
+            <input type="email" id="forgotEmail" placeholder="email@mo.com"/>
+          </div>
+          <button class="btn-main" onclick="handleForgot()">📧 MAGPADALA NG RESET LINK →</button>
+          <p class="hint"><button class="link-btn" onclick="showLoginForm()">← Bumalik sa Login</button></p>
+        </div>
+      </div>
+
+      <!-- Set New Password -->
+      <div id="resetPanel">
+        <div style="text-align:center;margin-bottom:14px">
+          <div style="font-size:32px;margin-bottom:6px">✅</div>
+          <h3 style="color:var(--yellow);font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px">BAGONG PASSWORD</h3>
+          <p style="font-size:12px;color:#bbb;margin-top:6px">I-enter ang iyong bagong password.</p>
+        </div>
+        <div class="gate-form">
+          <div><label>BAGONG PASSWORD</label><input type="password" id="newPw1" placeholder="Minimum 6 characters"/></div>
+          <div><label>ULITIN ANG PASSWORD</label><input type="password" id="newPw2" placeholder="I-type ulit"/></div>
+          <button class="btn-main" onclick="handleSetNewPw()">✅ I-SAVE ANG PASSWORD →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── VERIFY EMAIL PANEL ── -->
+    <div id="verifyPanel" style="display:none">
+      <div class="verify-panel">
+        <div class="panel-emoji">📬</div>
+        <h2>I-CHECK ANG EMAIL MO!</h2>
+        <p>Nagpadala kami ng verification link sa <strong id="verifyEmailDisplay" style="color:var(--yellow)">iyong email</strong>.</p>
+        <div class="info-box">
+          <p>Tingnan ang <strong style="color:var(--yellow)">inbox</strong> at <strong style="color:var(--yellow)">spam folder</strong> — i-click ang <strong style="color:var(--pink)">"I-VERIFY"</strong> button.</p>
+        </div>
+        <button class="btn-main" id="resendBtn" onclick="resendVerification()">🔁 I-RESEND ANG VERIFICATION EMAIL</button>
+        <p class="hint" style="margin-top:12px">Na-verify na? <button class="link-btn" onclick="switchTab('login')">Mag-login →</button></p>
+        <p class="hint" style="margin-top:6px"><button class="link-btn" style="color:#666;font-size:10px" onclick="resetAndStart()">I-clear at mag-register ulit →</button></p>
+      </div>
+    </div>
+
+    <!-- ── SUCCESS PANEL ── -->
+    <div id="successPanel" style="display:none">
+      <div class="success-panel">
+        <div class="panel-emoji">🎉</div>
+        <h2>EMAIL VERIFIED NA!</h2>
+        <p>Congrats! Verified na ang iyong account. Ready ka nang mag-generate ng viral content ideas!</p>
+        <div class="info-box" style="text-align:center">
+          <div style="font-size:40px;margin-bottom:8px">🚀</div>
+          <p><strong style="color:var(--yellow)">1 free viral idea</strong> ang naghihintay sa iyo araw-araw. Start posting na!</p>
+        </div>
+        <button class="btn-main" onclick="goToApp()">⚡ MAG-GENERATE NA! →</button>
+      </div>
+    </div>
+  </div>
+
+  <p style="text-align:center;font-size:11px;color:#444;margin-top:16px">© 2026 Post Na Viral · postnaviral.netlify.app</p>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════
+// CONFIG
+// ══════════════════════════════════════
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyHS8DVmH5XNqzZ2cRUNZVdcfcNha7OqRWZ28kswKizfaot9oOXcKn1eZjXOUL8TN5SrA/exec';
+const REDIRECT_URL    = 'index.html'; // where to go after login
+
+let userData = null;
+const _rateLimits = {};
+
+// ══════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  clearTimeout(t._timer);
+  t._timer = setTimeout(()=>{ t.style.display='none'; }, 3500);
+}
+
+// ══════════════════════════════════════
+// RATE LIMITER
+// ══════════════════════════════════════
+function rateLimit(key, max, windowMs){
+  const now = Date.now();
+  if(!_rateLimits[key]) _rateLimits[key] = [];
+  _rateLimits[key] = _rateLimits[key].filter(t => now - t < windowMs);
+  if(_rateLimits[key].length >= max){
+    const wait = Math.ceil((windowMs - (now - _rateLimits[key][0])) / 1000);
+    showToast('⏳ Too many attempts. Hintayin ang ' + wait + 's bago ulit.');
+    return false;
+  }
+  _rateLimits[key].push(now);
+  return true;
+}
+
+// ══════════════════════════════════════
+// TAB SWITCHING
+// ══════════════════════════════════════
+function switchTab(tab){
+  document.getElementById('freePanel').style.display   = tab === 'free'  ? 'block' : 'none';
+  document.getElementById('codePanel').style.display   = tab === 'code'  ? 'block' : 'none';
+  document.getElementById('loginPanel').style.display  = tab === 'login' ? 'block' : 'none';
+  document.getElementById('verifyPanel').style.display = 'none';
+  document.getElementById('successPanel').style.display= 'none';
+  document.getElementById('mainTabs').style.display    = 'flex';
+  document.getElementById('tabFree').classList.toggle('active',  tab === 'free');
+  document.getElementById('tabCode').classList.toggle('active',  tab === 'code');
+  document.getElementById('tabLogin').classList.toggle('active', tab === 'login');
+  // Reset login subpanels
+  if(tab === 'login'){
+    showLoginForm();
+  }
+}
+
+function showVerifyPanel(email){
+  document.getElementById('freePanel').style.display    = 'none';
+  document.getElementById('codePanel').style.display    = 'none';
+  document.getElementById('loginPanel').style.display   = 'none';
+  document.getElementById('successPanel').style.display = 'none';
+  document.getElementById('verifyPanel').style.display  = 'block';
+  document.getElementById('mainTabs').style.display     = 'none';
+  if(email) document.getElementById('verifyEmailDisplay').textContent = email;
+}
+
+function showSuccessPanel(){
+  document.getElementById('freePanel').style.display    = 'none';
+  document.getElementById('codePanel').style.display    = 'none';
+  document.getElementById('loginPanel').style.display   = 'none';
+  document.getElementById('verifyPanel').style.display  = 'none';
+  document.getElementById('successPanel').style.display = 'block';
+  document.getElementById('mainTabs').style.display     = 'none';
+}
+
+function showForgot(){
+  document.getElementById('loginFormPanel').style.display = 'none';
+  document.getElementById('forgotPanel').style.display    = 'block';
+  document.getElementById('resetPanel').style.display     = 'none';
+}
+
+function showLoginForm(){
+  document.getElementById('loginFormPanel').style.display = 'block';
+  document.getElementById('forgotPanel').style.display    = 'none';
+  document.getElementById('resetPanel').style.display     = 'none';
+}
+
+function goToApp(){
+  window.location.href = REDIRECT_URL;
+}
+
+// ══════════════════════════════════════
+// HELPERS
+// ══════════════════════════════════════
+function togglePw(id, btn){
+  const inp = document.getElementById(id);
+  if(inp.type === 'password'){ inp.type = 'text'; btn.textContent = '🙈'; }
+  else { inp.type = 'password'; btn.textContent = '👁'; }
+}
+
+function validateEmail(e){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+function validatePasswordStrength(pw){
+  if(!pw || pw.length < 8) return 'Password dapat minimum 8 characters!';
+  return null;
+}
+
+function checkPwStrength(pw){
+  const fill = document.getElementById('pwFill');
+  const label= document.getElementById('pwLabel');
+  let score = 0;
+  if(pw.length >= 8)  score++;
+  if(pw.length >= 12) score++;
+  if(/[A-Z]/.test(pw)) score++;
+  if(/[0-9]/.test(pw)) score++;
+  if(/[^A-Za-z0-9]/.test(pw)) score++;
+  const levels = [
+    {pct:'20%',color:'#e00000',text:'MAHINA'},
+    {pct:'40%',color:'#ff6b00',text:'SIGE NA'},
+    {pct:'60%',color:'#ffcc00',text:'OKAY NA'},
+    {pct:'80%',color:'#88cc00',text:'MALAKAS'},
+    {pct:'100%',color:'#22cc66',text:'SOLID! 💪'},
+  ];
+  const lv = levels[Math.min(score,4)];
+  if(pw.length === 0){ fill.style.width='0%'; label.textContent=''; return; }
+  fill.style.width = lv.pct;
+  fill.style.background = lv.color;
+  label.textContent = lv.text;
+  label.style.color = lv.color;
+}
+
+function resetAndStart(){
+  localStorage.removeItem('pnv_user');
+  userData = null;
+  switchTab('free');
+  showToast('🔄 Na-reset. Mag-register ulit!');
+}
+
+// ══════════════════════════════════════
+// REGISTER
+// ══════════════════════════════════════
+async function handleRegister(){
+  const name     = document.getElementById('regName').value.trim();
+  const email    = document.getElementById('regEmail').value.trim().toLowerCase();
+  const password = document.getElementById('regPassword').value;
+  const confirm  = document.getElementById('regConfirm').value;
+  const terms    = document.getElementById('regTerms').checked;
+
+  if(!name)  { showToast('❗ Ilagay ang iyong pangalan!'); return; }
+  if(!email) { showToast('❗ Ilagay ang iyong email!'); return; }
+  if(!validateEmail(email)){ showToast('❗ Invalid email format.'); return; }
+
+  const pwError = validatePasswordStrength(password);
+  if(pwError){ showToast('❗ ' + pwError); return; }
+  if(password !== confirm){ showToast('❗ Hindi match ang passwords!'); return; }
+  if(!terms){ showToast('❗ I-agree muna sa Terms of Service!'); return; }
+
+  if(!rateLimit('register_' + email, 3, 5*60*1000)) return;
+
+  const btn = document.getElementById('regBtn');
+  btn.disabled = true; btn.textContent = 'Checking...';
+
+  if(APPS_SCRIPT_URL){
+    try{
+      // Check if already registered
+      const checkRes  = await fetch(APPS_SCRIPT_URL + '?action=getUser&email=' + encodeURIComponent(email));
+      const checkData = await checkRes.json();
+
+      if(checkData.found && checkData.verified){
+        btn.disabled = false; btn.textContent = '⚡ MAG-START NG LIBRE →';
+        showToast('⚠️ May account ka na sa email na yan! Mag-login na lang.');
+        setTimeout(() => switchTab('login'), 1500);
+        return;
+      }
+
+      if(checkData.found && !checkData.verified){
+        btn.textContent = 'Nagpapadala ng verification...';
+        fetch(APPS_SCRIPT_URL + '?action=resendVerifyGet&email=' + encodeURIComponent(email) + '&name=' + encodeURIComponent(name)).catch(()=>{});
+        userData = {name, email, plan:'free', ideasToday:0, ideasLimit:1, lastDay:new Date().toDateString(), verified:false, regDate:new Date().toISOString()};
+        localStorage.setItem('pnv_user', JSON.stringify(userData));
+        showVerifyPanel(email);
+        showToast('📧 Na-register ka na — nagpadala kami ng bagong verification email!');
+        btn.disabled = false; btn.textContent = '⚡ MAG-START NG LIBRE →';
+        return;
+      }
+
+      // Brand new user
+      btn.textContent = 'Nagrerehistro...';
+      localStorage.removeItem('pnv_user');
+      userData = {name, email, plan:'free', ideasToday:0, ideasLimit:1, lastDay:new Date().toDateString(), verified:false, regDate:new Date().toISOString()};
+      localStorage.setItem('pnv_user', JSON.stringify(userData));
+
+      await fetch(APPS_SCRIPT_URL, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify({action:'register', name, email})});
+
+      if(password){
+        await fetch(APPS_SCRIPT_URL, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify({action:'setPassword', email, password})});
+      }
+
+      btn.textContent = 'Nagpapadala ng verification...';
+      await fetch(APPS_SCRIPT_URL + '?action=resendVerifyGet&email=' + encodeURIComponent(email) + '&name=' + encodeURIComponent(name));
+      showVerifyPanel(email);
+      showToast('📧 Check ang email mo para sa verification link!');
+
+    }catch(e){
+      console.error('Register error:', e);
+      userData = {name, email, plan:'free', ideasToday:0, ideasLimit:1, lastDay:new Date().toDateString(), verified:false, regDate:new Date().toISOString()};
+      localStorage.setItem('pnv_user', JSON.stringify(userData));
+      showVerifyPanel(email);
+      showToast('📧 Check ang email mo para sa verification link!');
+    }
+  } else {
+    // Dev mode (no backend)
+    userData = {name, email, plan:'free', ideasToday:0, ideasLimit:1, lastDay:new Date().toDateString(), verified:true};
+    localStorage.setItem('pnv_user', JSON.stringify(userData));
+    showSuccessPanel();
+    showToast('🎉 Welcome, ' + name + '!');
+  }
+  btn.disabled = false; btn.textContent = '⚡ MAG-START NG LIBRE →';
+}
+
+// ══════════════════════════════════════
+// LOGIN
+// ══════════════════════════════════════
+async function handleLogin(){
+  const email    = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const password = document.getElementById('loginPassword').value;
+  if(!email)    { showToast('❗ Ilagay ang iyong email!'); return; }
+  if(!validateEmail(email)){ showToast('❗ Invalid email format.'); return; }
+  if(!password) { showToast('❗ Ilagay ang password!'); return; }
+
+  if(!rateLimit('login_' + email, 5, 5*60*1000)) return;
+
+  const btn = document.getElementById('loginBtn');
+  btn.disabled = true; btn.textContent = 'Checking...';
+
+  if(APPS_SCRIPT_URL){
+    try{
+      const res  = await fetch(APPS_SCRIPT_URL, {
+        method:'POST', headers:{'Content-Type':'text/plain'},
+        body: JSON.stringify({action:'login', email, password})
+      });
+      const data = await res.json();
+
+      if(data.success){
+        userData = {
+          name:data.name, email, plan:data.plan||'free',
+          ideasToday:data.ideasToday||0, ideasLimit:data.ideasLimit||1,
+          lastDay:new Date().toDateString(), verified:true
+        };
+        localStorage.setItem('pnv_user', JSON.stringify(userData));
+        showToast('👋 Welcome back, ' + data.name + '!');
+        setTimeout(() => window.location.href = REDIRECT_URL, 900);
+      } else {
+        showToast('❗ ' + (data.message || 'Mali ang email o password. Try ulit!'));
+      }
+    }catch(e){
+      // Fallback localStorage
+      const saved = localStorage.getItem('pnv_user');
+      if(saved){
+        const u = JSON.parse(saved);
+        if(u.email === email){
+          userData = u;
+          if(!userData.verified){ showVerifyPanel(email); showToast('📧 I-verify muna ang email mo!'); }
+          else { showToast('👋 Welcome back, ' + userData.name + '!'); setTimeout(()=>window.location.href=REDIRECT_URL,900); }
+        } else { showToast('❗ Hindi match ang email. Try ulit.'); }
+      } else { showToast('❗ Wala pang account? Mag-register muna!'); }
+    }
+  } else {
+    const saved = localStorage.getItem('pnv_user');
+    if(saved){
+      const u = JSON.parse(saved);
+      userData = u;
+      showToast('👋 Welcome back, ' + u.name + '!');
+      setTimeout(() => window.location.href = REDIRECT_URL, 900);
+    } else { showToast('❗ Wala pang account? Mag-register muna!'); }
+  }
+  btn.disabled = false; btn.textContent = 'MAG-LOGIN →';
+}
+
+// ══════════════════════════════════════
+// GOOGLE LOGIN
+// ══════════════════════════════════════
+async function handleGoogleCredential(response){
+  try{
+    const payload     = JSON.parse(atob(response.credential.split('.')[1]));
+    const googleName  = payload.name || payload.given_name || 'Creator';
+    const googleEmail = payload.email;
+    const googleId    = payload.sub;
+    showToast('🔄 Nag-lo-login gamit ang Google...');
+
+    if(APPS_SCRIPT_URL){
+      const res  = await fetch(APPS_SCRIPT_URL, {
+        method:'POST', headers:{'Content-Type':'text/plain'},
+        body: JSON.stringify({action:'login', email:googleEmail, googleId, googleName})
+      });
+      const data = await res.json();
+      if(data.success){
+        userData = {
+          name:data.name||googleName, email:googleEmail,
+          plan:data.plan||'free', ideasToday:data.ideasToday||0,
+          ideasLimit:data.ideasLimit||1, lastDay:new Date().toDateString(), verified:true
+        };
+        localStorage.setItem('pnv_user', JSON.stringify(userData));
+        const msg = data.isNew ? '🎉 Welcome sa Post Na Viral, '+googleName+'!' : '👋 Welcome back, '+googleName+'!';
+        showToast(msg);
+        setTimeout(() => window.location.href = REDIRECT_URL, 900);
+      } else {
+        showToast('⚠️ ' + (data.message || 'Google login failed. Try ulit!'));
+      }
+    } else {
+      userData = {name:googleName, email:googleEmail, plan:'free', ideasToday:0, ideasLimit:1, lastDay:new Date().toDateString(), verified:true};
+      localStorage.setItem('pnv_user', JSON.stringify(userData));
+      showToast('🎉 Welcome, ' + googleName + '!');
+      setTimeout(() => window.location.href = REDIRECT_URL, 900);
+    }
+  }catch(e){
+    console.error('Google login error:', e);
+    showToast('⚠️ Google login error. Try ulit!');
+  }
+}
+
+// ══════════════════════════════════════
+// ACCESS CODE VALIDATION
+// ══════════════════════════════════════
+async function validateAccessCode(){
+  const code  = document.getElementById('accessCodeInput').value.trim().toUpperCase();
+  const name  = document.getElementById('codeName').value.trim();
+  const email = document.getElementById('codeEmail').value.trim().toLowerCase();
+
+  if(!code || !name || !email){ showToast('❗ Kumpletuhin ang lahat ng fields!'); return; }
+  if(!validateEmail(email)){ showToast('❗ Invalid email format.'); return; }
+  if(!code.startsWith('PNV99-') && !code.startsWith('PNV299-')){
+    showToast('❗ Invalid code. Dapat magsimula sa PNV99- o PNV299-'); return;
+  }
+
+  const btn = document.getElementById('codeBtn');
+  btn.disabled = true; btn.textContent = 'VALIDATING...';
+
+  try{
+    const res  = await fetch(APPS_SCRIPT_URL + '?action=validate&code=' + encodeURIComponent(code) + '&email=' + encodeURIComponent(email));
+    const data = await res.json();
+    if(data.valid){
+      const limit = data.ideasLimit || (data.plan === 'ultimate' ? 9999 : 10);
+      userData = {name, email, plan:data.plan, ideasToday:0, ideasLimit:limit, code, lastDay:new Date().toDateString(), verified:true};
+      localStorage.setItem('pnv_user', JSON.stringify(userData));
+      const planLabel = data.plan === 'ultimate' ? 'UNLIMITED' : 'CREATOR';
+      showToast('🎉 Welcome, ' + name + '! ' + planLabel + ' Plan activated!');
+      setTimeout(() => window.location.href = REDIRECT_URL, 1000);
+    } else {
+      showToast('❌ ' + (data.message || 'Invalid or already used code.'));
+    }
+  }catch(e){
+    showToast('⚠️ Validation error. Try ulit.');
+  }finally{
+    btn.disabled = false; btn.textContent = '🔓 UNLOCK PREMIUM →';
+  }
+}
+
+// ══════════════════════════════════════
+// RESEND VERIFICATION
+// ══════════════════════════════════════
+async function resendVerification(){
+  if(!userData){ showToast('❗ Mag-register muna!'); return; }
+  if(!rateLimit('resend_' + (userData.email||'anon'), 3, 10*60*1000)) return;
+
+  const btn = document.getElementById('resendBtn');
+  btn.disabled = true; btn.textContent = 'Nagpapadala...';
+  try{
+    await fetch(APPS_SCRIPT_URL + '?action=resendVerifyGet&email=' + encodeURIComponent(userData.email) + '&name=' + encodeURIComponent(userData.name||''));
+  }catch(e){ console.log('Resend error:', e); }
+  showToast('📧 Napadala na ulit! Tingnan ang inbox at spam folder mo.');
+  setTimeout(()=>{ btn.disabled = false; btn.textContent = '🔁 I-RESEND ANG VERIFICATION EMAIL'; }, 8000);
+}
+
+// ══════════════════════════════════════
+// FORGOT PASSWORD
+// ══════════════════════════════════════
+async function handleForgot(){
+  const email = document.getElementById('forgotEmail').value.trim().toLowerCase();
+  if(!email){ showToast('❗ Ilagay ang iyong email!'); return; }
+  if(!validateEmail(email)){ showToast('❗ Invalid email format.'); return; }
+  if(!rateLimit('forgot_' + email, 3, 10*60*1000)) return;
+
+  const btn = event.target;
+  btn.disabled = true; btn.textContent = 'Nagpapadala...';
+  try{
+    await fetch(APPS_SCRIPT_URL + '?action=sendResetGet&email=' + encodeURIComponent(email));
+  }catch(e){ console.error('Reset error:', e); }
+  showToast('📧 Kung naka-register ang email na yan, padadalahan ka namin ng reset link.');
+  btn.textContent = '✅ SENT! I-check ang inbox at spam.';
+  setTimeout(()=>{ btn.disabled = false; btn.textContent = '📧 MAGPADALA NG RESET LINK →'; }, 30000);
+}
+
+// ══════════════════════════════════════
+// SET NEW PASSWORD
+// ══════════════════════════════════════
+async function handleSetNewPw(){
+  const p1 = document.getElementById('newPw1').value;
+  const p2 = document.getElementById('newPw2').value;
+  if(!p1 || !p2){ showToast('❗ Kumpletuhin ang lahat ng fields!'); return; }
+  const pwErr = validatePasswordStrength(p1);
+  if(pwErr){ showToast('❗ ' + pwErr); return; }
+  if(p1 !== p2){ showToast('❗ Hindi match ang passwords!'); return; }
+
+  const params = new URLSearchParams(window.location.search);
+  const token  = params.get('reset_token');
+  const email  = params.get('remail');
+  if(!token || !email){ showToast('❗ Invalid reset link. Mag-request ulit ng reset.'); return; }
+
+  const btn = event.target;
+  btn.disabled = true; btn.textContent = 'Nagse-save...';
+  try{
+    const res  = await fetch(APPS_SCRIPT_URL, {
+      method:'POST', headers:{'Content-Type':'text/plain'},
+      body: JSON.stringify({action:'resetPassword', email, token, password:p1})
+    });
+    const data = await res.json();
+    if(data.success){
+      showToast('✅ Na-update na ang password mo! Mag-login na.');
+      window.history.replaceState({}, document.title, window.location.pathname);
+      setTimeout(()=>{ showLoginForm(); switchTab('login'); }, 1500);
+    } else {
+      showToast('❗ ' + (data.message || 'Error. Try ulit!'));
+      btn.disabled = false; btn.textContent = '✅ I-SAVE ANG PASSWORD →';
+    }
+  }catch(e){
+    showToast('⚠️ Error. Try ulit!');
+    btn.disabled = false; btn.textContent = '✅ I-SAVE ANG PASSWORD →';
+  }
+}
+
+// ══════════════════════════════════════
+// ON PAGE LOAD
+// ══════════════════════════════════════
+window.addEventListener('load', async () => {
+  const params = new URLSearchParams(window.location.search);
+
+  // Email verification link
+  const verifyToken = params.get('verify');
+  const verifyEmail = params.get('vemail');
+  if(verifyToken && verifyEmail && APPS_SCRIPT_URL){
+    showToast('⏳ Nagva-verify ng email...');
+    try{
+      const res  = await fetch(APPS_SCRIPT_URL + '?action=verifyEmail&token=' + encodeURIComponent(verifyToken) + '&email=' + encodeURIComponent(verifyEmail));
+      const data = await res.json();
+      if(data.verified){
+        let saved = localStorage.getItem('pnv_user');
+        if(saved){ let u = JSON.parse(saved); u.verified = true; localStorage.setItem('pnv_user', JSON.stringify(u)); userData = u; }
+        else { userData = {name:data.name||'Creator', email:verifyEmail, plan:'free', ideasToday:0, ideasLimit:1, lastDay:new Date().toDateString(), verified:true}; localStorage.setItem('pnv_user', JSON.stringify(userData)); }
+        window.history.replaceState({}, document.title, window.location.pathname);
+        showSuccessPanel();
+      } else if(data.expired){
+        window.history.replaceState({}, document.title, window.location.pathname);
+        switchTab('login');
+        showToast('⏰ Expired na ang verification link. Mag-login at i-resend.');
+      } else {
+        showToast('❗ ' + (data.message || 'Invalid verification link.'));
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    }catch(e){ console.log('Verify error:', e); }
+    return;
+  }
+
+  // Password reset token
+  if(params.get('reset_token') && params.get('remail')){
+    switchTab('login');
+    document.getElementById('loginFormPanel').style.display = 'none';
+    document.getElementById('forgotPanel').style.display    = 'none';
+    document.getElementById('resetPanel').style.display     = 'block';
+    return;
+  }
+
+  // Already logged in → redirect
+  const saved = localStorage.getItem('pnv_user');
+  if(saved){
+    const u = JSON.parse(saved);
+    if(u.verified === true){
+      // Already logged in, just go home
+      window.location.href = REDIRECT_URL;
+      return;
+    }
+    if(u.verified === false){
+      userData = u;
+      showVerifyPanel(u.email);
+    }
+  }
+
+  // Check for tab param in URL
+  const tab = params.get('tab');
+  if(tab === 'login' || tab === 'code') switchTab(tab);
+
+  // Pre-fill email if passed (e.g., from payment redirect)
+  const emailParam = params.get('email');
+  if(emailParam){
+    const codeEmailEl = document.getElementById('codeEmail');
+    const loginEmailEl = document.getElementById('loginEmail');
+    if(codeEmailEl) codeEmailEl.value = decodeURIComponent(emailParam);
+    if(loginEmailEl) loginEmailEl.value = decodeURIComponent(emailParam);
+  }
+});
+</script>
+</body>
+</html>

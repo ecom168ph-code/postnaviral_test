@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Steal This Formula - Post Na Viral</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --black: #080808;
+    --pink: #ff1f6e;
+    --gold: #f5c518;
+    --white: #f2f2f2;
+    --card: #111111;
+    --card2: #161616;
+    --border: #1e1e1e;
+    --border2: #2a2a2a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    padding: 0 28px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1.5px solid #1a1a1a;
+    position: sticky;
+    top: 0;
+    background: var(--black);
+    z-index: 10;
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 3px;
+    color: var(--gold);
+  }
+  .logo em { color: var(--pink); font-style: normal; }
+  .pill {
+    background: rgba(255,31,110,0.12);
+    border: 1px solid rgba(255,31,110,0.25);
+    color: var(--pink);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+  .header-right {
+    margin-left: auto;
+    font-size: 11px;
+    color: #3a3a3a;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ── INPUT BAR ── */
+  .input-bar {
+    max-width: 900px;
+    margin: 36px auto 0;
+    padding: 0 24px;
+  }
+  .input-label {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #3d3d3d;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .input-row {
+    display: flex;
+    gap: 10px;
+  }
+  .url-input {
+    flex: 1;
+    background: var(--card);
+    border: 1.5px solid var(--border2);
+    border-radius: 8px;
+    padding: 15px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .url-input::placeholder { color: #2e2e2e; }
+  .url-input:focus { border-color: var(--pink); }
+
+  .analyze-btn {
+    background: var(--pink);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 30px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2.5px;
+    cursor: pointer;
+    transition: background 0.18s, transform 0.1s, box-shadow 0.18s;
+    box-shadow: 0 0 0 rgba(255,31,110,0);
+    white-space: nowrap;
+  }
+  .analyze-btn:hover {
+    background: #d4155a;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(255,31,110,0.35);
+  }
+  .analyze-btn:disabled { background: #2a2a2a; color: #444; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  .error-box {
+    margin-top: 12px;
+    background: rgba(255,31,110,0.07);
+    border: 1px solid rgba(255,31,110,0.2);
+    border-radius: 6px;
+    padding: 12px 16px;
+    color: #ff6b9d;
+    font-size: 13px;
+    display: none;
+  }
+  .error-box.show { display: block; }
+
+  /* ── LOADING ── */
+  .loading-screen {
+    display: none;
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .loading-screen.show { display: block; }
+  .pulse-ring {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    border: 2px solid var(--border2);
+    border-top-color: var(--pink);
+    animation: spin 0.9s linear infinite;
+    margin: 0 auto 24px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .loading-sub { color: #333; font-size: 13px; letter-spacing: 0.5px; }
+
+  /* ── MAIN RESULTS ── */
+  .results-wrap {
+    display: none;
+    max-width: 900px;
+    margin: 36px auto 0;
+    padding: 0 24px;
+  }
+  .results-wrap.show { display: block; animation: riseIn 0.45s ease; }
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── VIDEO SECTION ── */
+  .video-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+    align-items: start;
+  }
+  @media(max-width:650px) { .video-section { grid-template-columns: 1fr; } }
+
+  .video-embed-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid var(--border2);
+    background: #000;
+  }
+  .video-embed-wrap iframe {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; border: none;
+  }
+
+  .video-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .viral-badge-large {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245,197,24,0.08);
+    border: 1px solid rgba(245,197,24,0.2);
+    color: var(--gold);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2.5px;
+    padding: 6px 14px;
+    border-radius: 4px;
+    width: fit-content;
+  }
+  .vid-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--white);
+  }
+  .vid-channel {
+    font-size: 12px;
+    color: #444;
+    margin-top: -4px;
+  }
+  .decoded-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #2e2e2e;
+    font-weight: 600;
+  }
+  .formula-intro {
+    font-size: 13px;
+    color: #3a3a3a;
+    line-height: 1.6;
+    padding-top: 4px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── FORMULA CARDS ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  @media(max-width:600px){ .cards-grid { grid-template-columns: 1fr; } }
+
+  .fcard {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 20px 20px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .fcard:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .fcard.wide { grid-column: 1 / -1; }
+
+  .fcard-stripe {
+    position: absolute;
+    left: 0; top: 0;
+    width: 3px; height: 100%;
+  }
+  .s-pink  { background: var(--pink); }
+  .s-gold  { background: var(--gold); }
+  .s-teal  { background: #26c6da; }
+
+  .fcard-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .fcard-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .fcard-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .fcard-sublabel {
+    font-size: 10px;
+    color: #333;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .fcard-body {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #aaa;
+  }
+  .fcard-body strong { color: var(--white); font-weight: 600; }
+
+  /* emotion tags */
+  .etags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .etag {
+    background: rgba(255,31,110,0.1);
+    border: 1px solid rgba(255,31,110,0.22);
+    color: var(--pink);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 11px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  /* template box */
+  .tpl-box {
+    margin-top: 14px;
+    background: rgba(245,197,24,0.04);
+    border: 1.5px dashed rgba(245,197,24,0.22);
+    border-radius: 8px;
+    padding: 16px 18px;
+    font-size: 13.5px;
+    line-height: 1.85;
+    color: #bbb;
+    font-style: italic;
+    white-space: pre-wrap;
+  }
+  .tpl-var {
+    background: rgba(245,197,24,0.13);
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 11.5px;
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+
+  /* ── CTA ROW ── */
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .main-cta {
+    flex: 1;
+    min-width: 220px;
+    background: linear-gradient(135deg, #ff1f6e 0%, #b5124c 100%);
+    border: none;
+    border-radius: 9px;
+    padding: 19px 26px;
+    color: #fff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 21px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 20px rgba(255,31,110,0.25);
+  }
+  .main-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,31,110,0.4); }
+  .main-cta:disabled { background: #1e1e1e; color: #333; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  .sec-cta {
+    background: var(--card);
+    border: 1.5px solid var(--border2);
+    border-radius: 9px;
+    padding: 19px 22px;
+    color: #888;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .sec-cta:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── GENERATED CONTENT ── */
+  .gen-panel {
+    display: none;
+    margin-top: 24px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid rgba(255,31,110,0.3);
+  }
+  .gen-panel.show { display: block; animation: riseIn 0.35s ease; }
+
+  .gen-header-bar {
+    background: linear-gradient(90deg, rgba(255,31,110,0.15) 0%, rgba(255,31,110,0.04) 100%);
+    border-bottom: 1px solid rgba(255,31,110,0.15);
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .gen-header-bar .title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 3px;
+    color: var(--gold);
+  }
+  .gen-header-bar .sub {
+    font-size: 11px;
+    color: #444;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-left: auto;
+  }
+
+  .gen-body { background: var(--card); padding: 22px; }
+
+  .gen-loading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 0 20px;
+  }
+  .mini-spin {
+    width: 22px; height: 22px;
+    border: 2px solid var(--border2);
+    border-top-color: var(--pink);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    flex-shrink: 0;
+  }
+  .gen-loading-text { font-size: 13px; color: #444; }
+
+  .gen-content { display: none; }
+  .gen-block { margin-bottom: 18px; }
+  .gen-block:last-child { margin-bottom: 0; }
+  .gen-block-label {
+    font-size: 9.5px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--pink);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .gen-block-text {
+    background: #0c0c0c;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 14px 16px;
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: var(--white);
+    white-space: pre-wrap;
+  }
+
+  .copy-all-btn {
+    margin-top: 18px;
+    width: 100%;
+    background: rgba(245,197,24,0.07);
+    border: 1.5px solid rgba(245,197,24,0.2);
+    border-radius: 7px;
+    padding: 13px;
+    color: var(--gold);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: none;
+  }
+  .copy-all-btn.show { display: block; }
+  .copy-all-btn:hover { background: rgba(245,197,24,0.13); }
+
+  /* ── MUSIC SECTION ── */
+  .music-section {
+    display: none;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid rgba(100, 220, 255, 0.18);
+  }
+  .music-section.show { display: block; animation: riseIn 0.35s ease; }
+
+  .music-header-bar {
+    background: linear-gradient(90deg, rgba(100,220,255,0.1) 0%, rgba(100,220,255,0.03) 100%);
+    border-bottom: 1px solid rgba(100,220,255,0.12);
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .music-header-bar .title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 19px;
+    letter-spacing: 3px;
+    color: #64dcff;
+  }
+  .music-header-bar .sub {
+    font-size: 10px;
+    color: #333;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-left: auto;
+  }
+
+  .music-body { background: var(--card); padding: 20px 22px; }
+
+  .music-vibe-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .music-vibe-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #333;
+    font-weight: 600;
+  }
+  .vibe-tag {
+    background: rgba(100,220,255,0.08);
+    border: 1px solid rgba(100,220,255,0.2);
+    color: #64dcff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .music-tracks { display: flex; flex-direction: column; gap: 10px; }
+
+  .track-card {
+    background: #0c0c0c;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    align-items: center;
+    gap: 14px;
+    transition: border-color 0.2s;
+  }
+  .track-card:hover { border-color: rgba(100,220,255,0.25); }
+
+  .track-num {
+    width: 40px; height: 40px;
+    background: rgba(100,220,255,0.07);
+    border: 1px solid rgba(100,220,255,0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: #64dcff;
+    flex-shrink: 0;
+  }
+
+  .track-info { min-width: 0; }
+  .track-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .track-artist {
+    font-size: 12px;
+    color: #444;
+    margin-bottom: 6px;
+  }
+  .track-platforms {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .platform-tag {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+  }
+  .pt-tiktok { background: rgba(255,31,110,0.12); color: var(--pink); border: 1px solid rgba(255,31,110,0.2); }
+  .pt-reels  { background: rgba(245,197,24,0.1);  color: var(--gold); border: 1px solid rgba(245,197,24,0.2); }
+  .pt-shorts { background: rgba(100,220,255,0.08); color: #64dcff;    border: 1px solid rgba(100,220,255,0.18); }
+
+  .track-why {
+    font-size: 11px;
+    color: #333;
+    text-align: right;
+    max-width: 120px;
+    line-height: 1.4;
+  }
+
+  .music-tip {
+    margin-top: 14px;
+    background: rgba(245,197,24,0.04);
+    border: 1px dashed rgba(245,197,24,0.15);
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 12px;
+    color: #444;
+    line-height: 1.6;
+  }
+  .music-tip strong { color: var(--gold); }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    background: var(--gold);
+    color: #000;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 11px 22px;
+    border-radius: 6px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+    z-index: 100;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">Post Na <em>Viral</em></div>
+  <div class="pill">🔥 Steal This Formula</div>
+  <div class="header-right">AI Formula Decoder</div>
+</header>
+
+<!-- INPUT -->
+<div class="input-bar">
+  <div class="input-label">YouTube Video URL</div>
+  <div class="input-row">
+    <input id="urlInput" class="url-input" type="text"
+      placeholder="Paste any YouTube link..."
+      value="https://youtu.be/bIn2ZNr0jts"/>
+    <button id="analyzeBtn" class="analyze-btn" onclick="analyzeVideo()">🔍 DECODE</button>
+  </div>
+  <div class="error-box" id="errorBox"></div>
+</div>
+
+<!-- LOADING -->
+<div class="loading-screen" id="loadingScreen">
+  <div class="pulse-ring"></div>
+  <div class="loading-title">Decoding Viral Formula...</div>
+  <div class="loading-sub">AI is reverse-engineering why this video blew up</div>
+</div>
+
+<!-- RESULTS -->
+<div class="results-wrap" id="resultsWrap">
+
+  <!-- VIDEO + META -->
+  <div class="video-section">
+    <div class="video-embed-wrap">
+      <iframe id="videoFrame" src="" allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    </div>
+    <div class="video-meta">
+      <div class="viral-badge-large">⚡ FORMULA DECODED</div>
+      <div class="vid-title" id="vidTitle">Loading...</div>
+      <div class="vid-channel" id="vidChannel"></div>
+      <div class="decoded-label">What makes this go viral?</div>
+      <div class="formula-intro" id="formulaIntro">Analyzing...</div>
+    </div>
+  </div>
+
+  <!-- CARDS -->
+  <div class="cards-grid">
+
+    <!-- Hook -->
+    <div class="fcard">
+      <div class="fcard-stripe s-pink"></div>
+      <div class="fcard-top">
+        <div class="fcard-icon">🎣</div>
+        <div>
+          <div class="fcard-label">Why The Hook Works</div>
+          <div class="fcard-sublabel">Psychology of the click</div>
+        </div>
+      </div>
+      <div class="fcard-body" id="hookBody"><em style="color:#2a2a2a">Analyzing...</em></div>
+    </div>
+
+    <!-- Emotion -->
+    <div class="fcard">
+      <div class="fcard-stripe s-gold"></div>
+      <div class="fcard-top">
+        <div class="fcard-icon">🧠</div>
+        <div>
+          <div class="fcard-label">Emotion It Triggers</div>
+          <div class="fcard-sublabel">Why viewers share this</div>
+        </div>
+      </div>
+      <div class="fcard-body" id="emotionBody"><em style="color:#2a2a2a">Analyzing...</em></div>
+      <div class="etags" id="etags"></div>
+    </div>
+
+    <!-- Template -->
+    <div class="fcard wide">
+      <div class="fcard-stripe s-teal"></div>
+      <div class="fcard-top">
+        <div class="fcard-icon">📋</div>
+        <div>
+          <div class="fcard-label">Plug-and-Play Template</div>
+          <div class="fcard-sublabel">Swipe this structure for your own content</div>
+        </div>
+      </div>
+      <div class="fcard-body" id="templateBody"><em style="color:#2a2a2a">Analyzing...</em></div>
+      <div id="templateBox"></div>
+    </div>
+
+  </div>
+
+  <!-- CTAs -->
+  <div class="cta-row">
+    <button class="main-cta" id="useFormulaBtn" onclick="generateContent()">
+      🔁 USE THIS FORMULA - GENERATE MY CONTENT
+    </button>
+    <button class="sec-cta" onclick="copyTemplate()">📋 COPY TEMPLATE</button>
+  </div>
+
+  <!-- GENERATED PANEL -->
+  <div class="gen-panel" id="genPanel">
+    <div class="gen-header-bar">
+      <span>✨</span>
+      <div class="title">YOUR CONTENT IS READY</div>
+      <div class="sub">Taglish • Ready to Post</div>
+    </div>
+    <div class="gen-body">
+      <div class="gen-loading" id="genLoading">
+        <div class="mini-spin"></div>
+        <div class="gen-loading-text">Generating your hook, caption, CTA + hashtags in Taglish...</div>
+      </div>
+      <div class="gen-content" id="genContent">
+        <div class="gen-block">
+          <div class="gen-block-label">🎣 Your Hook</div>
+          <div class="gen-block-text" id="outHook"></div>
+        </div>
+        <div class="gen-block">
+          <div class="gen-block-label">📝 Your Caption</div>
+          <div class="gen-block-text" id="outCaption"></div>
+        </div>
+        <div class="gen-block">
+          <div class="gen-block-label">📣 Your CTA</div>
+          <div class="gen-block-text" id="outCta"></div>
+        </div>
+        <div class="gen-block">
+          <div class="gen-block-label">#️⃣ Hashtags</div>
+          <div class="gen-block-text" id="outHashtags"></div>
+        </div>
+        <div class="gen-block" id="musicBlock" style="display:none;">
+          <div class="gen-block-label">🎵 Music Recommendations</div>
+          <div class="gen-block-text" id="outMusic"></div>
+        </div>
+        <button class="copy-all-btn" id="copyAllBtn" onclick="copyAll()">📋 COPY EVERYTHING</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast">✓ COPIED!</div>
+
+<script>
+  const VIDEO_ID = 'bIn2ZNr0jts';
+  let formulaData = null;
+  let videoTitle = '';
+  let templateRaw = '';
+
+  function extractId(url) {
+    const patterns = [
+      /youtu\.be\/([a-zA-Z0-9_-]{11})/,
+      /[?&]v=([a-zA-Z0-9_-]{11})/,
+      /embed\/([a-zA-Z0-9_-]{11})/,
+      /shorts\/([a-zA-Z0-9_-]{11})/,
+    ];
+    for (const p of patterns) { const m = url.match(p); if (m) return m[1]; }
+    return null;
+  }
+
+  const YT_DATA_KEY = 'AIzaSyB4nIliTPi769ZySS38aZS-WKKLaeolTuo';
+
+  // ── API CALL via Netlify server function (key never exposed to browser) ──
+  async function callClaude(systemPrompt, userPrompt) {
+    const r = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5',
+        max_tokens: 3000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userPrompt }]
+      })
+    });
+  async function fetchTitle(vid) {
+    // Priority 0: Pre-loaded from index.html URL params
+    if (window._preloadedTitle) {
+      const t = window._preloadedTitle;
+      const a = window._preloadedAuthor || '';
+      window._preloadedTitle  = null;
+      window._preloadedAuthor = null;
+      return { title: t, author: a };
+    }
+
+    const ytUrl = 'https://www.youtube.com/watch?v=' + vid;
+
+    // Method 1: YouTube Data API v3 (most reliable, no CORS issues)
+    try {
+      const r = await fetch(
+        'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + vid + '&key=' + YT_DATA_KEY,
+        { mode: 'cors' }
+      );
+      if (r.ok) {
+        const d = await r.json();
+        const item = (d.items || [])[0];
+        if (item && item.snippet && item.snippet.title) {
+          return { title: item.snippet.title, author: item.snippet.channelTitle || '' };
+        }
+      }
+    } catch(e) { /* silent */ }
+
+    // Method 2: noembed.com
+    try {
+      const r = await fetch('https://noembed.com/embed?url=' + encodeURIComponent(ytUrl));
+      if (r.ok) {
+        const d = await r.json();
+        if (d.title && d.title !== 'YouTube Video') {
+          return { title: d.title, author: d.author_name || '' };
+        }
+      }
+    } catch(e) { /* silent */ }
+
+    // Method 3: YouTube oEmbed
+    try {
+      const r = await fetch('https://www.youtube.com/oembed?url=' + encodeURIComponent(ytUrl) + '&format=json');
+      if (r.ok) {
+        const d = await r.json();
+        if (d.title) return { title: d.title, author: d.author_name || '' };
+      }
+    } catch(e) { /* silent */ }
+
+    // Method 4: corsproxy.io
+    try {
+      const r = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://www.youtube.com/oembed?url=' + encodeURIComponent(ytUrl) + '&format=json'));
+      if (r.ok) {
+        const d = await r.json();
+        if (d.title) return { title: d.title, author: d.author_name || '' };
+      }
+    } catch(e) { /* silent */ }
+
+    // Method 5: allorigins proxy
+    try {
+      const r = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://www.youtube.com/oembed?url=' + encodeURIComponent(ytUrl) + '&format=json'));
+      if (r.ok) {
+        const d = await r.json();
+        if (d.contents) {
+          const parsed = JSON.parse(d.contents);
+          if (parsed.title) return { title: parsed.title, author: parsed.author_name || '' };
+        }
+      }
+    } catch(e) { /* silent */ }
+
+    // Fallback: Use video ID as hint for AI — AI will still analyze based on the URL
+    return { title: '', author: '' };
+  }
+
+  // ── API CALL via Netlify server function (key never exposed to browser) ──
+  async function callClaude(systemPrompt, userPrompt) {
+    const r = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5',
+        max_tokens: 3000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userPrompt }]
+      })
+    });
+    const d = await r.json();
+    if (d.error) throw new Error('API Error: ' + (d.error.message || JSON.stringify(d.error)));
+
+    const raw = (d.content || []).map(function(c) { return c.text || ''; }).join('');
+    // Extract JSON object by brace counting
+    let start = raw.indexOf('{');
+    if (start === -1) throw new Error('No JSON in response');
+    let depth = 0, inStr = false, esc = false, end = -1;
+    for (let i = start; i < raw.length; i++) {
+      const ch = raw[i];
+      if (esc) { esc = false; continue; }
+      if (ch === '\\') { esc = true; continue; }
+      if (ch === '"') { inStr = !inStr; continue; }
+      if (inStr) continue;
+      if (ch === '{') depth++;
+      if (ch === '}') { depth--; if (depth === 0) { end = i; break; } }
+    }
+    if (end === -1) throw new Error('JSON was cut off. Try again.');
+    const jsonStr = raw.substring(start, end + 1);
+    console.log('Extracted JSON preview:', jsonStr.substring(0, 200));
+    // Sanitize smart chars that break JSON.parse
+    const clean = jsonStr
+      .replace(/\u2014/g, '-')   // em dash
+      .replace(/\u2013/g, '-')   // en dash
+      .replace(/\u2018/g, "'")   // left single quote
+      .replace(/\u2019/g, "'")   // right single quote
+      .replace(/\u201c/g, '"')   // left double quote
+      .replace(/\u201d/g, '"')   // right double quote
+      .replace(/\u2026/g, '...')  // ellipsis
+      .replace(/[\u0080-\u009f]/g, ''); // control chars
+    return clean;
+  }
+
+  async function analyzeVideo() {
+    const url = document.getElementById('urlInput').value.trim();
+    const errBox = document.getElementById('errorBox');
+    errBox.classList.remove('show');
+
+    // Detect platform
+    const isTikTok  = url.includes('tiktok.com');
+    const isFB      = url.includes('facebook.com') || url.includes('fb.watch');
+    const isYT      = !isTikTok && !isFB;
+
+    const vid = isYT ? (url ? extractId(url) : VIDEO_ID) : null;
+    if (isYT && !vid) { errBox.textContent = 'Invalid YouTube URL. I-paste ang tamang link.'; errBox.classList.add('show'); return; }
+    if (!url) { errBox.textContent = 'I-paste muna ang video URL.'; errBox.classList.add('show'); return; }
+
+    document.getElementById('analyzeBtn').disabled = true;
+    document.getElementById('loadingScreen').classList.add('show');
+    document.getElementById('resultsWrap').classList.remove('show');
+    document.getElementById('genPanel').classList.remove('show');
+    document.getElementById('musicBlock').style.display = 'none';
+
+    // Embed the video
+    const videoSection = document.getElementById('videoFrame').parentElement;
+    if (isYT) {
+      document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/' + vid + '?rel=0&modestbranding=1';
+      document.getElementById('videoFrame').style.display = 'block';
+    } else if (isTikTok) {
+      const ttId = (url.match(/\/video\/(\d+)/) || [])[1] || '0';
+      document.getElementById('videoFrame').style.display = 'none';
+      let ttWrap = document.getElementById('ttEmbedHolder');
+      if (!ttWrap) { ttWrap = document.createElement('div'); ttWrap.id = 'ttEmbedHolder'; videoSection.appendChild(ttWrap); }
+      ttWrap.innerHTML = '<blockquote class="tiktok-embed" cite="' + url + '" data-video-id="' + ttId + '" style="max-width:325px;min-width:325px;border:none;margin:0 auto"></blockquote>';
+      const s = document.createElement('script'); s.src = 'https://www.tiktok.com/embed.js'; s.async = true; document.body.appendChild(s);
+    } else if (isFB) {
+      document.getElementById('videoFrame').style.display = 'none';
+      let fbWrap = document.getElementById('fbEmbedHolder');
+      if (!fbWrap) { fbWrap = document.createElement('div'); fbWrap.id = 'fbEmbedHolder'; videoSection.appendChild(fbWrap); }
+      fbWrap.innerHTML = '<div class="fb-video" data-href="' + url + '" data-width="400" data-show-text="false"></div>';
+      if (window.FB) window.FB.XFBML.parse(fbWrap);
+    }
+
+    // Get title/meta
+    let meta = { title: '', author: '' };
+    if (isYT) {
+      meta = await fetchTitle(vid);
+    } else if (isTikTok) {
+      try {
+        const oe = await fetch('https://www.tiktok.com/oembed?url=' + encodeURIComponent(url));
+        const od = await oe.json();
+        meta = { title: od.title || 'TikTok Video', author: od.author_name || '' };
+      } catch(e) { meta = { title: 'TikTok Video', author: '' }; }
+    } else if (isFB) {
+      meta = { title: 'Facebook Reel/Video', author: 'Facebook Creator' };
+    }
+
+    videoTitle = meta.title || (isTikTok ? 'TikTok Video' : isFB ? 'Facebook Reel' : 'YouTube Video');
+    document.getElementById('vidTitle').textContent = videoTitle;
+    document.getElementById('vidChannel').textContent = meta.author ? 'by ' + meta.author : '';
+
+    const platform = isTikTok ? 'TikTok' : isFB ? 'Facebook Reels' : 'YouTube';
+
+    console.log('Video Title:', videoTitle, '| Channel:', meta.author, '| URL:', url);
+
+    const sysPrompt = 'You are a viral content strategist for Filipino creators. You will be given a video title and channel. Your job is to decode WHY that specific video went viral — analyze the exact title, the hook technique used, and the emotion it triggers. Be SPECIFIC to the actual title given, not generic. Return ONLY a raw JSON object, no markdown, no backticks. Structure: {"intro":"one punchy sentence about THIS specific video max 15 words","hookAnalysis":"why THIS specific hook/title works psychologically max 40 words — be specific to the actual title","emotionAnalysis":"what emotion THIS video triggers and why Filipinos would share it max 40 words","emotionTags":["Tag1","Tag2","Tag3"],"templateExplain":"describe THIS video content structure in max 15 words","template":"Hook: [HOOK LINE]. Body: [MAIN POINT 1]. [MAIN POINT 2]. Twist: [UNEXPECTED ANGLE]. CTA: [CALL TO ACTION].","templateRaw":"Hook: [HOOK LINE]. Body: [MAIN POINT 1]. [MAIN POINT 2]. Twist: [UNEXPECTED ANGLE]. CTA: [CALL TO ACTION]."}';
+
+    const userPrompt = 'Decode the viral formula of this ' + platform + ' video.\n\n'
+      + 'VIDEO TITLE: "' + videoTitle + '"\n'
+      + 'CHANNEL/CREATOR: ' + (meta.author || 'Unknown') + '\n'
+      + 'PLATFORM: ' + platform + '\n'
+      + 'VIDEO URL: ' + url + '\n\n'
+      + 'IMPORTANT: Analyze specifically based on the video title above. Do NOT say "without video access" — use the title and channel name to decode the formula. '
+      + 'The title tells you the hook type (curiosity gap, listicle, how-to, storytime, challenge, reaction, etc.). '
+      + 'Create a Taglish plug-and-play template inspired by this specific video that Filipino creators can use.';
+
+    try {
+      const json = await callClaude(sysPrompt, userPrompt);
+      formulaData = JSON.parse(json);
+      templateRaw = formulaData.templateRaw || formulaData.template || '';
+      renderFormula(formulaData);
+    } catch(e) {
+      document.getElementById('loadingScreen').classList.remove('show');
+      document.getElementById('analyzeBtn').disabled = false;
+      errBox.textContent = '⚠️ Error: ' + (e.message || String(e));
+      errBox.classList.add('show');
+      return;
+    }
+
+    document.getElementById('loadingScreen').classList.remove('show');
+    document.getElementById('resultsWrap').classList.add('show');
+    document.getElementById('analyzeBtn').disabled = false;
+  }
+
+  function renderFormula(d) {
+    document.getElementById('formulaIntro').textContent = d.intro || '';
+    document.getElementById('hookBody').innerHTML = d.hookAnalysis || '';
+    document.getElementById('emotionBody').innerHTML = d.emotionAnalysis || '';
+    const tagsEl = document.getElementById('etags');
+    tagsEl.innerHTML = '';
+    (d.emotionTags || []).forEach(function(t) {
+      const s = document.createElement('span');
+      s.className = 'etag'; s.textContent = t; tagsEl.appendChild(s);
+    });
+    document.getElementById('templateBody').textContent = d.templateExplain || '';
+    const box = document.getElementById('templateBox');
+    const highlighted = (d.template || '').replace(/\[([^\]]+)\]/g, '<span class="tpl-var">[$1]</span>');
+    box.innerHTML = '<div class="tpl-box">' + highlighted + '</div>';
+  }
+
+  async function generateContent() {
+    if (!formulaData) return;
+    const panel = document.getElementById('genPanel');
+    const loading = document.getElementById('genLoading');
+    const contentEl = document.getElementById('genContent');
+    const copyBtn = document.getElementById('copyAllBtn');
+    const btn = document.getElementById('useFormulaBtn');
+
+    panel.classList.add('show');
+    loading.style.display = 'flex';
+    contentEl.style.display = 'none';
+    copyBtn.classList.remove('show');
+    btn.disabled = true;
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    const tags = (formulaData.emotionTags || []).join(', ');
+    const sysPrompt = 'You are a Taglish content creator for Filipino TikTok and Facebook. Return ONLY a raw JSON object, no markdown, no backticks. Use this exact structure: {"hook":"one scroll-stopping Taglish opening line","caption":"short Taglish story in 5 lines use the word NEWLINE between lines","cta":"2-line Taglish call to action","hashtags":"10 hashtags space-separated mix Tagalog and English"}';
+    const userMsg = 'Create Taglish social media content using this viral formula from "' + videoTitle + '". Template: ' + templateRaw + '. Emotion: ' + tags + '. Make it raw, relatable, confessional like a Filipino millennial creator.';
+
+    try {
+      const json = await callClaude(sysPrompt, userMsg);
+      const g = JSON.parse(json);
+      document.getElementById('outHook').textContent = g.hook || '';
+      document.getElementById('outCaption').textContent = (g.caption || '').replace(/NEWLINE/g, '\n');
+      document.getElementById('outCta').textContent = g.cta || '';
+      document.getElementById('outHashtags').textContent = g.hashtags || '';
+      loading.style.display = 'none';
+      contentEl.style.display = 'block';
+      copyBtn.classList.add('show');
+      generateMusic(formulaData.emotionTags, g.hook, g.caption);
+    } catch(e) {
+      loading.innerHTML = '<span style="color:#ff6b9d;font-size:13px">Generation failed: ' + (e.message||'Try again') + '</span>';
+    }
+    btn.disabled = false;
+  }
+
+  async function generateMusic(emotionTags, hook, caption) {
+    const block = document.getElementById('musicBlock');
+    const out = document.getElementById('outMusic');
+    block.style.display = 'block';
+    out.textContent = 'Finding perfect tracks...';
+
+    const tags = (emotionTags || []).join(', ');
+    const sysPrompt = 'You are a music strategist. Return ONLY a raw JSON object, no markdown, no backticks. Structure: {"tracks":[{"title":"Song Title","artist":"Artist Name","platforms":"TikTok, Reels","why":"5 word reason"},{"title":"Song","artist":"Artist","platforms":"TikTok, Reels, Shorts","why":"5 word reason"},{"title":"Song","artist":"Artist","platforms":"Reels, Shorts","why":"5 word reason"},{"title":"Song","artist":"Artist","platforms":"TikTok","why":"5 word reason"},{"title":"OPM Song","artist":"Filipino Artist","platforms":"TikTok, Reels","why":"5 word reason"}]}';
+    const userMsg = 'Recommend 5 music tracks for Filipino social media content. Emotion: ' + tags + '. Hook tone: ' + (hook||'').substring(0,80) + '. Include 1 OPM track. Match emotional vibe.';
+
+    try {
+      const json = await callClaude(sysPrompt, userMsg);
+      const m = JSON.parse(json);
+      const lines = (m.tracks || []).map(function(t, i) {
+        return (i+1) + '. ' + t.title + ' - ' + t.artist + '\n   Platforms: ' + t.platforms + ' | ' + t.why;
+      }).join('\n\n');
+      out.textContent = lines || 'No tracks found.';
+    } catch(e) {
+      out.textContent = 'Could not load music. Try again.';
+    }
+  }
+
+  function copyTemplate() {
+    if (!templateRaw) return;
+    navigator.clipboard.writeText(templateRaw).then(showToast);
+  }
+
+  function copyAll() {
+    const parts = [
+      'HOOK\n' + document.getElementById('outHook').textContent,
+      'CAPTION\n' + document.getElementById('outCaption').textContent,
+      'CTA\n' + document.getElementById('outCta').textContent,
+      'HASHTAGS\n' + document.getElementById('outHashtags').textContent,
+      'MUSIC\n' + document.getElementById('outMusic').textContent,
+    ];
+    navigator.clipboard.writeText(parts.join('\n\n')).then(showToast);
+  }
+
+  function showToast() {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(function() { t.classList.remove('show'); }, 2200);
+  }
+
+  // Auto-run on load - read v= param from main site if present
+  window.addEventListener('load', function() {
+    const params = new URLSearchParams(window.location.search);
+    const preload = params.get('v');
+    const preTitle  = params.get('title')  ? decodeURIComponent(params.get('title'))  : '';
+    const preAuthor = params.get('author') ? decodeURIComponent(params.get('author')) : '';
+
+    if (preload) {
+      const decoded = decodeURIComponent(preload);
+      const isId = /^[a-zA-Z0-9_-]{11}$/.test(decoded);
+      document.getElementById('urlInput').value = isId
+        ? 'https://www.youtube.com/watch?v=' + decoded
+        : decoded;
+    }
+
+  // Auto-run on load - read v= param from main site if present
+  window.addEventListener('load', function() {
+    const params = new URLSearchParams(window.location.search);
+    const preload   = params.get('v');
+    const preTitle  = params.get('title')  ? decodeURIComponent(params.get('title'))  : '';
+    const preAuthor = params.get('author') ? decodeURIComponent(params.get('author')) : '';
+
+    if (preload) {
+      const decoded = decodeURIComponent(preload);
+      const isId = /^[a-zA-Z0-9_-]{11}$/.test(decoded);
+      document.getElementById('urlInput').value = isId
+        ? 'https://www.youtube.com/watch?v=' + decoded
+        : decoded;
+    }
+
+    if (preTitle) {
+      window._preloadedTitle  = preTitle;
+      window._preloadedAuthor = preAuthor;
+    }
+
+    setTimeout(analyzeVideo, 500);
+  });
+</script>
+</body>
+</html>
