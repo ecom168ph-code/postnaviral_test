@@ -931,8 +931,13 @@ function formulaPanel(videoId, platform){
   const fullUrl = platform === 'youtube'
     ? 'https://www.youtube.com/watch?v=' + vid
     : vid;
+  const label = platform === 'tiktok'
+    ? '🎵 DECODE TIKTOK FORMULA →'
+    : platform === 'facebook'
+    ? '📘 DECODE FB REELS FORMULA →'
+    : '📋 COPY THIS FORMULA →';
   return '<button class="vd-use-btn" onclick="window.open(\'steal-formula.html?v=\'+encodeURIComponent(\''+fullUrl+'\'),\'_blank\')">'
-    +'📋 COPY THIS FORMULA →'
+    + label
     +'</button>';
 }
 
@@ -1159,27 +1164,8 @@ function vdEmbedTikTok(){
     errEl.style.display='block'; return;
   }
 
-  const vidMatch=url.match(/\/video\/(\d+)/);
-  const videoId=vidMatch?vidMatch[1]:'0';
-
-  resultEl.innerHTML=`
-    <div class="vd-embed-result">
-      <div style="display:flex;justify-content:center">
-        <blockquote class="tiktok-embed" cite="${url}" data-video-id="${videoId}" style="max-width:325px;min-width:325px;border:none;margin:0"></blockquote>
-      </div>
-      <div style="background:#0d0d0d;border:1px solid #1e1e1e;border-radius:12px;padding:16px">
-        ${formulaPanel(url,'tiktok')}
-      </div>
-    </div>`;
-  resultEl.style.display='block';
-
-  // Load TikTok embed.js
-  const old=document.getElementById('ttScript');
-  if(old) old.remove();
-  const s=document.createElement('script');
-  s.id='ttScript'; s.src='https://www.tiktok.com/embed.js'; s.async=true;
-  document.body.appendChild(s);
-  resultEl.scrollIntoView({behavior:'smooth',block:'start'});
+  // Open steal-formula.html in new tab with TikTok URL
+  window.open('steal-formula.html?v=' + encodeURIComponent(url), '_blank');
 }
 
 // ── FACEBOOK EMBED ──
@@ -1195,19 +1181,8 @@ function vdEmbedFacebook(){
     errEl.style.display='block'; return;
   }
 
-  resultEl.innerHTML=`
-    <div class="vd-embed-result">
-      <div style="display:flex;justify-content:center">
-        <div class="fb-video" data-href="${url}" data-width="400" data-show-text="false" data-allowfullscreen="true"></div>
-      </div>
-      <div style="background:#0d0d0d;border:1px solid #1e1e1e;border-radius:12px;padding:16px">
-        ${formulaPanel(url,'facebook')}
-      </div>
-    </div>`;
-  resultEl.style.display='block';
-
-  if(window.FB){ window.FB.XFBML.parse(resultEl); }
-  resultEl.scrollIntoView({behavior:'smooth',block:'start'});
+  // Open steal-formula.html in new tab with Facebook URL
+  window.open('steal-formula.html?v=' + encodeURIComponent(url), '_blank');
 }
 </script>
 
