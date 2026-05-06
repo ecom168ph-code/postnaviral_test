@@ -3309,7 +3309,9 @@ window.addEventListener('load',async ()=>{
   }
 
   async function analyzeVideo() {
-    const url = document.getElementById('urlInput').value.trim();
+    const urlEl = document.getElementById('urlInput');
+    if (!urlEl) return; // Element doesn't exist on this page — exit safely
+    const url = urlEl.value.trim();
     const errBox = document.getElementById('errorBox');
     errBox.classList.remove('show');
     const vid = url ? extractId(url) : VIDEO_ID;
@@ -3450,8 +3452,9 @@ window.addEventListener('load',async ()=>{
   window.addEventListener('load', function() {
     const params = new URLSearchParams(window.location.search);
     const preload = params.get('v');
-    if (preload) document.getElementById('urlInput').value = decodeURIComponent(preload);
-    setTimeout(analyzeVideo, 500);
+    const urlEl = document.getElementById('urlInput');
+    if (preload && urlEl) urlEl.value = decodeURIComponent(preload);
+    if (urlEl) setTimeout(analyzeVideo, 500);
   });
 </script>
   </div>
